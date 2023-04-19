@@ -1,0 +1,234 @@
+{% extends 'login_register_base.html' %}
+
+{% block title %}
+
+<title>Register Page</title>
+
+{% endblock %}
+
+
+{% block heading %}
+
+<h4 class="mb-2 text-center">Registration Page</h4>
+
+{% endblock %}
+
+{% block form %}
+
+<form id="formAuthentication" class="mb-3" action="" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username"
+            autofocus />
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Phone Number" class="form-label">Phone Number</label>
+        <input type="number" class="form-control" id="Phone Number" name="Phone_Number" placeholder="Enter your Phone Number" />
+    </div>
+
+    <div class="mb-3">
+        <label for="fname" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter your First Name" />
+    </div>
+
+    <div class="mb-3">
+        <label for="lname" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter your Last Name" />
+    </div>
+
+    <div class="mb-3 form-password-toggle">
+        <label class="form-label" for="password">Password</label>
+        <div class="input-group input-group-merge">
+            <input type="password" id="password" class="form-control" name="password"
+                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                aria-describedby="password" />
+            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+        </div>
+    </div>
+    <!-- <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+    </div> -->
+
+    <div class="mb-3">
+        GENDER:
+        <br>
+        <label for="idgender" class="form-label"></label>
+        <input type="radio" name="Yourgender" id="idgender" value="Male">Male
+        <input type="radio" name="Yourgender" id="idgender" value="Female">Female
+    </div>
+
+
+    <div class="mb-3">
+        <label for="aadhaarno" class="form-label">AADHAAR NUMBER: </label>
+        <input type="number" class="form-control" name="aadhaarno" id="aadhaarno" placeholder="Enter your AadhaarNumber" min="000000000000" max="999999999999">
+    </div>
+
+    <div class="mb-3">
+        <label for="country" class="form-label">COUNTRY:</label>
+        <input list="countries" class="form-control" id="country" name="country" value="India"/>
+        <datalist id="countries">
+        <option value="USA">
+        <option value="United Kingdom">
+        <option value="France">
+        <option value="Norway">
+        <option value="Germany">
+        <option value="Australia">
+        <option value="Afghanistan">
+        <option value="Åland Islands">
+        <option value="Albania">
+        <option value="Albania">
+        <option value="Yemen">
+        <option value="Zambia">
+        <option value="Zimbabwe">
+        <option value="India">
+        <option value="China">
+        <option value="Japan">
+        <option value="Russia">
+        <option value="Pakistan">
+        <option value="Bangladesh">
+        <option value="Nepal">
+        <option value="Sri Lanka">
+        <option value="Bhutan">
+        <option value="Maldives">
+        <option value="Myanmar">
+        <option value="Thailand">
+        <option value="Vietnam">
+        <option value="Indonesia">
+        <option value="Philippines">
+        <option value="Singapore">
+        <option value="Malaysia">
+        <option value="Brunei">
+        <option value="Cambodia">
+        <option value="Laos">
+        <option value="North Korea">
+        <option value="South Korea">
+        <option value="Mongolia">
+        <option value="Taiwan">
+        <option value="Hong Kong">
+        <option value="Macau">
+        <option value="New Zealand">
+        <option value="South Africa">
+        </datalist>
+    </div>
+
+    
+    <div class="mb-3">
+        <label for="state" class="form-label">STATE:</label>
+        <input list="states" class="form-control" id="state" name="state" value="Gujarat"/>
+        <datalist id="states">
+        <option value="Andhra Pradesh">
+        <option value="Arunachl Pradesh">
+        <option value="Assam">
+        <option value="Bihar">
+        <option value="Chattisgarh">
+        <option value="Goa">
+        <option value="Gujarat">
+        <option value="Haryana">
+        <option value="Himachal Pradesh">
+        <option value="Jharkhand">
+        <option value="Karnataka">
+        <option value="Kerela">
+        <option value="Madhya Pradesh">
+        <option value="Maharashtra">
+        <option value="Manipur">
+        <option value="Meghalaya">
+        <option value="Mizoram">
+        <option value="Nagaland">
+        <option value="Odisha">
+        <option value="Punjab">
+        <option value="Rajasthan">
+        <option value="Sikkim">
+        <option value="Tamil Nadu">
+        <option value="Telangana">
+        <option value="Tripura">
+        <option value="Uttar Pradesh">
+        <option value="Uttarakhand">
+        <option value="West Bengal">
+        <option value="Andaman and Nicobar Islands">
+        <option value="Chandigarh">
+        <option value="Dadra and Nagar Haveli">
+        <option value="Daman and Diu">
+        <option value="Delhi">
+        <option value="Jammu and Kashmir">
+        <option value="Ladakh">
+        <option value="Lakshadweep">
+        <option value="Puducherry">
+        </datalist>    
+</div>
+
+    <div class="mb-3">
+        <label for="city" class="form-label">CITY:</label>
+        <input list="cities" class="form-control" id="city" name="city" value="Ahmedabad"/>
+        <datalist id="cities">
+        <option value="Ahmedabad">
+        <option value="Amreli">
+        <option value="Gandhinagar">
+        <option value="Surat">
+        <option value="Rajkot">
+        <option value="Vadodara">
+        <option value="Bhavnagar">
+        <option value="Jamnagar">
+        <option value="Junagadh">
+        <option value="Anand">
+        <option value="Bharuch">
+        <option value="Bhuj">
+        <option value="Gandhidham">
+        <option value="Godhra">
+        <option value="Himatnagar">
+        <option value="Idar">
+        <option value="Jamnagar">
+        <option value="Junagadh">
+        <option value="Kandla">
+        <option value="Khambhat">
+        <option value="Mahesana">
+        <option value="Morbi">
+        <option value="Nadiad">
+        <option value="Navsari">
+        <option value="Palanpur">
+        <option value="Patan">
+        <option value="Porbandar">
+        <option value="Rajkot">
+        <option value="Sabarkantha">
+        <option value="Surendranagar">
+        <option value="Valsad">
+        </datalist>       
+    </div>
+
+
+    <div class="mb-3">
+        <label for="address" class="form-label">Address: </label>
+        <textarea name="address" id="address" class="form-control" cols="40" rows="5" placeholder="Enter your Address" ></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="pincode" class="form-label">PIN CODE: </label>
+        <input type="pincode" class="form-control" name="pincode" id="pinbcode" placeholder="Enter your Pin code/Zip code" min="000000" max="999999">
+    </div>
+
+    <div class="mb-3">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
+            <label class="form-check-label" for="terms-conditions">
+                I agree that i will use this appliaction for legal purposes only
+
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-primary d-grid w-100">Sign up</button>
+</form>
+<p class="text-center">
+    <span>Already have an acoount?</span>
+    <a href="{% url 'login' %}">
+        <span>Login</span>
+    </a>
+</p>
+
+{% endblock %}
