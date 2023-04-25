@@ -26,6 +26,11 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('index/', views.index, name='index'),
+    path('sidebar/', views.sidebar, name='sidebar'),
+    path('administrator/', views.administrator, name='administrator'),
+    path('user/', views.user, name='user'),
+    path('test/', views.test, name='test'),
+    path('create_complaint/', views.create_complaint, name='create_complaint'),
     
 
 ]+ static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.BASE_DIR / 'static')

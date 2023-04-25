@@ -86,3 +86,19 @@ def login(request):
 
 def index(request):
     return render(request, 'index.html')
+
+
+def sidebar(request):
+    return render(request, 'sidebar.html')
+
+def administrator(request):
+    return render(request, 'admin.html')
+
+def user(request):
+    return render(request, 'user.html')
+
+def create_complaint(request):
+    return render(request, 'create_complaint.html')
+
+def test(request):
+    return render(request, 'test.html')
