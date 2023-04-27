@@ -1,97 +1,63 @@
-{% extends 'usernavbar.html' %}
+{% extends 'user_sidebar.html' %}
 
 {% block complaint %}
-<div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
 
-        <!-- Layout container -->
-        <div class="layout-page">
-
-
-            <!-- Content wrapper -->
-            <div class="content-wrapper">
-                <!-- Content -->
-
-                <div class="container-xxl flex-grow-1 container-p-y">
-
-                    <!-- Basic Layout -->
-                    <div class="row">
-                        <div class="col-xl">
-                            <div class="card mb-4">
-
-                                <div class="card-body">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-fullname">Full Name</label>
-                                            <input type="text" class="form-control" id="basic-default-fullname"
-                                                placeholder="John Doe" />
-                                        </div>
-
-                                        <label class="form-label" for="basic-default-fullname" style="margin-bottom: -4px;">Gender</label><br>
-                                        <div class="form-check form-check-inline mb-3 mt-0">
-                                            <input class="form-check-input" type="radio" name="gender"
-                                                id="Male" value="Male" />
-                                            <label class="form-check-label" for="inlineRadio1">Male</label>
-                                        </div>
-                                        <div class="form-check form-check-inline mt-3 mt-0">
-                                            <input class="form-check-input" type="radio" name="gender"
-                                                id="Female" value="Female" />
-                                            <label class="form-check-label" for="inlineRadio1">Female</label>
-                                        </div>
-                                        <div class="mb-3 mt-1">
-                                            <label class="form-label" for="basic-default-email">Email</label>
-                                            <div class="input-group input-group-merge">
-                                                <input type="text" id="basic-default-email" class="form-control"
-                                                    placeholder="john.doe" aria-label="john.doe"
-                                                    aria-describedby="basic-default-email2" />
-                                                <span class="input-group-text"
-                                                    id="basic-default-email2">@example.com</span>
-                                            </div>
-                                            <div class="form-text">You can use letters, numbers & periods</div>
-                                        </div>
-
-                                        <div class="mb-3 ">
-                                            <label for="html5-date-input" class="form-label">Date Of Birth</label>
-                                              <input class="form-control" type="date" value="" id="html5-date-input" />
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Address</label>
-                                            <textarea id="basic-default-message" class="form-control"
-                                                placeholder=""></textarea>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-company">Company</label>
-                                            <input type="text" class="form-control" id="basic-default-company"
-                                                placeholder="ACME Inc." />
-                                        </div>
-                                        
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-phone">Phone No</label>
-                                            <input type="text" id="basic-default-phone" class="form-control phone-mask"
-                                                placeholder="658 799 8941" />
-                                        </div>
-                                        
-                                        <button type="submit" class="btn btn-primary">Send</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
+            <div class="card-body">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-fullname">Full Name</label>
+                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
                     </div>
-                </div>
-                <!-- / Content -->
 
+                    <label class="form-label" for="basic-default-fullname"
+                        style="margin-bottom: -4px;">Gender</label><br>
+                    <div class="form-check form-check-inline mb-3 mt-0">
+                        <input class="form-check-input" type="radio" name="gender" id="Male" value="Male" />
+                        <label class="form-check-label" for="inlineRadio1">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline mt-3 mt-0">
+                        <input class="form-check-input" type="radio" name="gender" id="Female" value="Female" />
+                        <label class="form-check-label" for="inlineRadio1">Female</label>
+                    </div>
+                    <div class="mb-3 mt-1">
+                        <label class="form-label" for="basic-default-email">Email</label>
+                        <div class="input-group input-group-merge">
+                            <input type="text" id="basic-default-email" class="form-control" placeholder="john.doe"
+                                aria-label="john.doe" aria-describedby="basic-default-email2" />
+                            <span class="input-group-text" id="basic-default-email2">@example.com</span>
+                        </div>
+                        <div class="form-text">You can use letters, numbers & periods</div>
+                    </div>
 
+                    <div class="mb-3 ">
+                        <label for="html5-date-input" class="form-label">Date Of Birth</label>
+                        <input class="form-control" type="date" value="" id="html5-date-input" />
+                    </div>
 
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-message">Address</label>
+                        <textarea id="basic-default-message" class="form-control" placeholder=""></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Company</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc." />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-phone">Phone No</label>
+                        <input type="text" id="basic-default-phone" class="form-control phone-mask"
+                            placeholder="658 799 8941" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
             </div>
-            <!-- Content wrapper -->
         </div>
-        <!-- / Layout page -->
     </div>
-
-    <!-- Overlay -->
 </div>
 
 {% endblock %}
