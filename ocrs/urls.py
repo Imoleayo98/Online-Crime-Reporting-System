@@ -33,4 +33,4 @@ urlpatterns = [
     path('create_complaint/', views.create_complaint, name='create_complaint'),
     
 
-]+ static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.BASE_DIR / 'static')
+]+ static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
