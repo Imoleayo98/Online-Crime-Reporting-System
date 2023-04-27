@@ -19,8 +19,8 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+        <li class="menu-item">
+            <a href="{% url 'user' %}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Home</div>
             </a>
@@ -39,7 +39,6 @@
             </a>
         </li>
         <!-- Cards -->
-        
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
@@ -81,6 +80,28 @@
     </ul>
 </aside>
 
+<script>
+
+    let Home = document.querySelectorAll('.menu-item')[0];
+    let Manage_Profile = document.querySelectorAll('.menu-item')[1];
+    let Create_Complaint = document.querySelectorAll('.menu-item')[2];
+
+    var currentUrl = window.location.href;
+    if (window.location.href === 'http://127.0.0.1:8000/create_complaint/') {
+        Create_Complaint.classList.add('active');
+        Home.classList.remove('active');
+        Manage_Profile.classList.remove('active');
+    } 
+    else if (window.location.href === 'http://127.0.0.1:8000/user/')
+    {
+        Create_Complaint.classList.remove('active');
+        Home.classList.add('active');
+        Manage_Profile.classList.remove('active');
+    }
+    
+    
+
+</script>
 {% block complaint %}
 {% endblock %}
 
