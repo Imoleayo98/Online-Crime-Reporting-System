@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.utils.translation import gettext_lazy 
 
@@ -58,7 +59,7 @@ class police_station_master(models.Model):
     status_id = models.CharField(max_length=9,null=False,blank=False,choices=status_id_choices)
     created_at = models.DateTimeField(auto_now_add=True)
     # created_by = models.ForeignKey(admin_master,null=True,blank=True,on_delete=models.PROTECT)
-    updated_at = models.DateTimeField(auto_now=False)
+    updated_at = models.DateTimeField(auto_now=False,null=True,blank=True,)
     # updated_by = models.ForeignKey(admin_master,null=True,blank=True,on_delete=models.PROTECT)
 
     def save(self, *args, **kwargs):
@@ -80,8 +81,10 @@ class police_station_master(models.Model):
         verbose_name_plural = "Police Stations"
 
 class crime_category_master(models.Model):
-    crime_category_id = models.AutoField(primary_key=True,unique=True)
-    crime_category_name = models.CharField(max_length=150,null=False,blank=False,unique=True)
+    crime_category_id = models.AutoField(primary_key=True, unique=True)
+    crime_category_name = models.CharField(max_length=150, null=False, blank=False, unique=True)
+    created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
+
 
     def __str__(self):
         return self.crime_category_name
@@ -129,6 +132,9 @@ class complaint_master(models.Model):
     datetime_of_occurence = models.DateTimeField(null=False,blank=False)
     place_of_occurence = models.CharField(max_length=150, null=True, blank=True)
     evidence_image = models.ImageField(null=True, blank=True, upload_to="complaint images/")
+    created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=False,null=True,blank=True,)
+
 
     def save(self, *args, **kwargs):
         if self.complainant_state_name:
