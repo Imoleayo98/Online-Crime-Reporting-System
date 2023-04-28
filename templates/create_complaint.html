@@ -49,64 +49,12 @@
                         <textarea id="basic-default-message" class="form-control" placeholder=""></textarea>
                     </div>
 
-                    <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class="form-label">Your State & UT</label>
-                        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
-                            <option selected>Choose State or UT where you want to file the complaint</option>
-                            {% for state in states %}
-                            <option value="{{ state.state_name }}">{{ state.state_name }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <script>
-                        $(document).ready(function () {
-                            $('#complainant_state').change(function () {
-                                var state_name = $(this).val();
-                                $.ajax({
-                                    url: '/get_district/',
-                                    data: {
-                                        'complainant_state': state_name
-                                    },
-                                    dataType: 'json',
-                                    success: function (data) {
-                                        var districts = data.districts;
-                                        var district_options = '';
-                                        for (var i = 0; i < districts.length; i++) {
-                                            district_options += '<option value="' + districts[i].district_name + '">' + districts[i].district_name + '</option>';
-                                        }
-                                        $('#complainant_district').html(district_options);
-                                    }
-                                });
-                            });
-                        });
-
-                    </script>
-                    <div class="mb-4">
-                        <label for="complainant_district" class="form-label">District</label>
-                        <select class="form-select" id="complainant_district" name="complainant_district">
-                            <option value="">Choose District where you want to file the complaint</option>
-                        </select>
-                    </div>
-
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-phone">Your PIN Code</label>
                         <input maxlength="6" type="text" id="basic-default-phone" class="form-control phone-mask"
                             placeholder="658799" />
                     </div>
 
-                    <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class="form-label">Police Station</label>
-                        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
-                            <option selected>Choose Police Station where you want to file the complaint</option>
-                            </option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-
-                  
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Crime Category</label>
                         <select class="form-select" id="crime_category" name="crime_category"
@@ -142,6 +90,62 @@
                             }
                         });
                     </script>
+                    
+                    <div class="mb-4">
+                        <label for="exampleFormControlSelect1" class="form-label">Complaint State & UT</label>
+                        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
+                            <option selected>Choose State or UT where you want to file the complaint</option>
+                            {% for state in states %}
+                            <option value="{{ state.state_name }}">{{ state.state_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#complainant_state').change(function () {
+                                var state_name = $(this).val();
+                                $.ajax({
+                                    url: '/get_district/',
+                                    data: {
+                                        'complainant_state': state_name
+                                    },
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        var districts = data.districts;
+                                        var district_options = '';
+                                        for (var i = 0; i < districts.length; i++) {
+                                            district_options += '<option value="' + districts[i].district_name + '">' + districts[i].district_name + '</option>';
+                                        }
+                                        $('#complainant_district').html(district_options);
+                                    }
+                                });
+                            });
+                        });
+
+                    </script>
+                    <div class="mb-4">
+                        <label for="complainant_district" class="form-label">Complaint District</label>
+                        <select class="form-select" id="complainant_district" name="complainant_district">
+                            <option value="">Choose District where you want to file the complaint</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlSelect1" class="form-label">Police Station</label>
+                        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
+                            <option selected>Choose Police Station where you want to file the complaint</option>
+                            </option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+
+                  
+
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Subject</label>
