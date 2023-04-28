@@ -7,6 +7,7 @@
         <div class="card mb-4">
 
             <div class="card-body">
+                <div class="alert alert-primary" role="alert">Your Address will be fetched from your user profile</div>
                 <form action="" method="POST">
                     {% csrf_token %}
                     <div class="mb-3">
@@ -44,16 +45,6 @@
                         <input class="form-control" type="date" value="" id="html5-date-input" />
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="basic-default-message">Your Address</label>
-                        <textarea id="basic-default-message" class="form-control" placeholder=""></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="basic-default-phone">Your PIN Code</label>
-                        <input maxlength="6" type="text" id="basic-default-phone" class="form-control phone-mask"
-                            placeholder="658799" />
-                    </div>
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Crime Category</label>
