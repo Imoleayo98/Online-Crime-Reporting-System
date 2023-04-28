@@ -8,19 +8,22 @@ class state_master(models.Model):
         ('active', 'active'),
         ('inactive', 'inactive'),
     )
-    state_id = models.AutoField(primary_key=True)
+    state_id = models.AutoField(primary_key=True,unique=True)
     state_name = models.CharField(max_length=150,null=False,blank=False,unique=True)
     status_id = models.CharField(max_length=9,null=False,blank=False,choices=status_id_choices)
 
-
     def __str__(self):
         return self.state_name
+    
+    class Meta:
+        verbose_name_plural = "States and Union Territories"
+
 class district_master(models.Model):
     status_id_choices = (
         ('active', 'active'),
         ('inactive', 'inactive'),
     )
-    district_id = models.AutoField(primary_key=True)
+    district_id = models.AutoField(primary_key=True,unique=True)
     district_name = models.CharField(max_length=150,null=False,blank=False,unique=True)
     state_name = models.ForeignKey(state_master,to_field='state_name',null=False,blank=False,on_delete=models.PROTECT)
     state_id = models.IntegerField(null=True, blank=True)
@@ -34,15 +37,18 @@ class district_master(models.Model):
 
     def __str__(self):
         return self.district_name
+    
+    class Meta:
+        verbose_name_plural = "Districts"
 
 class police_station_master(models.Model):
     status_id_choices = (
         ('active', 'active'),
         ('inactive', 'inactive'),
     )
-    station_id = models.AutoField(primary_key=True)
+    station_id = models.AutoField(primary_key=True,unique=True)
     station_name = models.CharField(max_length=150,null=False,blank=False,unique=True)
-    station_mail = models.EmailField(gettext_lazy('Email Address'),null=False, blank=False)
+    station_mail = models.EmailField(gettext_lazy('Email Address'),null=False, blank=False,unique=True)
     address = models.TextField(max_length=150, null=False,blank=False)
     state_name = models.ForeignKey(state_master,to_field='state_name',null=False,blank=False,on_delete=models.PROTECT)
     state_id = models.IntegerField(null=True, blank=True) 
@@ -69,13 +75,19 @@ class police_station_master(models.Model):
 
     def __str__(self):
         return self.station_name
+    
+    class Meta:
+        verbose_name_plural = "Police Stations"
 
 class crime_category_master(models.Model):
-    crime_category_id = models.AutoField(primary_key=True)
+    crime_category_id = models.AutoField(primary_key=True,unique=True)
     crime_category_name = models.CharField(max_length=150,null=False,blank=False,unique=True)
 
     def __str__(self):
         return self.crime_category_name
+    
+    class Meta:
+        verbose_name_plural = "Crime Categories"
 
 
 class complaint_master(models.Model):
@@ -90,7 +102,7 @@ class complaint_master(models.Model):
         ('FIR is filed', 'FIR is filed'),
         ('Rejected', 'Rejected'),
     )
-    complaint_id = models.AutoField(primary_key=True,null=False,blank=False)
+    complaint_id = models.AutoField(primary_key=True,null=False,blank=False,unique=True)
     complainant_name = models.CharField(max_length=150,null=False,blank=False)
     complainant_gender = models.CharField(max_length=6,choices=gender_choices)
     complainant_contact_no = models.IntegerField(null=False, blank=False)
@@ -106,14 +118,14 @@ class complaint_master(models.Model):
     state_id = models.IntegerField(null=True, blank=True)
     district_name = models.ForeignKey(district_master,to_field='district_name',null=False,blank=False,on_delete=models.PROTECT,related_name="complaint_in_district+")
     district_id = models.IntegerField(null=True, blank=True)
-    station_name = models.ForeignKey(police_station_master,to_field='station_name',null=False,blank=False,on_delete=models.PROTECT,related_name="complainant's_district+")
+    station_name = models.ForeignKey(police_station_master,to_field='station_name',null=False,blank=False,on_delete=models.PROTECT,related_name="complainant_in_police_station+")
     station_id  = models.IntegerField(null=True, blank=True)
     status_id = models.CharField(max_length=15,choices=status_choices,null=False, blank=False)
     crime_category = models.ForeignKey(crime_category_master,to_field='crime_category_name',null=False, blank=False,on_delete=models.PROTECT)
     other_crime_category = models.CharField(max_length=150,null=True, blank=True)
     subject = models.CharField(max_length=150,null=False,blank=False)
     detailed_description = models.TextField(max_length=10000,null=False,blank=False)
-    delay_reason = models.TextField(max_length=1000,null=False,blank=False)
+    delay_reason = models.TextField(max_length=1000,null=True,blank=True)
     datetime_of_occurence = models.DateTimeField(null=False,blank=False)
     place_of_occurence = models.CharField(max_length=150, null=True, blank=True)
     evidence_image = models.ImageField(null=True, blank=True, upload_to="complaint images/")
@@ -147,6 +159,9 @@ class complaint_master(models.Model):
 
     def __str__(self):
         return self.complainant_name
+    
+    class Meta:
+        verbose_name_plural = "Complaints"
 
 
 
