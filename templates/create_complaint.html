@@ -27,14 +27,14 @@
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-phone">Phone No</label>
                         <input type="text" id="basic-default-phone" class="form-control phone-mask"
-                            placeholder="658 799 8941" />
+                            placeholder="6587 998 941" />
                     </div>
                     <div class="mb-3 mt-1">
                         <label class="form-label" for="basic-default-email">Email</label>
                         <div class="input-group input-group-merge">
-                            <input type="text" id="basic-default-email" class="form-control" placeholder="john.doe"
+                            <input type="text" id="basic-default-email" class="form-control" placeholder="example@email.com"
                                 aria-label="john.doe" aria-describedby="basic-default-email2" />
-                            <span class="input-group-text" id="basic-default-email2">@example.com</span>
+                            <!-- <span class="input-group-text" id="basic-default-email2">@example.com</span> -->
                         </div>
                         <div class="form-text">You can use letters, numbers & periods</div>
                     </div>
@@ -45,12 +45,12 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-message">Address</label>
+                        <label class="form-label" for="basic-default-message">Complainant's Address</label>
                         <textarea id="basic-default-message" class="form-control" placeholder=""></textarea>
                     </div>
 
                     <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class="form-label">State</label>
+                        <label for="exampleFormControlSelect1" class="form-label">State & UT</label>
                         <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
                             <option selected>Choose State</option>
                             {% for state in states %}
