@@ -30,4 +30,6 @@ urlpatterns = [
     path('administrator/', views.administrator, name='administrator'),
     path('user/', include('complaints.urls'), name='user'),
     path('test/', views.test, name='test'),
+    path('get_district/', views.get_districts, name='get_districts'),
+
 ] + static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

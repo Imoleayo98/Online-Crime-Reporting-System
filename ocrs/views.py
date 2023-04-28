@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
+from complaints.models import district_master,state_master,police_station_master
 
 def landing_page(request):
     return render(request,"landing_page.html")
@@ -86,6 +87,14 @@ def login(request):
 
 def index(request):
     return render(request, 'index.html')
+
+def get_districts(request):
+    state_name = request.GET.get('complainant_state')
+    state_object = state_master.objects.get(state_name=state_name)
+    state_id = state_object.state_id
+    districts_objects = district_master.objects.filter(state_id=state_id)
+    districts = list(districts_objects.values('district_id', 'district_name'))
+    return JsonResponse({'districts': districts})
 
 
 def sidebar(request):

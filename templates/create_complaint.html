@@ -1,15 +1,17 @@
 {% extends 'user_sidebar.html' %}
 
 {% block complaint %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <div class="row">
     <div class="col-xl">
         <div class="card mb-4">
 
             <div class="card-body">
-                <form>
+                <form action="" method="POST">
+                    {% csrf_token %}
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-fullname">Full Name</label>
-                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        <input type="text" name="name" class="form-control" id="basic-default-fullname" />
                     </div>
 
                     <label class="form-label" for="basic-default-fullname"
@@ -46,34 +48,145 @@
                         <label class="form-label" for="basic-default-message">Address</label>
                         <textarea id="basic-default-message" class="form-control" placeholder=""></textarea>
                     </div>
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlSelect1" class="form-label">State</label>
+                        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
+                            <option selected>Choose State</option>
+                            {% for state in states %}
+                            <option value="{{ state.state_name }}">{{ state.state_name }}
+                            </option>
+                            {% endfor %}
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#complainant_state').change(function () {
+                                var state_name = $(this).val();
+                                $.ajax({
+                                    url: '/get_district/',
+                                    data: {
+                                        'complainant_state': state_name
+                                    },
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        var districts = data.districts;
+                                        var district_options = '';
+                                        for (var i = 0; i < districts.length; i++) {
+                                            district_options += '<option value="' + districts[i].district_id + '">' + districts[i].district_name + '</option>';
+                                        }
+                                        $('#complainant_district').html(district_options);
+                                    }
+                                });
+                            });
+                        });
+
+                    </script>
+                    <div class="mb-4">
+                        <label for="complainant_district" class="form-label">District</label>
+                        <select class="form-select" id="complainant_district" name="complainant_district">
+                            <option value="">Select District</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="exampleFormControlSelect1" class="form-label">District</label>
+                        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
+                            <option selected>Choose State</option>
+                            </option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-phone">PIN Code</label>
                         <input maxlength="6" type="text" id="basic-default-phone" class="form-control phone-mask"
                             placeholder="658799" />
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Crime Category</label>
-                        <select class="form-select" id="exampleFormControlSelect1" name="crime_category"
+                        <select class="form-select" id="crime_category" name="crime_category"
                             aria-label="Crime Category">
                             <option selected>Choose Crime Category</option>
                             {% for category in crime_categories %}
-                            <option value="{{ category }}">{{ category }}</option>
+                            <option value="{{ category.crime_category_name }}">{{ category.crime_category_name }}
+                            </option>
                             {% endfor %}
+                            <option value="other">Other</option>
                         </select>
                     </div>
 
+                    <div id="other_crime_category" class="mb-3">
+                        <label class="form-label" for="basic-default-fullname">Please Mention Other Crime Category
+                        </label>
+                        <input type="text" name="name" class="form-control" id="basic-default-fullname" />
+                    </div>
+
+                    <script>
+
+                        let crime_category_select_element = document.querySelector('#crime_category');
+                        let otherCategory = document.querySelector('#other_crime_category');
+                        otherCategory.style.display = 'none';
+
+                        crime_category_select_element.addEventListener('change', (event) => {
+                            if (event.target.value === 'other') {
+                                otherCategory.style.display = 'block';
+                            }
+                            else {
+                                otherCategory.style.display = 'none';
+
+                            }
+                        });
+                    </script>
+
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-company">Company</label>
-                        <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc." />
+                        <label class="form-label" for="basic-default-company">Subject</label>
+                        <input type="text" class="form-control" id="basic-default-company" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-message">Address</label>
+                        <textarea id="basic-default-message" class="form-control" placeholder=""></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-message">Detailed Description</label>
+                        <textarea id="basic-default-message" class="form-control" placeholder=""></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-message">Delay In Complaining Reason</label>
+                        <textarea id="basic-default-message" class="form-control" placeholder="(OPTIONAL)"></textarea>
                     </div>
 
 
+                    <div class="mb-3 row">
+                        <label for="html5-datetime-local-input" class="col-md-2 col-form-label">Date and Time of
+                            Occurence</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="datetime-local" value="2021-06-18T12:30:00"
+                                id="html5-datetime-local-input" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Place of Occurence</label>
+                        <input type="text" class="form-control" id="basic-default-company" />
+                    </div>
 
-                    <button type="submit" class="btn btn-primary">Send</button>
-                </form>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Evidence images (optional)</label>
+                        <input class="form-control" type="file" id="formFile" />
+                    </div>
             </div>
+
+            <button type="submit" class="btn btn-primary">Send</button>
+            </form>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock %}
