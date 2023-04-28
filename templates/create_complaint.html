@@ -7,7 +7,6 @@
         <div class="card mb-4">
 
             <div class="card-body">
-                <div class="alert alert-primary" role="alert">Your Address will be fetched from your user profile</div>
                 <form action="" method="POST">
                     {% csrf_token %}
                     <div class="mb-3">
@@ -177,7 +176,7 @@
                         <input class="form-control" type="file" id="formFile" />
                     </div>
             </div>
-
+            <div class="alert alert-primary" role="alert">Your Address will be fetched from your user profile</div>
             <button type="submit" class="btn btn-primary">Send</button>
             </form>
         </div>
