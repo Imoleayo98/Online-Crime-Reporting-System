@@ -70,7 +70,7 @@ def login(request):
             # login(request, user)
             context.update({'Login_status':""})
             print(context['Login_status'])
-            return redirect('/index')
+            return redirect('/user')
         else:
             # the username and/or password are incorrect
             # error_message = 'Invalid username or password'
@@ -94,11 +94,7 @@ def sidebar(request):
 def administrator(request):
     return render(request, 'admin.html')
 
-def user(request):
-    return render(request, 'user.html')
 
-def create_complaint(request):
-    return render(request, 'create_complaint.html')
 
 def test(request):
     return render(request, 'test.html')
