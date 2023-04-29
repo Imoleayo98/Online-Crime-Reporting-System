@@ -97,12 +97,12 @@
 
                     <script>
                         $(document).ready(function () {
-                            $('#complainant_state').change(function () {
+                            $('#complaint_state').change(function () {
                                 var state_name = $(this).val();
                                 $.ajax({
                                     url: '/get_district/',
                                     data: {
-                                        'complainant_state': state_name
+                                        'complaint_state': state_name
                                     },
                                     dataType: 'json',
                                     success: function (data) {
@@ -111,7 +111,7 @@
                                         for (var i = 0; i < districts.length; i++) {
                                             district_options += '<option value="' + districts[i].district_name + '">' + districts[i].district_name + '</option>';
                                         }
-                                        $('#complainant_district').html(district_options);
+                                        $('#complaint_district').html(district_options);
                                     }
                                 });
                             });
@@ -119,7 +119,7 @@
 
                     </script>
                     <div class="mb-4">
-                        <label for="complainant_district" class="form-label">Complaint District</label>
+                        <label for="complaint_district" class="form-label">Complaint District</label>
                         <select class="form-select" id="complaint_district" name="complaint_district">
                             <option value="">Choose District where you want to file the complaint</option>
                         </select>
