@@ -2,15 +2,13 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .models import *
+from django.contrib.auth.decorators import login_required
 
-
-
-
+@login_required(login_url='user_login')
 def user(request):
     return render(request, 'user.html')
     
-
-
+@login_required(login_url='user_login')
 def create_complaint(request):
     crime_categories = crime_category_master.objects.all()
     states = state_master.objects.all()
@@ -26,39 +24,35 @@ def create_complaint(request):
         complaint_name = request.POST.get('name')
         complainant_gender = request.POST.get('gender')
         complainant_contact_no = request.POST.get('contact_no')
-        complainant_email = request.POST.get('name')
-        complaint_dob = request.POST.get('name')
-        complainant_address = request.POST.get('name')
-        complainant_state_name = request.POST.get('name')
-        complainant_state_id = request.POST.get('name')
-        complainant_district_name = request.POST.get('name')
-        complainant_district_id = request.POST.get('name')
-        complainant_pin_code = request.POST.get('name')
+        complainant_email = request.POST.get('email')
+        complaint_dob = request.POST.get('dob')
+        # 
+        complainant_address = request.POST.get('')
+        complainant_pin_code = request.POST.get('')
         state_name = request.POST.get('name')
         state_id = request.POST.get('name')
         district_name = request.POST.get('name')
         district_id = request.POST.get('name')
-        station_name = request.POST.get('name')
-        station_id = request.POST.get('name')
-        status_id = request.POST.get('name')
-        crime_category = request.POST.get('name')
-        other_crime_category = request.POST.get('name')
-        subject = request.POST.get('name')
-        detailed_description = request.POST.get('name')
-        delay_reason = request.POST.get('name')
-        datetime_of_occurence = request.POST.get('name')
-        place_of_occurence = request.POST.get('name')
-        evidence_image = request.POST.get('name')
-        created_at = request.POST.get('name')
-        updated_at = request.POST.get('name')
-
-
-
-        
+        # 
+        complainant_state_name = request.POST.get('complaint_state')
+        complainant_state_id = state_master.objects.get(state_name=complainant_state_name).state_id
+        complainant_district_name = request.POST.get('complaint_district')
+        complainant_district_id = district_master.objects.get(district_name=complainant_district_name).district_id
+        station_name = request.POST.get('complaint_police_station')
+        station_id = police_station_master.objects.get(station_name=station_name).station_id
         crime_category = request.POST.get('crime_category')
-        crime_category_object = crime_category_master.objects.get(crime_category_name=crime_category)
-        crime_category_id = crime_category_object.crime_category_id
-        print(crime_category,crime_category_id)
+        other_crime_category = request.POST.get('other_crime_category')
+        subject = request.POST.get('subject')
+        detailed_description = request.POST.get('detailed_description')
+        delay_reason = request.POST.get('delay_in_complaining')
+        datetime_of_occurence = request.POST.get('date_time_of_occurence')
+        place_of_occurence = request.POST.get('place_of_occurence')
+        evidence_image = request.POST.get('evidence_image')
+        # created_at = request.POST.get('name')
+        # updated_at = request.POST.get('name')
+
+
+
         return redirect('/user')
     
     

@@ -123,7 +123,7 @@ class complaint_master(models.Model):
     district_id = models.IntegerField(null=True, blank=True)
     station_name = models.ForeignKey(police_station_master,to_field='station_name',null=False,blank=False,on_delete=models.PROTECT,related_name="complainant_in_police_station+")
     station_id  = models.IntegerField(null=True, blank=True)
-    status_id = models.CharField(max_length=15,choices=status_choices,null=False, blank=False)
+    status_id = models.CharField(max_length=15,choices=status_choices,null=False, blank=False,default='Pending')
     crime_category = models.ForeignKey(crime_category_master,to_field='crime_category_name',null=False, blank=False,on_delete=models.PROTECT)
     other_crime_category = models.CharField(max_length=150,null=True, blank=True)
     subject = models.CharField(max_length=150,null=False,blank=False)

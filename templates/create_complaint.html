@@ -63,7 +63,7 @@
                     <div id="other_crime_category" class="mb-3">
                         <label class="form-label" for="basic-default-fullname">Please Mention Other Crime Category
                         </label>
-                        <input type="text" name="name" class="form-control" id="basic-default-fullname" />
+                        <input type="text" name="other_crime_category" class="form-control" id="basic-default-fullname" />
                     </div>
 
                     <script>
@@ -85,7 +85,7 @@
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint State & UT</label>
-                        <select class="form-select" id="complaint_state" name="complaint_state" aria-label="State">
+                        <select class="form-select" name="complaint_state" id="complaint_state" name="complaint_state" aria-label="State">
                             <option selected>Choose State or UT where you want to file the complaint</option>
                             {% for state in states %}
                             <option value="{{ state.state_name }}">{{ state.state_name }}
@@ -172,20 +172,20 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Subject</label>
-                        <input type="text" class="form-control" id="basic-default-company"
+                        <input type="text" name="subject" class="form-control" id="basic-default-company"
                             placeholder="Enter Complaint's Subject" />
                     </div>
 
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-message">Detailed Description</label>
-                        <textarea id="basic-default-message" class="form-control"
+                        <textarea id="basic-default-message"  name="detailed_description" class="form-control"
                             placeholder="Provide detailed description"></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-message">Delay In Complaining Reason</label>
-                        <textarea id="basic-default-message" class="form-control" placeholder="(OPTIONAL)"></textarea>
+                        <textarea id="basic-default-message" name="delay_in_complaining" class="form-control" placeholder="(OPTIONAL)"></textarea>
                     </div>
 
 
@@ -193,18 +193,18 @@
                         <label for="html5-datetime-local-input" class="col-md-2 col-form-label">Date and Time of
                             Occurence</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="datetime-local" value="2021-06-18T12:30:00"
+                            <input class="form-control" name="date_time_of_occurence" type="datetime-local" value="2021-06-18T12:30:00"
                                 id="html5-datetime-local-input" />
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Place of Occurence</label>
-                        <input type="text" class="form-control" id="basic-default-company" />
+                        <input type="text" name="place_of_occurence" class="form-control" id="basic-default-company" />
                     </div>
 
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Evidence images (optional)</label>
-                        <input class="form-control" type="file" id="formFile" />
+                        <input class="form-control" name="evidence_image" type="file" id="formFile" />
                     </div>
             </div>
             <div class="alert alert-primary" role="alert">Your Address will be fetched from your user profile</div>

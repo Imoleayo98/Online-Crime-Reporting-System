@@ -4,12 +4,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 from . import userviews
+from django.contrib.auth.decorators import login_required
+
 
 
 
 urlpatterns = [
     path('',userviews.user, name='user'),
-    path('create_complaint/', userviews.create_complaint, name='create_complaint'),
+    path('create_complaint/', login_required(userviews.create_complaint), name='create_complaint'),
 
 
     

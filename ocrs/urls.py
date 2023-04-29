@@ -19,13 +19,16 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import settings
 from . import views
+from django.contrib.auth.decorators import login_required
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.landing_page, name='landing_page'),
     path('register/', views.register, name='register'),
-    path('login/', views.login, name='login'),
+    path('user_login/', views.user_login, name='user_login'),
+    path('user_logout/', views.user_logout, name='user_logout'),
     path('index/', views.index, name='index'),
     path('administrator/', views.administrator, name='administrator'),
     path('user/', include('complaints.urls'), name='user'),
