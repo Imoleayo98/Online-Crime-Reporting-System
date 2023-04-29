@@ -114,6 +114,17 @@ def get_districts(request):
     districts = list(districts_objects.values('district_id', 'district_name'))
     return JsonResponse({'districts': districts})
 
+def get_police_stations(request):
+    district_name = request.GET.get('complaint_district') 
+    district_object = district_master.objects.get(district_name=district_name)
+    district_id = district_object.district_id
+    police_station_objects = police_station_master.objects.filter(district_id=district_id)
+    print(police_station_objects)
+    police_stations = list(police_station_objects.values('station_id', 'station_name'))
+    print(police_stations)
+    return JsonResponse({'police_stations': police_stations})
+
+
 
 def get_districts_register(request):
     state_name = request.GET.get('complainant_state') 

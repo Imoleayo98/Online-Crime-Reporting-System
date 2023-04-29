@@ -31,6 +31,7 @@ urlpatterns = [
     path('user/', include('complaints.urls'), name='user'),
     path('test/', views.test, name='test'),
     path('get_district/', views.get_districts, name='get_districts'),
+    path('get_police_stations/', views.get_police_stations, name='get_police_stations'),
     path('get_districts_register/', views.get_districts_register, name='get_districts_register'),
 
 ] + static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

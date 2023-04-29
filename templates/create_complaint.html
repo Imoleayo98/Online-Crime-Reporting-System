@@ -2,8 +2,8 @@
 
 {% block complaint %}
 <!-- ------------market-----------------------  -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
- <!-- ------------market-----------------------  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- ------------market-----------------------  -->
 
 <div class="row">
     <div class="col-xl">
@@ -35,15 +35,15 @@
                     <div class="mb-3 mt-1">
                         <label class="form-label" for="basic-default-email">Email</label>
                         <div class="input-group input-group-merge">
-                            <input type="text"name="email" id="basic-default-email" class="form-control" placeholder="Enter your email"
-                                 aria-describedby="basic-default-email2" />
+                            <input type="text" name="email" id="basic-default-email" class="form-control"
+                                placeholder="Enter your email" aria-describedby="basic-default-email2" />
                         </div>
                         <div class="form-text">You can use letters, numbers & periods</div>
                     </div>
 
                     <div class="mb-3 ">
                         <label for="html5-date-input" class="form-label">Date Of Birth</label>
-                        <input class="form-control" type="date" value="" id="html5-date-input" />
+                        <input class="form-control" name="dob" type="date" value="" id="html5-date-input" />
                     </div>
 
 
@@ -82,8 +82,7 @@
                             }
                         });
                     </script>
-                    
-<!-- ------------market-----------------------  -->
+
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint State & UT</label>
                         <select class="form-select" id="complaint_state" name="complaint_state" aria-label="State">
@@ -112,6 +111,9 @@
                                             district_options += '<option value="' + districts[i].district_name + '">' + districts[i].district_name + '</option>';
                                         }
                                         $('#complaint_district').html(district_options);
+                                        getPolicestation();
+                                        
+                                        console.log("called")
                                     }
                                 });
                             });
@@ -125,31 +127,60 @@
                         </select>
                     </div>
 
-<!-- ------------market-----------------------  -->
+                    <script>
+                        $(document).ready(function () {
+                            $('#complaint_district').change(function () {
+                                getPolicestation();
+                                console.log("changed")
+                            });
+                        });
 
 
+
+                        function getPolicestation() 
+                        {
+                            var district_name = $('#complaint_district').val();
+                                $.ajax({
+                                    url: '/get_police_stations/',
+                                    data: {
+                                        'complaint_district': district_name
+                                    },
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        var police_stations = data.police_stations;
+                                        var police_stations_options = '';
+                                        for (var i = 0; i < police_stations.length; i++) {
+                                            police_stations_options += '<option value="' + police_stations[i].station_name + '">' + police_stations[i].station_name + '</option>';
+                                        }
+                                        $('#complaint_police_station').html(police_stations_options);
+                                    }
+                                });
+                         
+                        }
+                    </script>
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint Police Station</label>
-                        <select class="form-select" id="complaint_state" name="complaint_state" aria-label="State">
+                        <select class="form-select" id="complaint_police_station" name="complaint_police_station"
+                            aria-label="State">
                             <option selected>Choose Police Station where you want to file the complaint</option>
-                            </option>
-                            <option value="other">Other</option>
                         </select>
                     </div>
 
 
-                  
+
 
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Subject</label>
-                        <input type="text" class="form-control" id="basic-default-company" placeholder="Enter Complaint's Subject" />
+                        <input type="text" class="form-control" id="basic-default-company"
+                            placeholder="Enter Complaint's Subject" />
                     </div>
 
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-message">Detailed Description</label>
-                        <textarea id="basic-default-message" class="form-control" placeholder="Provide detailed description"></textarea>
+                        <textarea id="basic-default-message" class="form-control"
+                            placeholder="Provide detailed description"></textarea>
                     </div>
 
                     <div class="mb-3">
