@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin
 from django.db import models
 from django.utils import timezone
+from complaints.models import district_master, state_master
+
 
 
 class CustomUserManager(BaseUserManager):
@@ -36,10 +38,12 @@ class CustomUser(AbstractBaseUser,  PermissionsMixin):
     last_name = models.CharField(max_length=150,null=True)
     password = models.CharField(max_length=128,null=True)
     gender = models.CharField(max_length=7,null=True)
+    state = models.ForeignKey(state_master,to_field='state_name',null=False,blank=False,on_delete=models.PROTECT,related_name="state+")
+    district = models.ForeignKey(district_master,to_field='district_name',null=False,blank=False,on_delete=models.PROTECT,related_name="complaint_in_district+")
     aadhaarno = models.IntegerField(null=True, blank=True)
     # country = models.CharField(max_length=20,null=True)
-    state = models.CharField(max_length=20,null=True)
-    district = models.CharField(max_length=20,null=True)
+    # state = models.CharField(max_length=20,null=True)
+    # district = models.CharField(max_length=20,null=True)
     address = models.CharField(max_length=500,null=True)
     pincode = models.IntegerField(null=True)
 
