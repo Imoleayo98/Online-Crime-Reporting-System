@@ -27,17 +27,17 @@ def create_complaint(request):
         complainant_email = request.POST.get('email')
         complaint_dob = request.POST.get('dob')
         # 
-        complainant_address = request.POST.get('')
-        complainant_pin_code = request.POST.get('')
-        state_name = request.POST.get('name')
-        state_id = request.POST.get('name')
-        district_name = request.POST.get('name')
-        district_id = request.POST.get('name')
+        get_complainant_address = request.POST.get('complainant_address')
+        complainant_pin_code = request.POST.get('complainant_pin_code')
+        state_name = request.POST.get('state_name')
+        state_id = state_master.objects.get(state_name=state_name).state_id
+        district_name = request.POST.get('district_name')
+        district_id = district_master.objects.get(district_name=district_name).district_id
         # 
-        complainant_state_name = request.POST.get('complaint_state')
-        complainant_state_id = state_master.objects.get(state_name=complainant_state_name).state_id
-        complainant_district_name = request.POST.get('complaint_district')
-        complainant_district_id = district_master.objects.get(district_name=complainant_district_name).district_id
+        complaint_state_name = request.POST.get('complaint_state')
+        complaint_state_id = state_master.objects.get(state_name=complaint_state_name).state_id
+        complaint_district_name = request.POST.get('complaint_district')
+        complaint_district_id = district_master.objects.get(district_name=complaint_district_name).district_id
         station_name = request.POST.get('complaint_police_station')
         station_id = police_station_master.objects.get(station_name=station_name).station_id
         crime_category = request.POST.get('crime_category')
@@ -47,10 +47,52 @@ def create_complaint(request):
         delay_reason = request.POST.get('delay_in_complaining')
         datetime_of_occurence = request.POST.get('date_time_of_occurence')
         place_of_occurence = request.POST.get('place_of_occurence')
-        evidence_image = request.POST.get('evidence_image')
+        evidence_image = request.FILES.get('evidence_image')
         # created_at = request.POST.get('name')
         # updated_at = request.POST.get('name')
 
+        temp_state_name= state_master.objects.get(state_name=state_name)
+        temp_district_name= district_master.objects.get(district_name=district_name)
+
+
+        temp_complaint_state_name = state_master.objects.get(state_name=complaint_state_name)
+        temp_complaint_district_name = district_master.objects.get(district_name=complaint_district_name) 
+        police_complaint_station_name = police_station_master.objects.get(station_name=station_name)
+        temp_complaint_crime_category = crime_category_master.objects.get(crime_category_name=crime_category)
+
+        print(get_complainant_address)
+        complaint = complaint_master.objects.create(
+        complainant_name = complaint_name,
+        complainant_gender = complainant_gender,
+        complainant_contact_no = complainant_contact_no,
+        complainant_email = complainant_email,
+        complainant_dob = complaint_dob,
+        complainant_address = get_complainant_address,
+        complainant_state_name = temp_state_name,
+        complainant_state_id = state_id,
+        complainant_district_name = temp_district_name,
+        complainant_district_id = district_id,
+        complainant_pin_code = complainant_pin_code,
+        state_name = temp_complaint_state_name,
+        state_id = complaint_state_id,
+        district_name = temp_complaint_district_name,
+        district_id = complaint_district_id,
+        station_name = police_complaint_station_name,
+        station_id = station_id,
+        status_id = "Pending",
+        crime_category = temp_complaint_crime_category,
+        other_crime_category = other_crime_category,
+        subject = subject,
+        detailed_description = detailed_description,
+        delay_reason = delay_reason,
+        datetime_of_occurence = datetime_of_occurence,
+        place_of_occurence = place_of_occurence,
+        evidence_image = evidence_image,
+        created_at=timezone.now(),
+        updated_at=timezone.now()
+
+    )
+        print(complaint)
 
 
         return redirect('/user')

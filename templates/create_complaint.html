@@ -10,10 +10,10 @@
         <div class="card mb-4">
 
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Full Name</label>
+                        <label class="form-label" for="basic-default-fullname">Full Name  </label>
                         <input type="text" name="name" class="form-control" id="basic-default-fullname" />
                     </div>
 
@@ -203,10 +203,21 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Evidence images (optional)</label>
+                        <label for="formFile" class="form-label">Evidence images (optional)   {{ request.user.address }}</label>
                         <input class="form-control" name="evidence_image" type="file" id="formFile" />
                     </div>
+
+                    
+                    <input type="hidden" name="complainant_address" value="{{ request.user.address }}">
+                    <input type="hidden" name="complainant_pin_code" value="{{ request.user.pincode }}">
+                    <input type="hidden" name="state_name" value="{{ request.user.state.state_name }}">
+                    <input type="hidden" name="state_id" value="{{ request.user.state.state_id }}">
+                    <input type="hidden" name="district_name" value="{{ request.user.district.district_name }}">
+                    <input type="hidden" name="district_id" value="{{ request.user.district.district_id }}">
+
             </div>
+
+
             <div class="alert alert-primary" role="alert">Your Address will be fetched from your user profile</div>
             <button type="submit" class="btn btn-primary">Send</button>
             </form>
