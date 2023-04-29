@@ -61,8 +61,8 @@
         GENDER:
         <br>
         <label for="idgender" class="form-label"></label>
-        <input type="radio" name="Yourgender" id="idgender" value="Male">Male
-        <input type="radio" name="Yourgender" id="idgender" value="Female">Female
+        <input type="radio" name="Yourgender" id="male" value="Male">Male
+        <input type="radio" name="Yourgender" id="female" value="Female">Female
     </div>
 
 
@@ -90,7 +90,7 @@
             $('#complainant_state').change(function () {
                 var state_name = $(this).val();
                 $.ajax({
-                    url: '/get_district/',
+                    url: '/get_districts_register/',
                     data: {
                         'complainant_state': state_name
                     },

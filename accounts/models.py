@@ -41,9 +41,7 @@ class CustomUser(AbstractBaseUser,  PermissionsMixin):
     state = models.ForeignKey(state_master,to_field='state_name',null=False,blank=False,on_delete=models.PROTECT,related_name="state+")
     district = models.ForeignKey(district_master,to_field='district_name',null=False,blank=False,on_delete=models.PROTECT,related_name="complaint_in_district+")
     aadhaarno = models.IntegerField(null=True, blank=True)
-    # country = models.CharField(max_length=20,null=True)
-    # state = models.CharField(max_length=20,null=True)
-    # district = models.CharField(max_length=20,null=True)
+
     address = models.CharField(max_length=500,null=True)
     pincode = models.IntegerField(null=True)
 
@@ -52,19 +50,13 @@ class CustomUser(AbstractBaseUser,  PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     is_user = models.BooleanField(default=True)
 
+    state_id_no = models.IntegerField(null=True,blank=True)
+    district_id_no = models.IntegerField(null=True,blank=True)
 
 
     created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True,null=True,blank=True,)
 
-
-    # country =removal
-    # isactive removal
-    # city = disrt
-    # created at
-    # updated at
-    # isuser
-    
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username','Phone_Number','first_name','last_name','password','gender','aadhaarno','state','district','address','pincode']
