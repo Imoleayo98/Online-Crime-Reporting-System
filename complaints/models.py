@@ -133,7 +133,7 @@ class complaint_master(models.Model):
     place_of_occurence = models.CharField(max_length=150, null=True, blank=True)
     evidence_image = models.ImageField(null=True, blank=True, upload_to="complaint images/")
     created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
-    updated_at = models.DateTimeField(auto_now=False,null=True,blank=True,)
+    updated_at = models.DateTimeField(auto_now=True,null=True,blank=True,)
 
 
     def save(self, *args, **kwargs):

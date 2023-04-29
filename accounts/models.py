@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin
 from django.db import models
+from django.utils import timezone
+
 
 class CustomUserManager(BaseUserManager):
     use_in_migrations = True
@@ -23,7 +25,7 @@ class CustomUserManager(BaseUserManager):
     
     def has_module_perms(self, user_obj, app_label):
         # Return True if the user has any permissions in the given app_label.
-        return user_obj.is_active and user_obj.is_staff
+        return  user_obj.is_staff
 
 class CustomUser(AbstractBaseUser,  PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
@@ -35,19 +37,33 @@ class CustomUser(AbstractBaseUser,  PermissionsMixin):
     password = models.CharField(max_length=128,null=True)
     gender = models.CharField(max_length=7,null=True)
     aadhaarno = models.IntegerField(null=True, blank=True)
-    country = models.CharField(max_length=20,null=True)
+    # country = models.CharField(max_length=20,null=True)
     state = models.CharField(max_length=20,null=True)
-    city = models.CharField(max_length=20,null=True)
+    district = models.CharField(max_length=20,null=True)
     address = models.CharField(max_length=500,null=True)
     pincode = models.IntegerField(null=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_user = models.BooleanField(default=True)
+
+
+
+    created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True,null=True,blank=True,)
+
+
+    # country =removal
+    # isactive removal
+    # city = disrt
+    # created at
+    # updated at
+    # isuser
     
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','Phone_Number','first_name','last_name','password','gender','aadhaarno','country','state','city','address','pincode']
+    REQUIRED_FIELDS = ['username','Phone_Number','first_name','last_name','password','gender','aadhaarno','state','district','address','pincode']
 
     objects = CustomUserManager()
 
