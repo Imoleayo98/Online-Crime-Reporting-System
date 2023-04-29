@@ -49,7 +49,7 @@ class police_station_master(models.Model):
     )
     station_id = models.AutoField(primary_key=True,unique=True)
     station_name = models.CharField(max_length=150,null=False,blank=False,unique=True)
-    station_mail = models.EmailField(gettext_lazy('Email Address'),null=False, blank=False,unique=True)
+    station_mail = models.EmailField(gettext_lazy('Email Address'),null=False, blank=False)
     address = models.TextField(max_length=150, null=False,blank=False)
     state_name = models.ForeignKey(state_master,to_field='state_name',null=False,blank=False,on_delete=models.PROTECT)
     state_id = models.IntegerField(null=True, blank=True) 
