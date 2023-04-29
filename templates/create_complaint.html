@@ -48,10 +48,10 @@
 
 
                     <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class="form-label">Crime Category</label>
+                        <label for="exampleFormControlSelect1" class="form-label">Crime Category / Complaint Type</label>
                         <select class="form-select" id="crime_category" name="crime_category"
                             aria-label="Crime Category">
-                            <option selected>Choose Crime Category</option>
+                            <option selected>Choose Crime Category / Complaint Type</option>
                             {% for category in crime_categories %}
                             <option value="{{ category.crime_category_name }}">{{ category.crime_category_name }}
                             </option>
@@ -61,7 +61,7 @@
                     </div>
 
                     <div id="other_crime_category" class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Please Mention Other Crime Category
+                        <label class="form-label" for="basic-default-fullname">Please Mention Other Crime Category / Complaint Type
                         </label>
                         <input type="text" name="other_crime_category" class="form-control" id="basic-default-fullname" />
                     </div>
