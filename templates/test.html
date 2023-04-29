@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="state-select">
+        <option value="">--Select State--</option>
+        <option value="gujarat">Gujarat</option>
+        <option value="maharashtra">Maharashtra</option>
+    </select>
+    <br><br>
+    <select id="district-select">
+        <option value="">--Select District--</option>
+    </select>
+
+    <script>
+        const districtSelect = document.querySelector('#district-select');
+
+        document.querySelector('#state-select').addEventListener('change', (event) => {
+            const selectedState = event.target.value;
+
+            // Clear the options of the district select
+            districtSelect.innerHTML = '<option value="">--Select District--</option>';
+
+            // Add the districts of the selected state to the district select
+            if (selectedState === 'gujarat') {
+                districtSelect.innerHTML += '<option value="ahmedabad">Ahmedabad</option>';
+                districtSelect.innerHTML += '<option value="vadodara">Vadodara</option>';
+                districtSelect.innerHTML += '<option value="surat">Surat</option>';
+            } else if (selectedState === 'maharashtra') {
+                districtSelect.innerHTML += '<option value="mumbai">Mumbai</option>';
+                districtSelect.innerHTML += '<option value="pune">Pune</option>';
+                districtSelect.innerHTML += '<option value="nagpur">Nagpur</option>';
+            }
+        });
+    </script>
+</body>
+
+</html>
