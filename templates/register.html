@@ -1,6 +1,8 @@
 {% extends 'login_register_base.html' %}
 
 {% block title %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
+
 
 <title>Register Page</title>
 
@@ -14,6 +16,8 @@
 {% endblock %}
 
 {% block form %}
+
+
 
 <form id="formAuthentication" class="mb-3" action="" method="POST">
     {% csrf_token %}
@@ -71,136 +75,52 @@
         <input type="number" class="form-control" name="aadhaarno" id="aadhaarno" placeholder="Enter your AadhaarNumber" min="000000000000" max="999999999999">
     </div>
 
-    <div class="mb-3">
-        <label for="country" class="form-label">COUNTRY:</label>
-        <input list="countries" class="form-control" id="country" name="country" value="India"/>
-        <datalist id="countries">
-        <option value="USA">
-        <option value="United Kingdom">
-        <option value="France">
-        <option value="Norway">
-        <option value="Germany">
-        <option value="Australia">
-        <option value="Afghanistan">
-        <option value="Åland Islands">
-        <option value="Albania">
-        <option value="Albania">
-        <option value="Yemen">
-        <option value="Zambia">
-        <option value="Zimbabwe">
-        <option value="India">
-        <option value="China">
-        <option value="Japan">
-        <option value="Russia">
-        <option value="Pakistan">
-        <option value="Bangladesh">
-        <option value="Nepal">
-        <option value="Sri Lanka">
-        <option value="Bhutan">
-        <option value="Maldives">
-        <option value="Myanmar">
-        <option value="Thailand">
-        <option value="Vietnam">
-        <option value="Indonesia">
-        <option value="Philippines">
-        <option value="Singapore">
-        <option value="Malaysia">
-        <option value="Brunei">
-        <option value="Cambodia">
-        <option value="Laos">
-        <option value="North Korea">
-        <option value="South Korea">
-        <option value="Mongolia">
-        <option value="Taiwan">
-        <option value="Hong Kong">
-        <option value="Macau">
-        <option value="New Zealand">
-        <option value="South Africa">
-        </datalist>
+
+
+    <!---------------------------------- state and dist------------------------- -->
+    <div class="mb-4">
+        <label for="exampleFormControlSelect1" class="form-label">State or UT</label>
+        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
+            <option selected>Choose State or UT</option>
+            {% for state in states %}
+            <option value="{{ state.state_name }}">{{ state.state_name }}
+            </option>
+            {% endfor %}
+        </select>
     </div>
 
-    
-    <div class="mb-3">
-        <label for="state" class="form-label">STATE:</label>
-        <input list="states" class="form-control" id="state" name="state" value="Gujarat"/>
-        <datalist id="states">
-        <option value="Andhra Pradesh">
-        <option value="Arunachl Pradesh">
-        <option value="Assam">
-        <option value="Bihar">
-        <option value="Chattisgarh">
-        <option value="Goa">
-        <option value="Gujarat">
-        <option value="Haryana">
-        <option value="Himachal Pradesh">
-        <option value="Jharkhand">
-        <option value="Karnataka">
-        <option value="Kerela">
-        <option value="Madhya Pradesh">
-        <option value="Maharashtra">
-        <option value="Manipur">
-        <option value="Meghalaya">
-        <option value="Mizoram">
-        <option value="Nagaland">
-        <option value="Odisha">
-        <option value="Punjab">
-        <option value="Rajasthan">
-        <option value="Sikkim">
-        <option value="Tamil Nadu">
-        <option value="Telangana">
-        <option value="Tripura">
-        <option value="Uttar Pradesh">
-        <option value="Uttarakhand">
-        <option value="West Bengal">
-        <option value="Andaman and Nicobar Islands">
-        <option value="Chandigarh">
-        <option value="Dadra and Nagar Haveli">
-        <option value="Daman and Diu">
-        <option value="Delhi">
-        <option value="Jammu and Kashmir">
-        <option value="Ladakh">
-        <option value="Lakshadweep">
-        <option value="Puducherry">
-        </datalist>    
-</div>
+    <script>
+        $(document).ready(function () {
+            $('#complainant_state').change(function () {
+                var state_name = $(this).val();
+                $.ajax({
+                    url: '/get_district/',
+                    data: {
+                        'complainant_state': state_name
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var districts = data.districts;
+                        var district_options = '';
+                        for (var i = 0; i < districts.length; i++) {
+                            district_options += '<option value="' + districts[i].district_name + '">' + districts[i].district_name + '</option>';
+                        }
+                        $('#complainant_district').html(district_options);
+                    }
+                });
+            });
+        });
 
-    <div class="mb-3">
-        <label for="city" class="form-label">CITY:</label>
-        <input list="cities" class="form-control" id="city" name="city" value="Ahmedabad"/>
-        <datalist id="cities">
-        <option value="Ahmedabad">
-        <option value="Amreli">
-        <option value="Gandhinagar">
-        <option value="Surat">
-        <option value="Rajkot">
-        <option value="Vadodara">
-        <option value="Bhavnagar">
-        <option value="Jamnagar">
-        <option value="Junagadh">
-        <option value="Anand">
-        <option value="Bharuch">
-        <option value="Bhuj">
-        <option value="Gandhidham">
-        <option value="Godhra">
-        <option value="Himatnagar">
-        <option value="Idar">
-        <option value="Jamnagar">
-        <option value="Junagadh">
-        <option value="Kandla">
-        <option value="Khambhat">
-        <option value="Mahesana">
-        <option value="Morbi">
-        <option value="Nadiad">
-        <option value="Navsari">
-        <option value="Palanpur">
-        <option value="Patan">
-        <option value="Porbandar">
-        <option value="Rajkot">
-        <option value="Sabarkantha">
-        <option value="Surendranagar">
-        <option value="Valsad">
-        </datalist>       
+    </script>
+    <div class="mb-4">
+        <label for="complainant_district" class="form-label">District</label>
+        <select class="form-select" id="complainant_district" name="complainant_district">
+            <option value="">Choose District</option>
+        </select>
     </div>
+
+<!-- ------------state and dist-----------------------  -->
+
 
 
     <div class="mb-3">
