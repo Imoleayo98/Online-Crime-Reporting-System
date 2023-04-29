@@ -87,7 +87,7 @@
 <!-- ------------market-----------------------  -->
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint State & UT</label>
-                        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
+                        <select class="form-select" id="complaint_state" name="complaint_state" aria-label="State">
                             <option selected>Choose State or UT where you want to file the complaint</option>
                             {% for state in states %}
                             <option value="{{ state.state_name }}">{{ state.state_name }}
@@ -121,7 +121,7 @@
                     </script>
                     <div class="mb-4">
                         <label for="complainant_district" class="form-label">Complaint District</label>
-                        <select class="form-select" id="complainant_district" name="complainant_district">
+                        <select class="form-select" id="complaint_district" name="complaint_district">
                             <option value="">Choose District where you want to file the complaint</option>
                         </select>
                     </div>
@@ -131,7 +131,7 @@
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint Police Station</label>
-                        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
+                        <select class="form-select" id="complaint_state" name="complaint_state" aria-label="State">
                             <option selected>Choose Police Station where you want to file the complaint</option>
                             </option>
                             <option value="other">Other</option>
