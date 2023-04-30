@@ -43,6 +43,13 @@ INSTALLED_APPS = [
     'complaints',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'accounts.auth.CustomUserBackend',
+    'accounts.auth.PoliceInchargeBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

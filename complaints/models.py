@@ -93,6 +93,7 @@ class crime_category_master(models.Model):
         verbose_name_plural = "Crime Categories"
 
 
+
 class complaint_master(models.Model):
     gender_choices = (
         ('Male', 'Male'),
