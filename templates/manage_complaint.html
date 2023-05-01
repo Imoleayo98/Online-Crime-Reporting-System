@@ -1,9 +1,9 @@
 {% extends 'police_incharge_sidebar.html' %}
 
 {% block manage_complaint %}
-<!-- ------------market-----------------------  -->
+<!-- -----------------------------------  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- ------------market-----------------------  -->
+<!-- -----------------------------------  -->
 <style>
     .white-placeholder::placeholder {
         color: rgb(116, 114, 114);
@@ -37,19 +37,15 @@
 
                     <!-- ======================================================================================================== -->
                     <div class="mb-3">
-                        <label for="address" class="form-label">Address: </label>
+                        <label for="address" class="form-label">Complainant Address </label>
                         <textarea name="address" id="address" class="white-placeholder form-control" readonly cols="40"
                             rows="5" placeholder="{{complaints.complainant_address}}"></textarea>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="pincode" class="form-label">PIN CODE: </label>
-                        <input readonly type="pincode" class="white-placeholder form-control" name="pincode"
-                            id="pinbcode" placeholder="{{complaints.complainant_pin_code}}" min="000000" max="999999">
-                    </div>
+
 
                     <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class=" form-label">State or UT</label>
+                        <label for="exampleFormControlSelect1" class=" form-label">Complainant State or UT</label>
                         <input readonly type="text" placeholder="{{complaints.complainant_state_name}}"
                             class="white-placeholder form-control">
 
@@ -57,15 +53,20 @@
 
 
                     <div class="mb-4">
-                        <label for="complainant_district" class="form-label">District</label>
+                        <label for="complainant_district" class="form-label">Complainant District</label>
                         <input readonly type="text" placeholder="{{complaints.complainant_district_name}}"
                             class="white-placeholder form-control">
-
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="pincode" class="form-label">PIN CODE </label>
+                        <input readonly type="pincode" class="white-placeholder form-control" name="pincode"
+                            id="pinbcode" placeholder="{{complaints.complainant_pin_code}}" min="000000" max="999999">
                     </div>
                     <!-- ========================================================================================================================== -->
 
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-phone">Phone No</label>
+                        <label class="form-label" for="basic-default-phone">Phone Number</label>
                         <input readonly type="text" name="contact_no" id="basic-default-phone"
                             class="white-placeholder form-control phone-mask"
                             placeholder="{{complaints.complainant_contact_no}}" />
@@ -90,7 +91,7 @@
 
 
                     <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class="form-label">Complaint State or UT</label>
+                        <label for="exampleFormControlSelect1" class="form-label">State or UT</label>
                         <input readonly type="text" placeholder="{{complaints.state_name}}"
                             class="white-placeholder form-control">
 
@@ -122,7 +123,7 @@
                     </div>
 
                     <div id="other_crime_category" class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Please Mention Other Crime Category /
+                        <label class="form-label" for="basic-default-fullname">Other Crime Category /
                             Complaint Type
                         </label>
                         <input readonly type="text" placeholder="{{complaints.other_crime_category}}"
@@ -147,7 +148,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-message">Delay Reason</label>
+                        <label class="form-label" for="basic-default-message">Reasons for delay in reporting by the complainant/informant</label>
                         <textarea readonly id="basic-default-message" name="delay_in_complaining"
                             class="white-placeholder form-control" placeholder="{{complaints.delay_reason}}"></textarea>
                     </div>
