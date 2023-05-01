@@ -4,101 +4,86 @@
 <!-- ------------market-----------------------  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- ------------market-----------------------  -->
+<style>
+    .white-placeholder::placeholder {
+        color: rgb(116, 114, 114);
+    }
+</style>
+
+
+
+
 
 <div class="row">
     <div class="col-xl">
         <div class="card mb-4">
 
             <div class="card-body">
+
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Full Name  </label>
-                        <input type="text" name="name" class="form-control" id="basic-default-fullname" readonly/>
+                        <label class="form-label" for="basic-default-fullname">Full Name </label>
+                        <input type="text" name="name" placeholder="{{complaints.complainant_name}}"
+                            class="form-control white-placeholder" id="basic-default-fullname" readonly />
                     </div>
 
-                    <label class="form-label" for="basic-default-fullname"
+                    <label class="mb-2 form-label" for="basic-default-fullname"
                         style="margin-bottom: -4px;">Gender</label><br>
-                    <div class="form-check form-check-inline mb-3 mt-0">
-                        <input class="form-check-input" type="radio" name="gender" id="Male" value="Male" />
-                        <label class="form-check-label" for="inlineRadio1">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline mt-3 mt-0">
-                        <input class="form-check-input" type="radio" name="gender" id="Female" value="Female" />
-                        <label class="form-check-label" for="inlineRadio1">Female</label>
-                    </div>
+                    <input type="text" placeholder="{{complaints.complainant_gender}}" name="name"
+                        class="white-placeholder mb-3 form-control" id="basic-default-fullname" readonly />
+
 
 
                     <!-- ======================================================================================================== -->
                     <div class="mb-3">
                         <label for="address" class="form-label">Address: </label>
-                        <textarea name="address" id="address" class="form-control" cols="40" rows="5" placeholder="Enter your Address" ></textarea>
+                        <textarea name="address" id="address" class="white-placeholder form-control" readonly cols="40"
+                            rows="5" placeholder="{{complaints.complainant_address}}"></textarea>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="pincode" class="form-label">PIN CODE: </label>
-                        <input type="pincode" class="form-control" name="pincode" id="pinbcode" placeholder="Enter your Pin code/Zip code" min="000000" max="999999">
+                        <input readonly type="pincode" class="white-placeholder form-control" name="pincode"
+                            id="pinbcode" placeholder="{{complaints.complainant_pin_code}}" min="000000" max="999999">
                     </div>
 
                     <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class="form-label">State or UT</label>
-                        <select class="form-select" id="complainant_state" name="complainant_state" aria-label="State">
-                            <option selected>Choose State or UT</option>
-                            {% for state in states %}
-                            <option value="{{ state.state_name }}">{{ state.state_name }}
-                            </option>
-                            {% endfor %}
-                        </select>
+                        <label for="exampleFormControlSelect1" class=" form-label">State or UT</label>
+                        <input readonly type="text" placeholder="{{complaints.complainant_state_name}}"
+                            class="white-placeholder form-control">
+
                     </div>
-                
-                    <script>
-                        $(document).ready(function () {
-                            $('#complainant_state').change(function () {
-                                var state_name = $(this).val();
-                                $.ajax({
-                                    url: '/get_districts_register/',
-                                    data: {
-                                        'complainant_state': state_name
-                                    },
-                                    dataType: 'json',
-                                    success: function (data) {
-                                        var districts = data.districts;
-                                        var district_options = '';
-                                        for (var i = 0; i < districts.length; i++) {
-                                            district_options += '<option value="' + districts[i].district_name + '">' + districts[i].district_name + '</option>';
-                                        }
-                                        $('#complainant_district').html(district_options);
-                                    }
-                                });
-                            });
-                        });
-                
-                    </script>
+
+
                     <div class="mb-4">
                         <label for="complainant_district" class="form-label">District</label>
-                        <select class="form-select" id="complainant_district" name="complainant_district">
-                            <option value="">Choose District</option>
-                        </select>
+                        <input readonly type="text" placeholder="{{complaints.complainant_district_name}}"
+                            class="white-placeholder form-control">
+
                     </div>
                     <!-- ========================================================================================================================== -->
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-phone">Phone No</label>
-                        <input type="text" name="contact_no" id="basic-default-phone" class="form-control phone-mask"
-                            placeholder="6587 998 941" />
+                        <input readonly type="text" name="contact_no" id="basic-default-phone"
+                            class="white-placeholder form-control phone-mask"
+                            placeholder="{{complaints.complainant_contact_no}}" />
                     </div>
                     <div class="mb-3 mt-1">
                         <label class="form-label" for="basic-default-email">Email</label>
                         <div class="input-group input-group-merge">
-                            <input type="text" name="email" id="basic-default-email" class="form-control"
-                                placeholder="Enter your email" aria-describedby="basic-default-email2" />
+                            <input readonly type="text" name="email" id="basic-default-email"
+                                class="white-placeholder form-control" placeholder="{{complaints.complainant_email}}"
+                                aria-describedby="basic-default-email2" />
                         </div>
-                        <div class="form-text">You can use letters, numbers & periods</div>
                     </div>
 
                     <div class="mb-3 ">
                         <label for="html5-date-input" class="form-label">Date Of Birth</label>
-                        <input class="form-control" name="dob" type="date" value="" id="html5-date-input" />
+                        <input readonly placeholder="{{complaints.complainant_dob}}"
+                            class="white-placeholder form-control" name="dob" type="text" value=""
+                            id="html5-date-input" />
                     </div>
 
 
@@ -106,141 +91,65 @@
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint State or UT</label>
-                        <select class="form-select" name="complaint_state" id="complaint_state" name="complaint_state" aria-label="State">
-                            <option selected>Choose State or UT where you want to file the complaint</option>
-                            {% for state in states %}
-                            <option value="{{ state.state_name }}">{{ state.state_name }}
-                            </option>
-                            {% endfor %}
-                        </select>
+                        <input readonly type="text" placeholder="{{complaints.state_name}}"
+                            class="white-placeholder form-control">
+
                     </div>
 
-                    <script>
-                        $(document).ready(function () {
-                            $('#complaint_state').change(function () {
-                                var state_name = $(this).val();
-                                $.ajax({
-                                    url: '/get_district/',
-                                    data: {
-                                        'complaint_state': state_name
-                                    },
-                                    dataType: 'json',
-                                    success: function (data) {
-                                        var districts = data.districts;
-                                        var district_options = '';
-                                        for (var i = 0; i < districts.length; i++) {
-                                            district_options += '<option value="' + districts[i].district_name + '">' + districts[i].district_name + '</option>';
-                                        }
-                                        $('#complaint_district').html(district_options);
-                                        getPolicestation();
-                                        
-                                        console.log("called")
-                                    }
-                                });
-                            });
-                        });
 
-                    </script>
                     <div class="mb-4">
                         <label for="complaint_district" class="form-label">Complaint District</label>
-                        <select class="form-select" id="complaint_district" name="complaint_district">
-                            <option value="">Choose District where you want to file the complaint</option>
-                        </select>
+                        <input readonly placeholder="{{complaints.district_name}}" type="text"
+                            class="white-placeholder form-control">
+
                     </div>
 
-                    <script>
-                        $(document).ready(function () {
-                            $('#complaint_district').change(function () {
-                                getPolicestation();
-                                console.log("changed")
-                            });
-                        });
 
-
-
-                        function getPolicestation() 
-                        {
-                            var district_name = $('#complaint_district').val();
-                                $.ajax({
-                                    url: '/get_police_stations/',
-                                    data: {
-                                        'complaint_district': district_name
-                                    },
-                                    dataType: 'json',
-                                    success: function (data) {
-                                        var police_stations = data.police_stations;
-                                        var police_stations_options = '';
-                                        for (var i = 0; i < police_stations.length; i++) {
-                                            police_stations_options += '<option value="' + police_stations[i].station_name + '">' + police_stations[i].station_name + '</option>';
-                                        }
-                                        $('#complaint_police_station').html(police_stations_options);
-                                    }
-                                });
-                         
-                        }
-                    </script>
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint Police Station</label>
-                        <select class="form-select" id="complaint_police_station" name="complaint_police_station"
-                            aria-label="State">
-                            <option selected>Choose Police Station where you want to file the complaint</option>
-                        </select>
+                        <input readonly placeholder="{{complaints.station_name}}" type="text"
+                            class="white-placeholder form-control">
+
                     </div>
 
 
                     <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class="form-label">Crime Category / Complaint Type</label>
-                        <select class="form-select" id="crime_category" name="crime_category"
-                            aria-label="Crime Category">
-                            <option selected>Choose Crime Category / Complaint Type</option>
-                            {% for category in crime_categories %}
-                            <option value="{{ category.crime_category_name }}">{{ category.crime_category_name }}
-                            </option>
-                            {% endfor %}
-                            <option value="other">Other</option>
-                        </select>
+                        <label for="exampleFormControlSelect1" class="form-label">Crime Category / Complaint
+                            Type</label>
+                        <input readonly placeholder="{{complaints.crime_category}}" type="text"
+                            class="white-placeholder form-control">
+
                     </div>
 
                     <div id="other_crime_category" class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Please Mention Other Crime Category / Complaint Type
+                        <label class="form-label" for="basic-default-fullname">Please Mention Other Crime Category /
+                            Complaint Type
                         </label>
-                        <input type="text" name="other_crime_category" class="form-control" id="basic-default-fullname" />
+                        <input readonly type="text" placeholder="{{complaints.other_crime_category}}"
+                            name="other_crime_category" class="white-placeholder form-control"
+                            id="basic-default-fullname" />
                     </div>
 
-                    <script>
-
-                        let crime_category_select_element = document.querySelector('#crime_category');
-                        let otherCategory = document.querySelector('#other_crime_category');
-                        otherCategory.style.display = 'none';
-
-                        crime_category_select_element.addEventListener('change', (event) => {
-                            if (event.target.value === 'other') {
-                                otherCategory.style.display = 'block';
-                            }
-                            else {
-                                otherCategory.style.display = 'none';
-
-                            }
-                        });
-                    </script>
 
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Subject</label>
-                        <input type="text" name="subject" class="form-control" id="basic-default-company"
-                            placeholder="Enter Complaint's Subject" />
+                        <input type="text" readonly name="subject" class="white-placeholder form-control"
+                            id="basic-default-company" placeholder="{{complaints.subject}}" />
                     </div>
 
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-message">Detailed Description</label>
-                        <textarea id="basic-default-message"  name="detailed_description" class="form-control"
-                            placeholder="Provide detailed description"></textarea>
+                        <textarea readonly id="basic-default-message" name="detailed_description"
+                            class="white-placeholder form-control"
+                            placeholder="{{complaints.detailed_description}}"></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-message">Delay Reason</label>
-                        <textarea id="basic-default-message" name="delay_in_complaining" class="form-control" placeholder="(OPTIONAL)"></textarea>
+                        <textarea readonly id="basic-default-message" name="delay_in_complaining"
+                            class="white-placeholder form-control" placeholder="{{complaints.delay_reason}}"></textarea>
                     </div>
 
 
@@ -248,142 +157,250 @@
                         <label for="html5-datetime-local-input" class="col-md-2 col-form-label">Date and Time of
                             Occurence</label>
                         <div class="col-md-10">
-                            <input class="form-control" name="date_time_of_occurence" type="datetime-local" value="2021-06-18T12:30:00"
+                            <input readonly placeholder="{{complaints.datetime_of_occurence}}"
+                                class="white-placeholder form-control" name="date_time_of_occurence" type="text"
                                 id="html5-datetime-local-input" />
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Place of Occurence</label>
-                        <input type="text" name="place_of_occurence" class="form-control" id="basic-default-company" />
+                        <input type="text" placeholder="{{complaints.place_of_occurence}}" readonly
+                            name="place_of_occurence" class="white-placeholder form-control"
+                            id="basic-default-company" />
                     </div>
 
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Evidence images (optional)   {{ request.user.address }}</label>
-                        <input class="form-control" name="evidence_image" type="file" id="formFile" />
+                        <label for="formFile" class="form-label">Evidence images (optional) </label>
+                        <input readonly class="form-control" name="evidence_image" type="file" id="formFile" />
                     </div>
 
 
 
-<!-- *********************************************************************************** -->
-                    <div class="mb-3">
+                    <!-- *********************************************************************************** -->
+                    <div class="mb-3 csr_hide">
                         <label class="form-label" for="basic-default-company">C.S.R NUMBER / G.D NUMBER</label>
-                        <input type="text" name="csr_no" class="form-control" id="basic-default-company" placeholder="Enter the C.S.R Number"/>
+                        <input type="text" name="csr_no" class="form-control" id="basic-default-company"
+                            placeholder="Enter the C.S.R Number" />
                     </div>
-<!-- *********************************************************************************** -->
-
-
-<!-- both -->
-<!-- status dropdown -->
-
-                    <div class="mb-3">
+                    <div class="mb-3 csr_hide">
                         <label class="form-label" for="basic-default-message">Info By Station Incharge</label>
-                        <textarea id="basic-default-message"  name="info_by_incharge" class="form-control"
+                        <textarea id="basic-default-message" name="info_by_incharge" class="form-control"
                             placeholder="Provide the message or information which you want to send to the complaintant"></textarea>
                     </div>
-<!-- both -->
+
+                    <!-- both -->
+
+
 
 
                     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 
-                    <div class="mb-3">
+                    <div class="mb-3 fir_fields">
                         <label class="form-label" for="basic-default-company">F.I.R NUMBER</label>
-                        <input type="text" name="fir_no" class="form-control" id="basic-default-company" placeholder="Enter the F.I.R Number"/>
+                        <input type="text" name="fir_no" class="form-control" id="basic-default-company"
+                            placeholder="Enter the F.I.R Number" />
                     </div>
 
-
-                    <div class="mb-3">
+                    <div class="mb-3 fir_fields">
                         <label class="form-label" for="basic-default-company">Acts & Sections</label>
-                        <input type="text" name="act_and_sections" class="form-control" id="basic-default-company" placeholder="Enter the Acts and Sections"/>
+                        <input type="text" name="act_and_sections" class="form-control" id="basic-default-company"
+                            placeholder="Enter the Acts and Sections" />
                     </div>
 
-                    
-                    <div class="mb-3">
+                    <div class="mb-3 fir_fields">
                         <label class="form-label" for="basic-default-company">General Diary Entry Number</label>
-                        <input type="text" name="gd_number" class="form-control" id="basic-default-company" placeholder="Enter the G.D Entry Number"/>
+                        <input type="text" name="gd_number" class="form-control" id="basic-default-company"
+                            placeholder="Enter the G.D Entry Number" />
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 fir_fields">
                         <label for="defaultSelect" class="form-label">Type of Information</label>
                         <select id="defaultSelect" class="form-select">
-                          <!-- <option>Written</option> -->
-                          <option value="1">Written</option>
-                          <option value="2">Oral</option>
+                            <option value="1">Written</option>
+                            <option value="2">Oral</option>
                         </select>
-                      </div>
+                    </div>
 
-
-                      <div class="mb-3">
+                    <div class="mb-3 fir_fields">
                         <label class="form-label" for="basic-default-company">Nearest Identiafiable Place</label>
-                        <input type="text" name="nearby_place" class="form-control" id="basic-default-company" placeholder="Enter Nearest Identiafiable Place"/>
+                        <input type="text" name="nearby_place" class="form-control" id="basic-default-company"
+                            placeholder="Enter Nearest Identiafiable Place" />
                     </div>
 
-                    <div class="mb-3">Direction & Distance from Police Station</label>
-                        <input type="text" name="dist_from_ps" class="form-control" id="basic-default-company" placeholder="Enter Direction & Distance from Police Station"/>
+                    <div class="mb-3 fir_fields">
+                        <label class="form-label" for="basic-default-company">Direction & Distance from Police
+                            Station</label>
+                        <input type="text" name="dist_from_ps" class="form-control" id="basic-default-company"
+                            placeholder="Enter Direction & Distance from Police Station" />
                     </div>
 
-                    <div class="mb-3">Complainant Religion</label>
-                        <input type="text" name="complainant_religion" class="form-control" id="basic-default-company" placeholder="Enter Complainant Religion"/>
+                    <div class="mb-3 fir_fields">
+                        <label class="form-label" for="basic-default-company">Complainant Religion</label>
+                        <input type="text" name="complainant_religion" class="form-control" id="basic-default-company"
+                            placeholder="Enter Complainant Religion" />
                     </div>
 
-                    <div class="mb-3">Complainant Caste</label>
-                        <input type="text" name="complainant_caste" class="form-control" id="basic-default-company" placeholder="Enter Complainant Caste"/>
+                    <div class="mb-3 fir_fields">
+                        <label class="form-label" for="basic-default-company">Complainant Caste</label>
+                        <input type="text" name="complainant_caste" class="form-control" id="basic-default-company"
+                            placeholder="Enter Complainant Caste" />
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 fir_fields">
                         <label class="form-label" for="basic-default-message">Details of Suspect Or Accused</label>
-                        <textarea id="basic-default-message"  name="sus_acu_details" class="form-control"
-                            placeholder="Provide the detalis about the suspect or accused"></textarea>
+                        <textarea id="basic-default-message" name="sus_acu_details" class="form-control"
+                            placeholder="Provide the details about the suspect or accused"></textarea>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="basic-default-message">Particulars of properties Stolen / Invloved</label>
-                        <textarea id="basic-default-message"  name="property_involved" class="form-control"
-                            placeholder="Provide the detalis about the property which is stolen or involved"></textarea>
+                    <div class="mb-3 fir_fields">
+                        <label class="form-label" for="basic-default-message">Particulars of properties Stolen /
+                            Involved</label>
+                        <textarea id="basic-default-message" name="property_involved" class="form-control"
+                            placeholder="Provide the details about the property which is stolen or involved"></textarea>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="basic-default-message">Total value of properties Stolen / Involved</label>
-                        <textarea id="basic-default-message"  name="property_value" class="form-control"
+                    <div class="mb-3 fir_fields">
+                        <label class="form-label" for="basic-default-message">Total value of properties Stolen /
+                            Involved</label>
+                        <textarea id="basic-default-message" name="property_value" class="form-control"
                             placeholder="Provide the value of the property which is stolen or involved"></textarea>
                     </div>
                     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-                    
-                    
-    
-                    
 
-                    <input type="hidden" name="complainant_address" value="{{ request.user.address }}">
-                    <input type="hidden" name="complainant_pin_code" value="{{ request.user.pincode }}">
-                    <input type="hidden" name="state_name" value="{{ request.user.state.state_name }}">
-                    <input type="hidden" name="state_id" value="{{ request.user.state.state_id }}">
-                    <input type="hidden" name="district_name" value="{{ request.user.district.district_name }}">
-                    <input type="hidden" name="district_id" value="{{ request.user.district.district_id }}">
+                    <div id="button_if_disabled" style="margin-left: 440px;">
+                        <button type="button" id="csr" class="btn btn-info">N.C.R
+                            /C.S.R</button>
+                        <button type="button" id="fir" class="btn btn-success">F.I.R</button>
+                        <button type="button" id="reject" class="btn btn-danger">Reject</button>
+                    </div>
 
+
+
+
+                    <!-- AUTOGENERATE CSR_ID IN BACKGROUND -->
+                    <!-- change description to ncr_detailed_description -->
+                    <!-- SHOW CSR_NO -->
+                    <!-- SHOW INFO BY STATION INC -->
+                    <!-- SHOW STATUS DROPDOWN  -->
+
+                    <!-- AUTOGENERATE FIR_ID IN BACKGROUND -->
+                    <!-- change description to FIR_detailed_description -->
+                    <!-- SHOW FIR_NO -->
+                    <!-- SHOW INFO BY STATION INC -->
+                    <!-- SHOW STATUS DROP DOWN -->
+                    <!-- show market c -->
+
+
+                </form>
             </div>
+            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
 
-
-            <button type="button" class="btn btn-outline-warning">N.C.R / C.S.R</button>
-                                <!-- AUTOGENERATE CSR_ID IN BACKGROUND -->
-                                <!-- change description to ncr_detailed_description -->
-                                <!-- SHOW CSR_NO -->
-                                <!-- SHOW INFO BY STATION INC -->
-                                <!-- SHOW STATUS DROPDOWN  -->
-
-
-            <button type="button" class="btn btn-outline-danger">F.I.R</button>
-                                            <!-- AUTOGENERATE FIR_ID IN BACKGROUND -->
-                                <!-- change description to FIR_detailed_description -->
-                                <!-- SHOW FIR_NO -->
-                                <!-- SHOW INFO BY STATION INC -->
-                                <!-- SHOW STATUS DROP DOWN -->
-                                <!-- show market c -->
-
-
-            <button type="submit" class="btn btn-primary">Send</button>
-            </form>
         </div>
     </div>
 </div>
 </div>
+<script>
+    let status = "{{ complaints.status }}";
+    if (status === "Rejected") {
+        // hide fir and csr buttons
+        document.getElementById("fir").style.display = "none";
+        document.getElementById("csr").style.display = "none";
+        // disable submit button
+        document.getElementById("submit").disabled = true;
+        // change reject button text
+        document.getElementById("reject").innerHTML = "Rejected";
+        // disable reject button
+        document.getElementById("reject").disabled = true;
+        document.getElementById("button_if_disabled").style.marginLeft = "520px";
+    }
+    else {
+        // Get references to the button and the fields
+        const csr_button = document.getElementById('csr');
+        const csrNoField = document.getElementsByClassName('csr_hide')[0];
+        const infoField = document.getElementsByClassName('csr_hide')[1];
+
+        // Hide the fields initially
+        csrNoField.style.display = 'none';
+        infoField.style.display = 'none';
+
+        // Add a click event listener to the CSR button
+        csr_button.addEventListener('click', () => {
+            // Toggle the visibility of the fields
+            if (csrNoField.style.display === 'none') {
+                csrNoField.style.display = 'block';
+                infoField.style.display = 'block';
+            } else {
+                csrNoField.style.display = 'none';
+                infoField.style.display = 'none';
+            }
+            // Hide FIR fields if visible
+            hideFirFields();
+        });
+
+        // Get references to the FIR button and the fields
+        let firFields = document.querySelectorAll('.fir_fields');
+        let firButton = document.getElementById('fir');
+        let isFirFieldsVisible = false;
+
+
+        // Hide FIR fields initially
+        firFields.forEach(field => {
+            field.style.display = 'none';
+        });
+
+        // Add a click event listener to the FIR button
+        firButton.addEventListener('click', () => {
+            // Toggle the visibility of the fields
+            if (isFirFieldsVisible) {
+                firFields.forEach(field => {
+                    field.style.display = 'none';
+                });
+                isFirFieldsVisible = false;
+            } else {
+                firFields.forEach(field => {
+                    field.style.display = 'block';
+                });
+                isFirFieldsVisible = true;
+            }
+            // Hide CSR fields if visible
+            hideCsrFields();
+        });
+
+        // Function to hide CSR fields if visible
+        function hideCsrFields() {
+            if (csrNoField.style.display === 'block') {
+                csrNoField.style.display = 'none';
+                infoField.style.display = 'none';
+            }
+        }
+
+        // Function to hide FIR fields if visible
+        function hideFirFields() {
+            if (isFirFieldsVisible) {
+                firFields.forEach(field => {
+                    field.style.display = 'none';
+                });
+                isFirFieldsVisible = false;
+            }
+        }
+        const rejectButton = document.getElementById('reject');
+
+        rejectButton.addEventListener('click', () => {
+            // Hide CSR fields if visible
+            if (csrNoField.style.display === 'block') {
+                csrNoField.style.display = 'none';
+                infoField.style.display = 'none';
+            }
+            // Hide FIR fields if visible
+            if (isFirFieldsVisible) {
+                firFields.forEach(field => {
+                    field.style.display = 'none';
+                });
+                isFirFieldsVisible = false;
+            }
+        });
+    }
+</script>
+
 
 {% endblock %}
