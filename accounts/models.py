@@ -124,6 +124,7 @@ class police_incharge(AbstractBaseUser,  PermissionsMixin):
         ('deleted', 'deleted'),
         ('suspended', 'suspended'),
     )
+
     incharge_id = models.AutoField(primary_key=True,unique=True)
     username = models.CharField(max_length=150,unique=True)
     email = models.EmailField(max_length=254,null=False,unique=True)
@@ -145,7 +146,7 @@ class police_incharge(AbstractBaseUser,  PermissionsMixin):
 
     address = models.CharField(max_length=500,null=False,blank=False)
     pincode = models.IntegerField(null=False,blank=False)
-
+    
     state_id_no = models.IntegerField(null=True,blank=True)
     district_id_no = models.IntegerField(null=True,blank=True)
     status_id = models.CharField(max_length=10,null=False, blank=False,choices=status_id_choices)

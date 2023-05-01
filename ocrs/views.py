@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
-from complaints.models import district_master,state_master,police_station_master
+from complaints.models import *
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from accounts.models import *
 
@@ -114,9 +115,12 @@ def user_login(request):
                     
                     elif isinstance(authenticate_user, police_incharge):
                         login(request, user,backend='accounts.auth.PoliceInchargeBackend')
+                        print("--------------------------")
+                        logged_in_user = police_incharge.objects.get(email = email1)
+                        print(logged_in_user.incharge_id)
                         context.update({'Login_status':""})
                         print(context['Login_status'])
-                        return  redirect('/test') 
+                        return  redirect('/police_incharge_home',user) 
                     
                     elif isinstance(authenticate_user, police_officer):
                         login(request, user,backend='accounts.auth.PoliceBackend')
@@ -186,4 +190,25 @@ def test(request):
 def police(request):
     return render(request, 'police.html')
 
+@login_required(login_url='landing_page')
+def police_incharge_home(request):
+    return render(request, 'police_incharge.html')
 
+@login_required(login_url='landing_page')
+def manage_complaint(request):
+    crime_categories = crime_category_master.objects.all()
+    states = state_master.objects.all()
+    district = district_master.objects.all()
+    police_stations =police_station_master.objects.all()
+    context = {
+                'crime_categories': crime_categories,
+                'states': states,
+                'districts': district,
+                'police_stations':police_stations
+    }
+    return render(request, 'manage_complaint.html',context)
+
+@login_required(login_url='landing_page')
+def police_incharge_view_complaint(request):
+    # print("view called")
+    return render(request, 'police_incharge_view_complaint.html')

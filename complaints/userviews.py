@@ -4,11 +4,11 @@ from django.contrib.auth import authenticate, login
 from .models import *
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='user_login')
+@login_required(login_url='landing_page')
 def user(request):
     return render(request, 'user.html')
     
-@login_required(login_url='user_login')
+@login_required(login_url='landing_page')
 def create_complaint(request):
     crime_categories = crime_category_master.objects.all()
     states = state_master.objects.all()
