@@ -79,7 +79,7 @@ def create_complaint(request):
         district_id = complaint_district_id,
         station_name = police_complaint_station_name,
         station_id = station_id,
-        status_id = "Pending",
+        status = "Pending",
         crime_category = temp_complaint_crime_category,
         other_crime_category = other_crime_category,
         subject = subject,

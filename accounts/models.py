@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin
 from django.db import models
 from django.utils import timezone
-from complaints.models import district_master, state_master
+from complaints.models import *
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.decorators import permission_required
@@ -152,6 +152,8 @@ class police_incharge(AbstractBaseUser,  PermissionsMixin):
     status_id = models.CharField(max_length=10,null=False, blank=False,choices=status_id_choices)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
+    station_name = models.OneToOneField(police_station_master,null=False, blank=False,on_delete=models.PROTECT)
+    station_id = models.IntegerField(null=True,blank=True)
 
     USERNAME_FIELD = 'email'
 

@@ -38,7 +38,7 @@ urlpatterns = [
     path('get_police_stations/', views.get_police_stations, name='get_police_stations'),
     path('get_districts_register/', views.get_districts_register, name='get_districts_register'),
     path('police_incharge_home/', views.police_incharge_home, name='police_incharge_home'),
-    path('manage_complaint/', views.manage_complaint, name='manage_complaint'),
+    path('manage_complaint/<int:complaint_id>/', views.manage_complaint, name='manage_complaint'),
     path('police_incharge_view_complaint/', views.police_incharge_view_complaint, name='police_incharge_view_complaint'),
 
 ] + static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

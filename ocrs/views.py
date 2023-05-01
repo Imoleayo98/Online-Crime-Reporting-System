@@ -115,9 +115,6 @@ def user_login(request):
                     
                     elif isinstance(authenticate_user, police_incharge):
                         login(request, user,backend='accounts.auth.PoliceInchargeBackend')
-                        print("--------------------------")
-                        logged_in_user = police_incharge.objects.get(email = email1)
-                        print(logged_in_user.incharge_id)
                         context.update({'Login_status':""})
                         print(context['Login_status'])
                         return  redirect('/police_incharge_home',user) 
@@ -195,20 +192,18 @@ def police_incharge_home(request):
     return render(request, 'police_incharge.html')
 
 @login_required(login_url='landing_page')
-def manage_complaint(request):
-    crime_categories = crime_category_master.objects.all()
-    states = state_master.objects.all()
-    district = district_master.objects.all()
-    police_stations =police_station_master.objects.all()
+def manage_complaint(request,complaint_id):
+    print(complaint_id)
+    complaints = complaint_master.objects.get(complaint_id=complaint_id)
     context = {
-                'crime_categories': crime_categories,
-                'states': states,
-                'districts': district,
-                'police_stations':police_stations
+        'complaints':complaints
+
     }
     return render(request, 'manage_complaint.html',context)
 
 @login_required(login_url='landing_page')
 def police_incharge_view_complaint(request):
     # print("view called")
-    return render(request, 'police_incharge_view_complaint.html')
+    complaints = complaint_master.objects.filter(station_name=request.user.station_name).order_by('-complaint_id')
+    context = {'complaints':complaints}
+    return render(request, 'police_incharge_view_complaint.html',context)
