@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from complaints.models import district_master,state_master,police_station_master
 from django.http import HttpResponseRedirect
+from accounts.models import *
 
 def landing_page(request):
     return render(request,"landing_page.html")
@@ -68,6 +69,8 @@ def register(request):
 
 def user_login(request):
     if request.method == 'POST':
+        context = {'Login_status': ''}
+
         # get the username and password from the POST request
         email1  = request.POST.get('email')
         password1  = request.POST.get('password')
@@ -80,11 +83,18 @@ def user_login(request):
             print("user")
         except :
             try:
-                print("psi")
                 user = police_incharge.objects.get(email=email1)
+                print("psi")
             except :
                 print("psi not exist")
-                return render(request, 'login.html',context)
+                try:
+                    user = police_officer.objects.get(email=email1)
+                    print("police")
+                except :
+                    print("police not exist")
+                    context.update({'Login_status':"Invalid credentials"})
+                    print(context['Login_status'])
+                    return render(request, 'login.html',context)
 
         # authenticate the user
         if user is not None:
@@ -93,7 +103,6 @@ def user_login(request):
             
             if authenticate_user is not None:
                 print("fetched")
-                context = {'Login_status': ''}
                 print(user)
                 if authenticate_user is not None:
 
@@ -108,12 +117,18 @@ def user_login(request):
                         context.update({'Login_status':""})
                         print(context['Login_status'])
                         return  redirect('/test') 
+                    
+                    elif isinstance(authenticate_user, police_officer):
+                        login(request, user,backend='accounts.auth.PoliceBackend')
+                        context.update({'Login_status':""})
+                        print(context['Login_status'])
+                        return  redirect('/police') 
                 else:
                     context.update({'Login_status':"Invalid credentials"})
                     print(context['Login_status'])
                     return render(request, 'login.html',context)
             else:
-                return  HttpResponse("psi not found")
+                return  HttpResponse("user not found")
 
     else:
         # render the login page
@@ -123,7 +138,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('user_login')
+    return redirect('landing_page')
 
 def index(request):
     return render(request, 'index.html')
@@ -167,5 +182,8 @@ def administrator(request):
 
 def test(request):
     return render(request, 'test.html')
+
+def police(request):
+    return render(request, 'police.html')
 
 

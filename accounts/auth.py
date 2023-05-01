@@ -54,3 +54,33 @@ class PoliceInchargeBackend(BaseBackend):
             return police_incharge.objects.get(pk=user_id)
         except police_incharge.DoesNotExist:
             return None
+        
+class PoliceBackend(BaseBackend):
+    def authenticate(self, request, email=None, password=None, **kwargs):
+        print("PoliceBackend called")
+        print(email)
+        print(password)
+        try:
+            user = police_officer.objects.get(email=email)
+            print(user.password)
+            print("email found")
+        except:
+            return None
+
+        # if user.check_password(password): 
+        #     return user
+
+        if user.password == password:
+            print("right password")
+            print(user)
+            return user
+        
+
+        # If password is not correct, return None.
+        print("wrong pass")
+
+    def get_user(self, user_id):
+        try:
+            return police_officer.objects.get(pk=user_id)
+        except police_officer.DoesNotExist:
+            return None

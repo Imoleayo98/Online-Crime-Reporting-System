@@ -32,6 +32,7 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('administrator/', views.administrator, name='administrator'),
     path('user/', include('complaints.urls'), name='user'),
+    path('police/', views.police, name='police'),
     path('test/', views.test, name='test'),
     path('get_district/', views.get_districts, name='get_districts'),
     path('get_police_stations/', views.get_police_stations, name='get_police_stations'),

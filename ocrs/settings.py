@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 AUTHENTICATION_BACKENDS = [
     'accounts.auth.CustomUserBackend',
     'accounts.auth.PoliceInchargeBackend',
+    'accounts.auth.PoliceBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
