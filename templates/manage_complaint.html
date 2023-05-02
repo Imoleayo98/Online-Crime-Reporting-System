@@ -57,7 +57,7 @@
                         <input readonly type="text" placeholder="{{complaints.complainant_district_name}}"
                             class="white-placeholder form-control">
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="pincode" class="form-label">PIN CODE </label>
                         <input readonly type="pincode" class="white-placeholder form-control" name="pincode"
@@ -141,14 +141,16 @@
 
 
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-message">Detailed Description</label>
+                        <label class="form-label" id="detailed_description" for="basic-default-message">Detailed
+                            Description</label>
                         <textarea readonly id="basic-default-message" name="detailed_description"
                             class="white-placeholder form-control"
                             placeholder="{{complaints.detailed_description}}"></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-message">Reasons for delay in reporting by the complainant/informant</label>
+                        <label class="form-label" for="basic-default-message">Reasons for delay in reporting by the
+                            complainant/informant</label>
                         <textarea readonly id="basic-default-message" name="delay_in_complaining"
                             class="white-placeholder form-control" placeholder="{{complaints.delay_reason}}"></textarea>
                     </div>
@@ -319,6 +321,8 @@
         const csr_button = document.getElementById('csr');
         const csrNoField = document.getElementsByClassName('csr_hide')[0];
         const infoField = document.getElementsByClassName('csr_hide')[1];
+        let detailedDescriptionLabel = document.getElementById('detailed_description');
+
 
         // Hide the fields initially
         csrNoField.style.display = 'none';
@@ -330,10 +334,14 @@
             if (csrNoField.style.display === 'none') {
                 csrNoField.style.display = 'block';
                 infoField.style.display = 'block';
+                detailedDescriptionLabel.innerHTML = 'NCR Detailed Description';
             } else {
                 csrNoField.style.display = 'none';
                 infoField.style.display = 'none';
+                detailedDescriptionLabel.innerHTML = 'Detailed Description';
+
             }
+
             // Hide FIR fields if visible
             hideFirFields();
         });
@@ -357,11 +365,15 @@
                     field.style.display = 'none';
                 });
                 isFirFieldsVisible = false;
+                detailedDescriptionLabel.innerHTML = 'Detailed Description';
+
             } else {
                 firFields.forEach(field => {
                     field.style.display = 'block';
                 });
                 isFirFieldsVisible = true;
+                detailedDescriptionLabel.innerHTML = 'FIR Detailed Description';
+
             }
             // Hide CSR fields if visible
             hideCsrFields();
@@ -402,6 +414,5 @@
         });
     }
 </script>
-
 
 {% endblock %}
