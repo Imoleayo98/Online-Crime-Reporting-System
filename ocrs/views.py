@@ -196,8 +196,8 @@ def manage_complaint(request,complaint_id):
     print(complaint_id)
     complaints = complaint_master.objects.get(complaint_id=complaint_id)
     context = {
-        'complaints':complaints
-
+        'complaints':complaints,
+        'complaint_id': complaint_id,
     }
     return render(request, 'manage_complaint.html',context)
 
@@ -207,3 +207,136 @@ def police_incharge_view_complaint(request):
     complaints = complaint_master.objects.filter(station_name=request.user.station_name).order_by('-complaint_id')
     context = {'complaints':complaints}
     return render(request, 'police_incharge_view_complaint.html',context)
+
+
+def register_fir_csr(request):
+    if request.method == 'POST':
+        complaint_type = request.POST.get('complaint_type')        
+        complaint_id = request.POST.get('complaint_id')
+        print(f"complaint_id: {complaint_id}")   
+        complainant_name = request.POST.get('name')
+        complainant_gender = request.POST.get('gender')
+        complainant_contact_no = request.POST.get('contact_no')
+        complainant_email = request.POST.get('email')
+        complainant_dob = request.POST.get('dob')
+        complainant_address = request.POST.get('address')
+        complainant_state_name = request.POST.get('complainant_state_name')
+        complainant_state_id = state_master.objects.get(state_name=complainant_state_name).state_id
+        complainant_district_name = request.POST.get('complainant_district_name')
+        complainant_district_id = district_master.objects.get(district_name=complainant_district_name).district_id
+        complainant_pin_code = request.POST.get('pincode')
+        state_name = request.POST.get('state_name')
+        state_id = state_master.objects.get(state_name=state_name).state_id
+        district_name = request.POST.get('district_name')
+        district_id = district_master.objects.get(district_name=district_name).district_id
+        station_name = request.POST.get('station_name')
+        station_id = police_station_master.objects.get(station_name=station_name).station_id
+        crime_category = request.POST.get('crime_category')
+        other_crime_category = request.POST.get('other_crime_category')
+        subject = request.POST.get('subject')
+        detailed_description = request.POST.get('detailed_description')
+        delay_reason = request.POST.get('delay_in_complaining')
+        datetime_of_occurence = request.POST.get('date_time_of_occurence')
+        place_of_occurence = request.POST.get('place_of_occurence')
+        evidence_image = request.POST.get('evidence_image')
+        info_by_station_incharge = request.POST.get('info_by_incharge')
+        if(complaint_type == 'fir'):
+            fir_no = request.POST.get('fir_no')
+            act_and_sections = request.POST.get('act_and_sections')
+            gd_number = request.POST.get('gd_number')
+            type_of_information = request.POST.get('type_of_information')
+            nearest_identifiable_place = request.POST.get('nearby_place')
+            direction_and_distance_from_ps = request.POST.get('dist_from_ps')
+            complaintant_religion = request.POST.get('complainant_religion')
+            complaintant_caste = request.POST.get('complainant_caste')
+            sus_acu_details = request.POST.get('sus_acu_details')
+            properties_involved = request.POST.get('property_involved')
+            property_value = request.POST.get('property_value')
+
+            fir = fir_master.objects.create(
+            fir_no = fir_no,
+            complainant_name = complainant_name,
+            complainant_gender = complainant_gender,
+            complainant_contact_no = complainant_contact_no,
+            complainant_email = complainant_email,
+            complainant_dob = complainant_dob,
+            complainant_address = complainant_address,
+            complainant_state_name = complainant_state_name,
+            complainant_state_id = complainant_state_id,
+            complainant_district_name = complainant_district_name,
+            complainant_district_id = complainant_district_id,
+            complainant_pin_code = complainant_pin_code,
+            state_name = state_name,
+            state_id = state_id,
+            district_name = district_name,
+            district_id = district_id,
+            station_name = station_name,
+            station_id = station_id,
+            status_id = "FIR is Filed",
+            crime_category = crime_category,
+            other_crime_category = other_crime_category,
+            subject = subject,
+            fir_detailed_description = detailed_description,
+            delay_reason = delay_reason,
+            datetime_of_occurence = datetime_of_occurence,
+            place_of_occurence = place_of_occurence,
+            evidence_image = evidence_image,
+            info_by_station_incharge = info_by_station_incharge,
+            gd_number = gd_number,
+            act_and_sections = act_and_sections,
+            type_of_information = type_of_information,
+            nearest_identifiable_place = nearest_identifiable_place,
+            direction_and_distance_from_ps = direction_and_distance_from_ps,
+            complaintant_religion = complaintant_religion,
+            complaintant_caste = complaintant_caste,
+            sus_acu_details = sus_acu_details,
+            properties_involved = properties_involved,
+            property_value = property_value,
+            created_at = timezone.now(),
+            updated_at = timezone.now()
+            )
+
+
+
+        elif(complaint_type == 'csr'):
+            csr_no = request.POST.get('csr_no'),
+            csr = csr_master.objects.create(
+                csr_no=csr_no,
+                complainant_name = complainant_name,
+                complainant_gender = complainant_gender,
+                complainant_contact_no = complainant_contact_no,
+                complainant_email = complainant_email,
+                complainant_dob = complainant_dob,
+                complainant_address = complainant_address,
+                complainant_state_name = complainant_state_name,
+                complainant_state_id = complainant_state_id,
+                complainant_district_name = complainant_district_name,
+                complainant_district_id = complainant_district_id,
+                complainant_pin_code = complainant_pin_code,
+                state_name = state_name,
+                state_id = state_id,
+                district_name = district_name,
+                district_id = district_id,
+                station_name = station_name,
+                station_id = station_id,
+                status_id = "CSR is Filed",
+                crime_category = crime_category,
+                other_crime_category = other_crime_category,
+                subject = subject,
+                ncr_detailed_description = detailed_description,
+                delay_reason = delay_reason,
+                datetime_of_occurence = datetime_of_occurence,
+                place_of_occurence = place_of_occurence,
+                evidence_image = evidence_image,
+                info_by_station_incharge = info_by_station_incharge,
+                created_at = timezone.now(),
+                updated_at = timezone.now()
+            )
+        
+        else:
+            complaint = complaint_master.objects.get(complaint_id=complaint_id)
+            complaint.status = 'Rejected'
+            complaint.save()
+            return redirect('police_incharge_view_complaint')
+    else:
+        return redirect('police_incharge_view_complaint')

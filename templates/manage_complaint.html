@@ -20,17 +20,19 @@
 
             <div class="card-body">
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{% url 'register_fir_csr' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-fullname">Full Name </label>
-                        <input type="text" name="name" placeholder="{{complaints.complainant_name}}"
-                            class="form-control white-placeholder" id="basic-default-fullname" readonly />
+                        <input type="text" name="name" value="{{complaints.complainant_name}}"
+                            placeholder="{{complaints.complainant_name}}" class="form-control white-placeholder"
+                            id="basic-default-fullname" readonly />
                     </div>
 
                     <label class="mb-2 form-label" for="basic-default-fullname"
                         style="margin-bottom: -4px;">Gender</label><br>
-                    <input type="text" placeholder="{{complaints.complainant_gender}}" name="name"
+                    <input type="text" value="{{complaints.complainant_gender}}"
+                        placeholder="{{complaints.complainant_gender}}" name="gender"
                         class="white-placeholder mb-3 form-control" id="basic-default-fullname" readonly />
 
 
@@ -39,29 +41,32 @@
                     <div class="mb-3">
                         <label for="address" class="form-label">Complainant Address </label>
                         <textarea name="address" id="address" class="white-placeholder form-control" readonly cols="40"
-                            rows="5" placeholder="{{complaints.complainant_address}}"></textarea>
+                            rows="5" value="{{complaints.complainant_address}}"
+                            placeholder="{{complaints.complainant_address}}"></textarea>
                     </div>
 
 
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class=" form-label">Complainant State or UT</label>
-                        <input readonly type="text" placeholder="{{complaints.complainant_state_name}}"
-                            class="white-placeholder form-control">
+                        <input readonly name="complainant_state_name" type="text" value="{{complaints.complainant_state_name}}"
+                            placeholder="{{complaints.complainant_state_name}}" class="white-placeholder form-control">
 
                     </div>
 
 
                     <div class="mb-4">
                         <label for="complainant_district" class="form-label">Complainant District</label>
-                        <input readonly type="text" placeholder="{{complaints.complainant_district_name}}"
+                        <input readonly type="text" name="complainant_district_name" value="{{complaints.complainant_district_name}}"
+                            placeholder="{{complaints.complainant_district_name}}"
                             class="white-placeholder form-control">
                     </div>
 
                     <div class="mb-3">
                         <label for="pincode" class="form-label">PIN CODE </label>
                         <input readonly type="pincode" class="white-placeholder form-control" name="pincode"
-                            id="pinbcode" placeholder="{{complaints.complainant_pin_code}}" min="000000" max="999999">
+                            id="pinbcode" value="{{complaints.complainant_pin_code}}"
+                            placeholder="{{complaints.complainant_pin_code}}" min="000000" max="999999">
                     </div>
                     <!-- ========================================================================================================================== -->
 
@@ -69,22 +74,24 @@
                         <label class="form-label" for="basic-default-phone">Phone Number</label>
                         <input readonly type="text" name="contact_no" id="basic-default-phone"
                             class="white-placeholder form-control phone-mask"
+                            value="{{complaints.complainant_contact_no}}"
                             placeholder="{{complaints.complainant_contact_no}}" />
                     </div>
                     <div class="mb-3 mt-1">
                         <label class="form-label" for="basic-default-email">Email</label>
                         <div class="input-group input-group-merge">
                             <input readonly type="text" name="email" id="basic-default-email"
-                                class="white-placeholder form-control" placeholder="{{complaints.complainant_email}}"
+                                class="white-placeholder form-control" value="{{complaints.complainant_email}}"
+                                placeholder="{{complaints.complainant_email}}"
                                 aria-describedby="basic-default-email2" />
                         </div>
                     </div>
 
                     <div class="mb-3 ">
                         <label for="html5-date-input" class="form-label">Date Of Birth</label>
-                        <input readonly placeholder="{{complaints.complainant_dob}}"
-                            class="white-placeholder form-control" name="dob" type="text" value=""
-                            id="html5-date-input" />
+                        <input readonly value="{{complaints.complainant_dob}}"
+                            placeholder="{{complaints.complainant_dob}}" class="white-placeholder form-control"
+                            name="dob" type="text" id="html5-date-input" />
                     </div>
 
 
@@ -92,24 +99,24 @@
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">State or UT</label>
-                        <input readonly type="text" placeholder="{{complaints.state_name}}"
-                            class="white-placeholder form-control">
+                        <input readonly type="text" name="state_name" value="{{complaints.state_name}}"
+                            placeholder="{{complaints.state_name}}" class="white-placeholder form-control">
 
                     </div>
 
 
                     <div class="mb-4">
                         <label for="complaint_district" class="form-label">Complaint District</label>
-                        <input readonly placeholder="{{complaints.district_name}}" type="text"
-                            class="white-placeholder form-control">
+                        <input readonly value="{{complaints.district_name}}" name="district_name" placeholder="{{complaints.district_name}}"
+                            type="text" class="white-placeholder form-control">
 
                     </div>
 
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint Police Station</label>
-                        <input readonly placeholder="{{complaints.station_name}}" type="text"
-                            class="white-placeholder form-control">
+                        <input readonly value="{{complaints.station_name}}" name="station_name" placeholder="{{complaints.station_name}}"
+                            type="text" class="white-placeholder form-control">
 
                     </div>
 
@@ -117,7 +124,8 @@
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Crime Category / Complaint
                             Type</label>
-                        <input readonly placeholder="{{complaints.crime_category}}" type="text"
+                        <input readonly name="crime_category" value="{{complaints.crime_category}}"
+                            placeholder="{{complaints.crime_category}}" type="text"
                             class="white-placeholder form-control">
 
                     </div>
@@ -126,9 +134,9 @@
                         <label class="form-label" for="basic-default-fullname">Other Crime Category /
                             Complaint Type
                         </label>
-                        <input readonly type="text" placeholder="{{complaints.other_crime_category}}"
-                            name="other_crime_category" class="white-placeholder form-control"
-                            id="basic-default-fullname" />
+                        <input readonly type="text" value="{{complaints.other_crime_category}}"
+                            placeholder="{{complaints.other_crime_category}}" name="other_crime_category"
+                            class="white-placeholder form-control" id="basic-default-fullname" />
                     </div>
 
 
@@ -136,7 +144,8 @@
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Subject</label>
                         <input type="text" readonly name="subject" class="white-placeholder form-control"
-                            id="basic-default-company" placeholder="{{complaints.subject}}" />
+                            id="basic-default-company" value="{{complaints.subject}}"
+                            placeholder="{{complaints.subject}}" />
                     </div>
 
 
@@ -144,7 +153,7 @@
                         <label class="form-label" id="detailed_description" for="basic-default-message">Detailed
                             Description</label>
                         <textarea readonly id="basic-default-message" name="detailed_description"
-                            class="white-placeholder form-control"
+                            class="white-placeholder form-control" value="{{complaints.detailed_description}}"
                             placeholder="{{complaints.detailed_description}}"></textarea>
                     </div>
 
@@ -152,7 +161,8 @@
                         <label class="form-label" for="basic-default-message">Reasons for delay in reporting by the
                             complainant/informant</label>
                         <textarea readonly id="basic-default-message" name="delay_in_complaining"
-                            class="white-placeholder form-control" placeholder="{{complaints.delay_reason}}"></textarea>
+                            class="white-placeholder form-control" value="{{complaints.delay_reason}}"
+                            placeholder="{{complaints.delay_reason}}"></textarea>
                     </div>
 
 
@@ -160,16 +170,17 @@
                         <label for="html5-datetime-local-input" class="col-md-2 col-form-label">Date and Time of
                             Occurence</label>
                         <div class="col-md-10">
-                            <input readonly placeholder="{{complaints.datetime_of_occurence}}"
+                            <input readonly value="{{complaints.datetime_of_occurence}}"
+                                placeholder="{{complaints.datetime_of_occurence}}"
                                 class="white-placeholder form-control" name="date_time_of_occurence" type="text"
                                 id="html5-datetime-local-input" />
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Place of Occurence</label>
-                        <input type="text" placeholder="{{complaints.place_of_occurence}}" readonly
-                            name="place_of_occurence" class="white-placeholder form-control"
-                            id="basic-default-company" />
+                        <input type="text" value="{{complaints.place_of_occurence}}"
+                            placeholder="{{complaints.place_of_occurence}}" readonly name="place_of_occurence"
+                            class="white-placeholder form-control" id="basic-default-company" />
                     </div>
 
                     <div class="mb-3">
@@ -218,7 +229,7 @@
 
                     <div class="mb-3 fir_fields">
                         <label for="defaultSelect" class="form-label">Type of Information</label>
-                        <select id="defaultSelect" class="form-select">
+                        <select id="defaultSelect" name="type_of_information" class="form-select">
                             <option value="1">Written</option>
                             <option value="2">Oral</option>
                         </select>
@@ -278,6 +289,8 @@
                     </div>
 
 
+                    <input type="hidden" id="complaint_type">
+                    <input type="hidden"  name="complaint_id" value="{{complaint_id}}">
 
 
                     <!-- AUTOGENERATE CSR_ID IN BACKGROUND -->
@@ -292,11 +305,11 @@
                     <!-- SHOW INFO BY STATION INC -->
                     <!-- SHOW STATUS DROP DOWN -->
                     <!-- show market c -->
+                    <br>
 
-
+                    <button type="submit" style="width: 100%;" id="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
 
         </div>
     </div>
@@ -321,13 +334,47 @@
         document.getElementsByClassName('csr_hide')[0].style.display = 'none';
         document.getElementsByClassName('csr_hide')[1].style.display = 'none';
     }
+    else if (status === "CSR is Filed") {
+        document.getElementById("submit").disabled = true;
+        document.querySelectorAll('.fir_fields').forEach(field => {
+            field.style.display = 'none';
+        });
+        document.getElementById("submit").disabled = true;
+        document.getElementById("csr").innerHTML = "CSR is Filed";
+        document.getElementById("csr").disabled = true;
+        document.querySelectorAll('.fir_fields').forEach(field => {
+            field.style.display = 'none';
+        });
+        document.getElementById("reject").style.display = "none";
+        document.getElementById("button_if_disabled").style.marginLeft = "520px";
+        document.getElementById("fir").style.display = "none";
+        let detailedDescriptionLabel = document.getElementById('detailed_description');
+        detailedDescriptionLabel.innerHTML = 'CSR Detailed Description';
+
+
+    }
+    else if (status === "FIR is Filed") {
+        document.getElementById("submit").disabled = true;
+        document.getElementById("fir").innerHTML = "FIR is Filed";
+        document.getElementById("fir").disabled = true;
+        document.getElementsByClassName('csr_hide')[0].style.display = 'none';
+        document.getElementById("reject").style.display = "none";
+        document.getElementById("button_if_disabled").style.marginLeft = "520px";
+        document.getElementById("csr").style.display = "none";
+        document.querySelectorAll('.fir_fields').forEach(field => {
+            field.style.display = 'none';
+        });
+        let detailedDescriptionLabel = document.getElementById('detailed_description');
+        detailedDescriptionLabel.innerHTML = 'FIR Detailed Description';
+
+    }
     else {
         // Get references to the button and the fields
         const csr_button = document.getElementById('csr');
         const csrNoField = document.getElementsByClassName('csr_hide')[0];
         const infoField = document.getElementsByClassName('csr_hide')[1];
         let detailedDescriptionLabel = document.getElementById('detailed_description');
-
+        let complaint_type = document.getElementById('complaint_type');
 
         // Hide the fields initially
         csrNoField.style.display = 'none';
@@ -340,12 +387,16 @@
                 csrNoField.style.display = 'block';
                 infoField.style.display = 'block';
                 detailedDescriptionLabel.innerHTML = 'NCR Detailed Description';
+
             } else {
                 csrNoField.style.display = 'none';
                 infoField.style.display = 'none';
                 detailedDescriptionLabel.innerHTML = 'Detailed Description';
 
+
             }
+            complaint_type.value = "csr";
+            console.log(complaint_type.value)
 
             // Hide FIR fields if visible
             hideFirFields();
@@ -372,6 +423,7 @@
                 isFirFieldsVisible = false;
                 detailedDescriptionLabel.innerHTML = 'Detailed Description';
 
+
             } else {
                 firFields.forEach(field => {
                     field.style.display = 'block';
@@ -379,7 +431,10 @@
                 isFirFieldsVisible = true;
                 detailedDescriptionLabel.innerHTML = 'FIR Detailed Description';
 
+
             }
+            complaint_type.value = "fir";
+            console.log(complaint_type.value)
             // Hide CSR fields if visible
             hideCsrFields();
         });
@@ -408,6 +463,7 @@
             if (csrNoField.style.display === 'block') {
                 csrNoField.style.display = 'none';
                 infoField.style.display = 'none';
+
             }
             // Hide FIR fields if visible
             if (isFirFieldsVisible) {
@@ -416,6 +472,19 @@
                 });
                 isFirFieldsVisible = false;
             }
+            // if(complaint_type.value == "")
+            // {
+            //     complaint_type.value = "reject";
+            //     console.log(complaint_type.value)
+            // }
+            // else if(complaint_type.value == "fir" ||complaint_type.value == "csr")
+            // {
+            //     complaint_type.value = "reject";
+            //     console.log(complaint_type.value)
+            // }
+
+            complaint_type.value = "reject";
+            console.log(complaint_type.value)
         });
     }
 </script>

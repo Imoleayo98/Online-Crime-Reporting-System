@@ -102,8 +102,8 @@ class complaint_master(models.Model):
 
     status_choices = (
         ('Pending', 'Pending'),
-        ('CSR Filed', 'CSR is Filed'),
-        ('FIR Filed', 'FIR is Filed'),
+        ('CSR is Filed', 'CSR is Filed'),
+        ('FIR is Filed', 'FIR is Filed'),
         ('Rejected', 'Rejected'),
     )
     complaint_id = models.AutoField(primary_key=True,null=False,blank=False,unique=True)
@@ -134,7 +134,7 @@ class complaint_master(models.Model):
     place_of_occurence = models.CharField(max_length=150, null=True, blank=True)
     evidence_image = models.ImageField(null=True, blank=True, upload_to="complaint images/")
     created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
-    updated_at = models.DateTimeField(auto_now=True,null=True,blank=True,)
+    updated_at = models.DateTimeField(auto_now=True,null=True,blank=True)
 
 
     def save(self, *args, **kwargs):
@@ -173,7 +173,7 @@ class complaint_master(models.Model):
 
 class csr_master(models.Model):
     status_choices = (
-        ('CSR Filed', 'CSR is Filed'),
+        ('CSR is Filed', 'CSR is Filed'),
         ('Completed', 'Completed'),
     )
     csr_id = models.AutoField(primary_key=True,unique=True)
@@ -277,6 +277,8 @@ class fir_master(models.Model):
     datetime_of_occurence = models.DateTimeField(null=False,blank=False)
     place_of_occurence = models.CharField(max_length=150, null=True, blank=True)
     evidence_image = models.ImageField(null=True, blank=True, upload_to="complaint images/")
+    info_by_station_incharge = models.TextField(null=True, blank=True,default="")
+    gd_number = models.CharField(max_length=150,null=True,blank=True)
     act_and_sections = models.CharField(max_length=500,null=False,blank=False)
     type_of_information = models.CharField(max_length=20,null=False,blank=False,choices=type_of_information_choices)
     nearest_identifiable_place = models.CharField(max_length=500,null=False,blank=False)
