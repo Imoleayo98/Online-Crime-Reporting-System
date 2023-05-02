@@ -315,6 +315,11 @@
         // disable reject button
         document.getElementById("reject").disabled = true;
         document.getElementById("button_if_disabled").style.marginLeft = "520px";
+        document.querySelectorAll('.fir_fields').forEach(field => {
+            field.style.display = 'none';
+        });
+        document.getElementsByClassName('csr_hide')[0].style.display = 'none';
+        document.getElementsByClassName('csr_hide')[1].style.display = 'none';
     }
     else {
         // Get references to the button and the fields
