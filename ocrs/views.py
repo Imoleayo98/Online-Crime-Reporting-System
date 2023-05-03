@@ -223,7 +223,7 @@ def register_fir_csr(request):
         complainant_contact_no = request.POST.get('contact_no')
         complainant_email = request.POST.get('email')
         complainant_dob = complaint_master.objects.get(complaint_id=complaint_id).complainant_dob
-        complainant_address = request.POST.get('address')
+        complainant_address = complaint_master.objects.get(complaint_id=complaint_id).complainant_address
         get_complainant_state_name = request.POST.get('complainant_state_name')
         complainant_state_name = state_master.objects.get(state_name=get_complainant_state_name)
         complainant_state_id = state_master.objects.get(state_name=get_complainant_state_name).state_id
@@ -243,7 +243,7 @@ def register_fir_csr(request):
         crime_category = crime_category_master.objects.get(crime_category_name=request.POST.get('crime_category'))
         other_crime_category = request.POST.get('other_crime_category')
         subject = request.POST.get('subject')
-        detailed_description = request.POST.get('detailed_description')
+        detailed_description = complaint_master.objects.get(complaint_id=complaint_id).detailed_description
         delay_reason = request.POST.get('delay_in_complaining')
 
         datetime_of_occurence = complaint_master.objects.get(complaint_id=complaint_id).datetime_of_occurence
@@ -284,7 +284,7 @@ def register_fir_csr(request):
             district_id = district_id,
             station_name = station_name,
             station_id = station_id,
-            status_id = "FIR is Filed",
+            status = "FIR is Filed",
             crime_category = crime_category,
             other_crime_category = other_crime_category,
             subject = subject,
@@ -336,7 +336,7 @@ def register_fir_csr(request):
                 district_id = district_id,
                 station_name = station_name,
                 station_id = station_id,
-                status_id = "CSR is Filed",
+                status = "CSR is Filed",
                 crime_category = crime_category,
                 other_crime_category = other_crime_category,
                 subject = subject,
