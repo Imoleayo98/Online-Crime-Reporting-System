@@ -261,7 +261,7 @@
                         <textarea readonly id="basic-default-message" name="property_value" class="form-control"
                             placeholder="{{fir.property_value}}"></textarea>
                     </div>
-                    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
                     <div class="mb-3">
                         <label for="exampleFormControlSelect1" class="form-label">Select Status</label>
                         <select {% if fir.status == "Completed" %} disabled {% endif %} name="status" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
@@ -278,18 +278,6 @@
                     <input type="hidden" name="fir_id" value="{{fir_id}}">
 
 
-                    <!-- AUTOGENERATE CSR_ID IN BACKGROUND -->
-                    <!-- change description to ncr_detailed_description -->
-                    <!-- SHOW CSR_NO -->
-                    <!-- SHOW INFO BY STATION INC -->
-                    <!-- SHOW STATUS DROPDOWN  -->
-
-                    <!-- AUTOGENERATE FIR_ID IN BACKGROUND -->
-                    <!-- change description to FIR_detailed_description -->
-                    <!-- SHOW FIR_NO -->
-                    <!-- SHOW INFO BY STATION INC -->
-                    <!-- SHOW STATUS DROP DOWN -->
-                    <!-- show market c -->
                     <br>
 
                     <button type="submit" style="width: 100%;" id="submit" class="btn btn-primary">Submit</button>
