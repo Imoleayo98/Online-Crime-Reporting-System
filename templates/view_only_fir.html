@@ -1,6 +1,6 @@
 {% extends 'police_incharge_sidebar.html' %}
 
-{% block manage_fir %}
+{% block view_only_fir %}
 <!-- -----------------------------------  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- -----------------------------------  -->
@@ -264,14 +264,14 @@
                     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
                     <div class="mb-3">
                         <label for="exampleFormControlSelect1" class="form-label">Select Status</label>
-                        <select {% if fir.status == "Completed" %} disabled {% endif %} name="status" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                        <select disabled name="status" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                             <option value="FIR is Filed" selected>FIR is Filed</option>
                             <option value="Completed">Completed</option>
                         </select>
                     </div>
                     <div class="mb-3 csr_hide" id="info_by_si">
                         <label class="form-label" for="basic-default-message">Info By Station Incharge</label>
-                        <textarea {% if fir.status == "Completed" %} readonly {% endif %} id="basic-default-message" name="info_by_incharge" class="form-control"
+                        <textarea readonly id="basic-default-message" name="info_by_incharge" class="form-control"
                             placeholder="{{fir.info_by_station_incharge}}"></textarea>
                     </div>
 

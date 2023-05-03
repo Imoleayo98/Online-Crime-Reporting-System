@@ -1,6 +1,7 @@
+
 {% extends 'police_incharge_sidebar.html' %}
 
-{% block manage_csr %}
+{% block view_only_csr %}
 
     <!-- -----------------------------------  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -202,14 +203,14 @@
                     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
                     <div class="mb-3">
                         <label for="exampleFormControlSelect1" class="form-label">Select Status</label>
-                        <select {% if csr.status == "Completed" %} disabled {% endif %} name="status" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                        <select  disabled name="status" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                             <option value="CSR is Filed" selected>CSR is Filed</option>
                             <option value="Completed">Completed</option>
                         </select>
                     </div>
                     <div class="mb-3 csr_hide" id="info_by_si">
                         <label class="form-label" for="basic-default-message">Info By Station Incharge</label>
-                        <textarea {% if csr.status == "Completed" %} readonly {% endif %} id="basic-default-message" name="info_by_incharge" class="form-control"
+                        <textarea readonly id="basic-default-message" name="info_by_incharge" class="form-control"
                             placeholder="{{csr.info_by_station_incharge}}"></textarea>
                     </div>
 

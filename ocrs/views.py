@@ -6,13 +6,14 @@ from complaints.models import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from datetime import datetime
+from django.shortcuts import render, redirect
+from accounts.models import *
 from accounts.models import *
 
 def landing_page(request):
     return render(request,"landing_page.html")
 
-from django.shortcuts import render, redirect
-from accounts.models import *
+
 
 def register(request):
     states = state_master.objects.all()
@@ -388,6 +389,7 @@ def manage_fir(request,fir_id):
         if "Completed" in status:
             fir = fir_master.objects.get(fir_id=fir_id)
             fir.status = "Completed"
+            fir.info_by_station_incharge = info_by_incharge
             fir.save()
             return redirect('view_fir')
 
@@ -408,4 +410,64 @@ def view_csr(request):
     return render(request, 'view_csr.html',context)
 
 def manage_csr(request,csr_id):
-    return render(request,'manage_csr.html')
+    print(csr_id)
+    csr = csr_master.objects.get(csr_id=csr_id)
+    has_image = csr.evidence_image
+    context = {
+        'csr':csr,
+        'csr_id': csr_id,
+        'has_image': has_image
+    }
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        info_by_incharge = request.POST.get('info_by_incharge')
+        if "Completed" in status:
+            csr = csr_master.objects.get(csr_id=csr_id)
+            csr.info_by_station_incharge = info_by_incharge
+            csr.status = "Completed"
+            csr.save()
+            return redirect('view_csr')
+
+        else:
+            csr = csr_master.objects.get(csr_id=csr_id)
+            csr.info_by_station_incharge = info_by_incharge
+            csr.save()
+            return redirect('view_csr')
+    return render(request,'manage_csr.html',context)
+
+
+def view_only_csr(request,csr_id):
+    csr = csr_master.objects.get(csr_id=csr_id)
+    has_image = csr.evidence_image
+    context = {
+        'csr':csr,
+        'csr_id': csr_id,
+        'has_image': has_image
+    }
+    return render(request,'view_only_csr.html',context)
+
+def view_only_firs(request):
+    firs = fir_master.objects.filter(station_name=request.user.station_name).order_by('-fir_id')
+    context = {
+        'firs' : firs
+    }
+
+    return render(request,'view_only_firs.html',context)
+
+def view_only_fir(request,fir_id):
+    fir = fir_master.objects.get(fir_id=fir_id)
+    print(fir.subject)
+    has_image = fir.evidence_image
+    context = {
+        'fir':fir,
+        'fir_id': fir_id,
+        'has_image': has_image
+    }
+    return render(request,'view_only_fir.html',context)
+
+def view_only_csrs(request):
+    csrs = csr_master.objects.filter(station_name=request.user.station_name).order_by('-csr_id')
+    context = {
+        'csrs' : csrs
+    }
+    return render(request,'view_only_csrs.html',context)

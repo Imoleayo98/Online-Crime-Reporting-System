@@ -50,6 +50,18 @@
                 <div data-i18n="Basic">Manage CSR</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{% url 'view_only_firs'  %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">View FIR</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{% url 'view_only_csrs'  %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">View CSR</div>
+            </a>
+        </li>
         <!-- Cards -->
     
         <li class="menu-item">
@@ -75,6 +87,8 @@
     let Manage_Complaint = document.querySelectorAll('.menu-item')[2];
     let manage_fir = document.querySelectorAll('.menu-item')[3];
     let manage_csr = document.querySelectorAll('.menu-item')[4];
+    let view_only_fir = document.querySelectorAll('.menu-item')[5];
+    let view_only_csr = document.querySelectorAll('.menu-item')[6];
 
     var currentUrl = window.location.href;
     if (window.location.href.includes("police_incharge_home") ) {
@@ -83,6 +97,8 @@
         Manage_Profile.classList.remove('active');
         manage_fir.classList.remove('active');
         manage_csr.classList.remove('active');
+        view_only_fir.classList.remove('active');
+        view_only_csr.classList.remove('active');
     } 
     else if (window.location.href.includes("police_incharge_view_complaint") || window.location.href.includes("manage_complaint"))
     {
@@ -91,6 +107,8 @@
         Home.classList.remove('active');
         manage_fir.classList.remove('active');
         manage_csr.classList.remove('active');
+        view_only_fir.classList.remove('active');
+        view_only_csr.classList.remove('active');
     }
     else if (window.location.href.includes("manage_fir") )
     {
@@ -99,14 +117,28 @@
         Home.classList.remove('active');
         Manage_Complaint.classList.remove('active');
         manage_csr.classList.remove('active');
+        view_only_fir.classList.remove('active');
+        view_only_csr.classList.remove('active');
+    }
+    else if (window.location.href.includes("view_only__fir") )
+    {        
+        view_only_fir.classList.add('active');
+        view_only_csr.classList.remove('active');
+        manage_fir.classList.remove('active');
+        Manage_Profile.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Complaint.classList.remove('active');
+        manage_csr.classList.remove('active');
     }
     else if (window.location.href.includes("manage_csr") )
     {
-        manage_csr.classList.add('active');
+        manage_csr.classList.remove('active');
         Manage_Profile.classList.remove('active');
         Home.classList.remove('active');
         Manage_Complaint.classList.remove('active');
         manage_fir.classList.remove('active');
+        view_only_fir.classList.remove('active');
+        view_only_csr.classList.add('active');
     }
 
     

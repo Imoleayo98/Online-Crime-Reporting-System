@@ -45,5 +45,9 @@ urlpatterns = [
     path('manage_fir/<int:fir_id>/', views.manage_fir, name='manage_fir'),
     path('view_csr/', views.view_csr, name='view_csr'),
     path('manage_csr/<int:csr_id>/', views.manage_csr, name='manage_csr'),
+    path('view_only_fir/<int:fir_id>/', views.view_only_fir, name='view_only_fir'),
+    path('view_only_csr/<int:csr_id>/', views.view_only_csr, name='view_only_csr'),
+    path('view_only_firs/', views.view_only_firs, name='view_only_firs'),
+    path('view_only_csrs/', views.view_only_csrs, name='view_only_csrs'),
 
 ] + static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
