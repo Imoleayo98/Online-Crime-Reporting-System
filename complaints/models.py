@@ -195,7 +195,7 @@ class csr_master(models.Model):
     district_id = models.IntegerField(null=True, blank=True)    
     station_name = models.ForeignKey(police_station_master,to_field='station_name',null=False,blank=False,on_delete=models.PROTECT,related_name="complainant_in_police_station+")
     station_id  = models.IntegerField(null=True, blank=True)
-    status_id = models.CharField(max_length=20,choices=status_choices,default="CSR in progress")
+    status = models.CharField(max_length=20,choices=status_choices,default="CSR in progress")
     crime_category = models.ForeignKey(crime_category_master,to_field='crime_category_name',null=False, blank=False,on_delete=models.PROTECT)
     other_crime_category = models.CharField(max_length=150,null=True, blank=True)
     subject = models.CharField(max_length=500,null=False,blank=False)
@@ -242,7 +242,7 @@ class csr_master(models.Model):
 
 class fir_master(models.Model):
     status_choices = (
-        ('FIR Filed', 'FIR is Filed'),
+        ('FIR is Filed', 'FIR is Filed'),
         ('Completed', 'Completed')
     )
     type_of_information_choices = (
@@ -268,7 +268,7 @@ class fir_master(models.Model):
     district_id = models.IntegerField(null=True, blank=True)    
     station_name = models.ForeignKey(police_station_master,to_field='station_name',null=False,blank=False,on_delete=models.PROTECT,related_name="complainant_in_police_station+")
     station_id  = models.IntegerField(null=True, blank=True)
-    status_id = models.CharField(max_length=20,choices=status_choices,default="FIR in progress")
+    status = models.CharField(max_length=20,choices=status_choices,default="FIR in progress")
     crime_category = models.ForeignKey(crime_category_master,to_field='crime_category_name',null=False, blank=False,on_delete=models.PROTECT)
     other_crime_category = models.CharField(max_length=150,null=True, blank=True)
     subject = models.CharField(max_length=500,null=False,blank=False)

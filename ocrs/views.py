@@ -361,3 +361,51 @@ def register_fir_csr(request):
             return redirect('police_incharge_view_complaint')
     else:
         return redirect('police_incharge_view_complaint')
+
+
+def view_fir(request):
+    firs = fir_master.objects.filter(station_name=request.user.station_name).order_by('-fir_id')
+    context = {
+        'firs' : firs
+    }
+    return render(request, 'view_fir.html',context)
+
+
+def manage_fir(request,fir_id):
+    print(fir_id)
+    fir = fir_master.objects.get(fir_id=fir_id)
+    print(fir.subject)
+    has_image = fir.evidence_image
+    context = {
+        'fir':fir,
+        'fir_id': fir_id,
+        'has_image': has_image
+    }
+
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        info_by_incharge = request.POST.get('info_by_incharge')
+        if "Completed" in status:
+            fir = fir_master.objects.get(fir_id=fir_id)
+            fir.status = "Completed"
+            fir.save()
+            return redirect('view_fir')
+
+        else:
+            fir = fir_master.objects.get(fir_id=fir_id)
+            fir.info_by_station_incharge = info_by_incharge
+            fir.save()
+            return redirect('view_fir')
+
+    else:
+        return render(request, 'manage_fir.html',context)
+
+def view_csr(request):
+    csrs = csr_master.objects.filter(station_name=request.user.station_name).order_by('-csr_id')
+    context = {
+        'csrs' : csrs
+    }
+    return render(request, 'view_csr.html',context)
+
+def manage_csr(request,csr_id):
+    return render(request,'manage_csr.html')

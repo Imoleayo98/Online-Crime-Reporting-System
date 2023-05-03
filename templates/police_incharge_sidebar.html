@@ -20,7 +20,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item">
-            <a href="{% url 'user' %}" class="menu-link">
+            <a href="" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Home</div>
             </a>
@@ -38,26 +38,20 @@
                 <div data-i18n="Basic">Manage Complaint</div>
             </a>
         </li>
-        <!-- Cards -->
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Manage Reports</div>
+            <a href="{% url 'view_fir'  %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Manage FIR</div>
             </a>
-
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
-                        <div data-i18n="Without menu">Manage FIR</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
-                        <div data-i18n="Without navbar">Manage CSR</div>
-                    </a>
-                </li>
-            </ul>
         </li>
+        <li class="menu-item">
+            <a href="{% url 'view_csr'  %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Manage CSR</div>
+            </a>
+        </li>
+        <!-- Cards -->
+    
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
@@ -74,28 +68,51 @@
     </ul>
 </aside>
 
-<!-- <script>
+<script>
 
     let Home = document.querySelectorAll('.menu-item')[0];
     let Manage_Profile = document.querySelectorAll('.menu-item')[1];
-    let Create_Complaint = document.querySelectorAll('.menu-item')[2];
+    let Manage_Complaint = document.querySelectorAll('.menu-item')[2];
+    let manage_fir = document.querySelectorAll('.menu-item')[3];
+    let manage_csr = document.querySelectorAll('.menu-item')[4];
 
     var currentUrl = window.location.href;
-    if (window.location.href === 'http://127.0.0.1:8000/create_complaint/') {
-        Create_Complaint.classList.add('active');
-        Home.classList.remove('active');
-        Manage_Profile.classList.remove('active');
-    } 
-    else if (window.location.href === 'http://127.0.0.1:8000/user/')
-    {
-        Create_Complaint.classList.remove('active');
+    if (window.location.href.includes("police_incharge_home") ) {
         Home.classList.add('active');
+        Manage_Complaint.classList.remove('active');
         Manage_Profile.classList.remove('active');
+        manage_fir.classList.remove('active');
+        manage_csr.classList.remove('active');
+    } 
+    else if (window.location.href.includes("police_incharge_view_complaint") || window.location.href.includes("manage_complaint"))
+    {
+        Manage_Complaint.classList.add('active');
+        Manage_Profile.classList.remove('active');
+        Home.classList.remove('active');
+        manage_fir.classList.remove('active');
+        manage_csr.classList.remove('active');
     }
+    else if (window.location.href.includes("manage_fir") )
+    {
+        manage_fir.classList.add('active');
+        Manage_Profile.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Complaint.classList.remove('active');
+        manage_csr.classList.remove('active');
+    }
+    else if (window.location.href.includes("manage_csr") )
+    {
+        manage_csr.classList.add('active');
+        Manage_Profile.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Complaint.classList.remove('active');
+        manage_fir.classList.remove('active');
+    }
+
     
     
 
-</script> -->
+</script>
 
 
 {% endblock %}

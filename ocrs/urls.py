@@ -41,5 +41,9 @@ urlpatterns = [
     path('manage_complaint/<int:complaint_id>/', views.manage_complaint, name='manage_complaint'),
     path('police_incharge_view_complaint/', views.police_incharge_view_complaint, name='police_incharge_view_complaint'),
     path('register_fir_csr/', views.register_fir_csr, name='register_fir_csr'),
+    path('view_fir/', views.view_fir, name='view_fir'),
+    path('manage_fir/<int:fir_id>/', views.manage_fir, name='manage_fir'),
+    path('view_csr/', views.view_csr, name='view_csr'),
+    path('manage_csr/<int:csr_id>/', views.manage_csr, name='manage_csr'),
 
 ] + static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

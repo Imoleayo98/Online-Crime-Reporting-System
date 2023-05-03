@@ -11,7 +11,7 @@
             <thead>
                 <tr>
                     <th>Subject</th>
-                    <th>Complnanat</th>
+                    <th>Complainant</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -24,7 +24,7 @@
                     {% if complaint.status == "Pending" %}
                         <td><span class="badge bg-label-primary me-1">Pending</span></td>
                     {% elif complaint.status == "CSR is Filed" %}
-                        <td><span class="badge bg-label-success me-1">CSR is Filed</span></td>
+                        <td><span class="badge bg-label-info me-1">CSR is Filed</span></td>
                         {% elif complaint.status == "FIR is Filed" %}
                         <td><span class="badge bg-label-success me-1">FIR is Filed</span></td>
                     {% else %}

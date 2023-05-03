@@ -210,7 +210,7 @@
                         <input type="text" name="csr_no" class="form-control" id="basic-default-company"
                             placeholder="Enter the C.S.R Number" />
                     </div>
-                    <div class="mb-3 csr_hide">
+                    <div class="mb-3 csr_hide" id="info_by_si">
                         <label class="form-label" for="basic-default-message">Info By Station Incharge</label>
                         <textarea id="basic-default-message" name="info_by_incharge" class="form-control"
                             placeholder="Provide the message or information which you want to send to the complaintant"></textarea>
@@ -353,12 +353,16 @@
         document.querySelectorAll('.fir_fields').forEach(field => {
             field.style.display = 'none';
         });
+        
         document.getElementById("submit").disabled = true;
         document.getElementById("csr").innerHTML = "CSR is Filed";
         document.getElementById("csr").disabled = true;
+        
         document.querySelectorAll('.fir_fields').forEach(field => {
             field.style.display = 'none';
         });
+        document.getElementsByClassName('csr_hide')[0].style.display = 'none';
+        document.getElementById('info_by_si').style.display = 'none';
         document.getElementById("reject").style.display = "none";
         document.getElementById("button_if_disabled").style.marginLeft = "520px";
         document.getElementById("fir").style.display = "none";
@@ -374,6 +378,7 @@
         document.getElementsByClassName('csr_hide')[0].style.display = 'none';
         document.getElementById("reject").style.display = "none";
         document.getElementById("button_if_disabled").style.marginLeft = "520px";
+        document.getElementById('info_by_si').style.display = 'none';
         document.getElementById("csr").style.display = "none";
         document.querySelectorAll('.fir_fields').forEach(field => {
             field.style.display = 'none';

@@ -87,12 +87,12 @@
     let Create_Complaint = document.querySelectorAll('.menu-item')[2];
 
     var currentUrl = window.location.href;
-    if (window.location.href === 'http://127.0.0.1:8000/create_complaint/') {
+    if (window.location.href.includes("create_complaint")) {
         Create_Complaint.classList.add('active');
         Home.classList.remove('active');
         Manage_Profile.classList.remove('active');
     } 
-    else if (window.location.href === 'http://127.0.0.1:8000/user/')
+    else if (window.location.href.includes("user"))
     {
         Create_Complaint.classList.remove('active');
         Home.classList.add('active');
