@@ -49,7 +49,8 @@
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class=" form-label">Complainant State or UT</label>
-                        <input readonly name="complainant_state_name" type="text" value="{{complaints.complainant_state_name}}"
+                        <input readonly name="complainant_state_name" type="text"
+                            value="{{complaints.complainant_state_name}}"
                             placeholder="{{complaints.complainant_state_name}}" class="white-placeholder form-control">
 
                     </div>
@@ -57,7 +58,8 @@
 
                     <div class="mb-4">
                         <label for="complainant_district" class="form-label">Complainant District</label>
-                        <input readonly type="text" name="complainant_district_name" value="{{complaints.complainant_district_name}}"
+                        <input readonly type="text" name="complainant_district_name"
+                            value="{{complaints.complainant_district_name}}"
                             placeholder="{{complaints.complainant_district_name}}"
                             class="white-placeholder form-control">
                     </div>
@@ -107,16 +109,18 @@
 
                     <div class="mb-4">
                         <label for="complaint_district" class="form-label">Complaint District</label>
-                        <input readonly value="{{complaints.district_name}}" name="district_name" placeholder="{{complaints.district_name}}"
-                            type="text" class="white-placeholder form-control">
+                        <input readonly value="{{complaints.district_name}}" name="district_name"
+                            placeholder="{{complaints.district_name}}" type="text"
+                            class="white-placeholder form-control">
 
                     </div>
 
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint Police Station</label>
-                        <input readonly value="{{complaints.station_name}}" name="station_name" placeholder="{{complaints.station_name}}"
-                            type="text" class="white-placeholder form-control">
+                        <input readonly value="{{complaints.station_name}}" name="station_name"
+                            placeholder="{{complaints.station_name}}" type="text"
+                            class="white-placeholder form-control">
 
                     </div>
 
@@ -183,9 +187,20 @@
                             class="white-placeholder form-control" id="basic-default-company" />
                     </div>
 
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Evidence images (optional) </label>
-                        <input readonly class="form-control" name="evidence_image" type="file" id="formFile" />
+                    <label class="form-label" for="basic-default-company">Evidence image</label>
+                    <div class="d-flex align-items-start align-items-sm-center gap-4 mb-3">
+                        <img src="{{ MEDIA_URL }}{{ complaints.evidence_image.url }}" class="d-block rounded"
+                            height="100" width="100" id="uploadedAvatar" />
+                        <div class="button-wrapper">
+                            <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                <span class="d-none d-sm-block"
+                                    onclick="window.open('{{ MEDIA_URL }}{{ complaints.evidence_image.url }}')">Open
+                                    Image in new tab</span>
+
+                            </label>
+
+
+                        </div>
                     </div>
 
 
@@ -289,8 +304,8 @@
                     </div>
 
 
-                    <input type="hidden" id="complaint_type">
-                    <input type="hidden"  name="complaint_id" value="{{complaint_id}}">
+                    <input type="hidden" id="complaint_type" name="complaint_type">
+                    <input type="hidden" name="complaint_id" value="{{complaint_id}}">
 
 
                     <!-- AUTOGENERATE CSR_ID IN BACKGROUND -->
