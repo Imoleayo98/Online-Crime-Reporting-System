@@ -91,6 +91,7 @@
     let view_only_csr = document.querySelectorAll('.menu-item')[6];
 
     var currentUrl = window.location.href;
+    // HOME 
     if (window.location.href.includes("police_incharge_home") ) {
         Home.classList.add('active');
         Manage_Complaint.classList.remove('active');
@@ -100,6 +101,8 @@
         view_only_fir.classList.remove('active');
         view_only_csr.classList.remove('active');
     } 
+
+    // Manage Complaint 
     else if (window.location.href.includes("police_incharge_view_complaint") || window.location.href.includes("manage_complaint"))
     {
         Manage_Complaint.classList.add('active');
@@ -110,7 +113,9 @@
         view_only_fir.classList.remove('active');
         view_only_csr.classList.remove('active');
     }
-    else if (window.location.href.includes("manage_fir") )
+
+    // Manage Fir 
+    else if (window.location.href.includes("view_fir") || window.location.href.includes("manage_fir") )
     {
         manage_fir.classList.add('active');
         Manage_Profile.classList.remove('active');
@@ -120,17 +125,33 @@
         view_only_fir.classList.remove('active');
         view_only_csr.classList.remove('active');
     }
-    else if (window.location.href.includes("view_only__fir") )
-    {        
-        view_only_fir.classList.add('active');
-        view_only_csr.classList.remove('active');
-        manage_fir.classList.remove('active');
+
+    // Manage Csr 
+    else if (window.location.href.includes("view_csr") || window.location.href.includes("manage_csr") )
+    {  
+        view_only_fir.classList.remove('active');
         Manage_Profile.classList.remove('active');
         Home.classList.remove('active');
         Manage_Complaint.classList.remove('active');
-        manage_csr.classList.remove('active');
+        manage_fir.classList.remove('active');
+        view_only_csr.classList.remove('active');
+        manage_csr.classList.add('active');
     }
-    else if (window.location.href.includes("manage_csr") )
+
+    // View Fir 
+    else if (window.location.href.includes("view_only_firs") || window.location.href.includes("view_only_fir") )
+    {
+        manage_csr.classList.remove('active');
+        Manage_Profile.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Complaint.classList.remove('active');
+        manage_fir.classList.remove('active');
+        view_only_csr.classList.remove('active');
+        view_only_fir.classList.add('active');
+    }
+    
+    // View Fir 
+    else if (window.location.href.includes("view_only_csrs") || window.location.href.includes("view_only_csr") )
     {
         manage_csr.classList.remove('active');
         Manage_Profile.classList.remove('active');
