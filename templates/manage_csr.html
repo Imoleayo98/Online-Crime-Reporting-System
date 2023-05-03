@@ -24,7 +24,7 @@
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Full Name
+                        <label class="form-label" for="basic-default-fullname">Complainant Full Name
                             </label>
                         <input type="text" name="name" value="{{csr.complainant_name}}"
                             placeholder="{{csr.complainant_name}}" class="form-control white-placeholder"
@@ -32,7 +32,7 @@
                     </div>
 
                     <label class="mb-2 form-label" for="basic-default-fullname"
-                        style="margin-bottom: -4px;">Gender</label><br>
+                        style="margin-bottom: -4px;">Complainant Gender</label><br>
                     <input type="text" value="{{csr.complainant_gender}}" placeholder="{{csr.complainant_gender}}"
                         name="gender" class="white-placeholder mb-3 form-control" id="basic-default-fullname"
                         readonly />
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="pincode" class="form-label">PIN CODE </label>
+                        <label for="pincode" class="form-label">Complainant PIN CODE </label>
                         <input readonly type="pincode" class="white-placeholder form-control" name="pincode"
                             id="pinbcode" value="{{csr.complainant_pin_code}}"
                             placeholder="{{csr.complainant_pin_code}}" min="000000" max="999999">
@@ -73,13 +73,13 @@
                     <!-- ========================================================================================================================== -->
 
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-phone">Phone Number</label>
+                        <label class="form-label" for="basic-default-phone">Complainant Phone Number</label>
                         <input readonly type="text" name="contact_no" id="basic-default-phone"
                             class="white-placeholder form-control phone-mask" value="{{csr.complainant_contact_no}}"
                             placeholder="{{csr.complainant_contact_no}}" />
                     </div>
                     <div class="mb-3 mt-1">
-                        <label class="form-label" for="basic-default-email">Email</label>
+                        <label class="form-label" for="basic-default-email">Complainant Email</label>
                         <div class="input-group input-group-merge">
                             <input readonly type="text" name="email" id="basic-default-email"
                                 class="white-placeholder form-control" value="{{csr.complainant_email}}"
@@ -88,16 +88,32 @@
                     </div>
 
                     <div class="mb-3 ">
-                        <label for="html5-date-input" class="form-label">Date Of Birth</label>
+                        <label for="html5-date-input" class="form-label">Complainant Date Of Birth</label>
                         <input readonly value="{{csr.complainant_dob}}" placeholder="{{csr.complainant_dob}}"
                             class="white-placeholder form-control" name="dob" type="text" id="html5-date-input" />
                     </div>
 
 
+                    <div class="mb-4">
+                        <label for="exampleFormControlSelect1" class="form-label">Crime Category / Complaint
+                            Type</label>
+                        <input readonly name="crime_category" value="{{csr.crime_category}}"
+                            placeholder="{{csr.crime_category}}" type="text" class="white-placeholder form-control">
 
+                    </div>
+
+                    <div id="other_crime_category" class="mb-3">
+                        <label class="form-label" for="basic-default-fullname">Other Crime Category /
+                            Complaint Type
+                        </label>
+                        <input readonly type="text" value="{{csr.other_crime_category}}"
+                            placeholder="{{csr.other_crime_category}}" name="other_crime_category"
+                            class="white-placeholder form-control" id="basic-default-fullname" />
+                    </div>
+                    
 
                     <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class="form-label">State or UT</label>
+                        <label for="exampleFormControlSelect1" class="form-label">Complaint State or UT</label>
                         <input readonly type="text" name="state_name" value="{{csr.state_name}}"
                             placeholder="{{csr.state_name}}" class="white-placeholder form-control">
 
@@ -119,23 +135,6 @@
 
                     </div>
 
-
-                    <div class="mb-4">
-                        <label for="exampleFormControlSelect1" class="form-label">Crime Category / Complaint
-                            Type</label>
-                        <input readonly name="crime_category" value="{{csr.crime_category}}"
-                            placeholder="{{csr.crime_category}}" type="text" class="white-placeholder form-control">
-
-                    </div>
-
-                    <div id="other_crime_category" class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Other Crime Category /
-                            Complaint Type
-                        </label>
-                        <input readonly type="text" value="{{csr.other_crime_category}}"
-                            placeholder="{{csr.other_crime_category}}" name="other_crime_category"
-                            class="white-placeholder form-control" id="basic-default-fullname" />
-                    </div>
 
 
 
