@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from datetime import datetime
 from accounts.models import *
-import pytz
 
 def landing_page(request):
     return render(request,"landing_page.html")
@@ -197,9 +196,11 @@ def police_incharge_home(request):
 def manage_complaint(request,complaint_id):
     print(complaint_id)
     complaints = complaint_master.objects.get(complaint_id=complaint_id)
+    has_image = complaints.evidence_image
     context = {
         'complaints':complaints,
         'complaint_id': complaint_id,
+        'has_image': has_image
     }
     return render(request, 'manage_complaint.html',context)
 

@@ -187,21 +187,20 @@
                             class="white-placeholder form-control" id="basic-default-company" />
                     </div>
 
+                    {% if has_image %}
                     <label class="form-label" for="basic-default-company">Evidence image</label>
                     <div class="d-flex align-items-start align-items-sm-center gap-4 mb-3">
                         <img src="{{ MEDIA_URL }}{{ complaints.evidence_image.url }}" class="d-block rounded"
                             height="100" width="100" id="uploadedAvatar" />
                         <div class="button-wrapper">
-                            <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                <span class="d-none d-sm-block"
-                                    onclick="window.open('{{ MEDIA_URL }}{{ complaints.evidence_image.url }}')">Open
-                                    Image in new tab</span>
-
-                            </label>
-
-
+                            <a href="{{ MEDIA_URL }}{{ complaints.evidence_image.url }}" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                <span class="d-none d-sm-block">Open Image in new tab</span>
+                            </a>
                         </div>
                     </div>
+                    {% endif %}
+
 
 
 
