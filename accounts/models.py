@@ -82,7 +82,7 @@ class CustomUser(AbstractBaseUser,  PermissionsMixin):
     created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True,null=True,blank=True,)
 
-    profile_image = models.ImageField(null=True, blank=True, upload_to="Profile images/",default="media/Profile\ images/default.png")
+    profile_image = models.ImageField(null=True, blank=True, upload_to="Profile images/",default="Profile images/default.png")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username','Phone_Number','first_name','last_name','password','gender','aadhaarno','state','district','address','pincode']
