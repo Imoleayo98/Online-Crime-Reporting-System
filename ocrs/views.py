@@ -484,13 +484,13 @@ def user_view_complaints(request):
 
 def user_view_complaint(request,complaint_id):
     complaints = complaint_master.objects.get(complaint_id=complaint_id)
-    # if (complaints.status == 'CSR is Filed'):
-
     has_image = complaints.evidence_image
+    status = complaints.status
     context = {
         'complaints':complaints,
         'complaint_id': complaint_id,
-        'has_image': has_image
+        'has_image': has_image,
+        'status': status,
     }
     return render(request,'user_view_complaint.html',context)
 

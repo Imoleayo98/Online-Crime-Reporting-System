@@ -75,29 +75,57 @@
 </aside>
 
 <script>
-
     let Home = document.querySelectorAll('.menu-item')[0];
     let Manage_Profile = document.querySelectorAll('.menu-item')[1];
     let Create_Complaint = document.querySelectorAll('.menu-item')[2];
-    // let Create_Complaint = document.querySelectorAll('.menu-item')[2];
-    // let Create_Complaint = document.querySelectorAll('.menu-item')[2];
+    let View_complaint = document.querySelectorAll('.menu-item')[3];
+    let View_fir = document.querySelectorAll('.menu-item')[4];
+    let View_csr = document.querySelectorAll('.menu-item')[5];
 
-    var currentUrl = window.location.href;
     if (window.location.href.includes("create_complaint")) {
         Create_Complaint.classList.add('active');
         Home.classList.remove('active');
         Manage_Profile.classList.remove('active');
+        View_complaint.classList.remove('active');
+        View_fir.classList.remove('active');
+        View_csr.classList.remove('active');
     } 
-    else if (window.location.href.includes("user"))
-    {
+    
+    else if (window.location.href.includes("user_view_complaints") || window.location.href.includes("user_view_complaint")) {
+        Create_Complaint.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Profile.classList.remove('active');
+        View_complaint.classList.add('active');
+        View_fir.classList.remove('active');
+        View_csr.classList.remove('active');
+    }
+    else if (window.location.href.includes("user_view_firs") || window.location.href.includes("user_view_fir")) {
+        Create_Complaint.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Profile.classList.remove('active');
+        View_complaint.classList.remove('active');
+        View_fir.classList.add('active');
+        View_csr.classList.remove('active');
+    }
+    else if (window.location.href.includes("user_view_csrs") || window.location.href.includes("user_view_csr")) {
+        Create_Complaint.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Profile.classList.remove('active');
+        View_complaint.classList.remove('active');
+        View_fir.classList.remove('active');
+        View_csr.classList.add('active');
+    }
+    else if (window.location.href.includes("user")) {
         Create_Complaint.classList.remove('active');
         Home.classList.add('active');
         Manage_Profile.classList.remove('active');
+        View_complaint.classList.remove('active');
+        View_fir.classList.remove('active');
+        View_csr.classList.remove('active');
     }
-    
-    
-
 </script>
+
+
 
 
 {% endblock %}
