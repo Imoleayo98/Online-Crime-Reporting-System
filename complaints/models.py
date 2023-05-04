@@ -207,6 +207,7 @@ class csr_master(models.Model):
     info_by_station_incharge = models.TextField(null=True, blank=True,default="")
     created_at = models.DateTimeField(auto_now=True, null=True, blank=True)
     updated_at = models.DateTimeField(default=timezone.now,null=True,blank=True)
+    reporting_date_time = models.DateTimeField(null=True, blank=True)
     def save(self, *args, **kwargs):
         if self.complainant_state_name:
             state = state_master.objects.filter(state_name=self.complainant_state_name).first()
@@ -290,6 +291,7 @@ class fir_master(models.Model):
     property_value = models.TextField(max_length=500,null=False,blank=False)
     created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True,null=True,blank=True)
+    reporting_date_time = models.DateTimeField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if self.complainant_state_name:

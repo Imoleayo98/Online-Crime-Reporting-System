@@ -211,6 +211,11 @@
                         <textarea {% if csr.status == "Completed" %} readonly {% endif %} id="basic-default-message" name="info_by_incharge" class="form-control"
                             placeholder="{{csr.info_by_station_incharge}}"></textarea>
                     </div>
+                    <div class="mb-3 ">
+                        <label for="html5-date-input" class="form-label">Reporting Date Time</label>
+                        <input readonly value="{{cssr.reporting_date_time}}" placeholder="{{csr.reporting_date_time}}"
+                            class="white-placeholder form-control" name="dob" type="text" id="html5-date-input" />
+                    </div>
 
                     <input type="hidden" name="csr_id" value="{{csr_id}}">
 

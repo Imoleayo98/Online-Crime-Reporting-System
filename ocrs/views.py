@@ -244,7 +244,9 @@ def register_fir_csr(request):
         other_crime_category = request.POST.get('other_crime_category')
         subject = request.POST.get('subject')
         detailed_description = complaint_master.objects.get(complaint_id=complaint_id).detailed_description
-        delay_reason = request.POST.get('delay_in_complaining')
+        delay_reason = complaint_master.objects.get(complaint_id=complaint_id).delay_reason
+        reporting_date_time = complaint_master.objects.get(complaint_id=complaint_id).created_at
+        print(delay_reason)
 
         datetime_of_occurence = complaint_master.objects.get(complaint_id=complaint_id).datetime_of_occurence
 
@@ -305,7 +307,8 @@ def register_fir_csr(request):
             properties_involved = properties_involved,
             property_value = property_value,
             created_at = timezone.now(),
-            updated_at = timezone.now()
+            updated_at = timezone.now(),
+            reporting_date_time=reporting_date_time
             )
             complaint = complaint_master.objects.get(complaint_id=complaint_id)
             complaint.status = "FIR is Filed"
@@ -347,7 +350,8 @@ def register_fir_csr(request):
                 evidence_image = evidence_image,
                 info_by_station_incharge = info_by_station_incharge,
                 created_at = timezone.now(),
-                updated_at = timezone.now()
+                updated_at = timezone.now(),
+                reporting_date_time=reporting_date_time
             )
             print(csr)
             complaint = complaint_master.objects.get(complaint_id=complaint_id)
