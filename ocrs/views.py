@@ -475,3 +475,60 @@ def view_only_csrs(request):
         'csrs' : csrs
     }
     return render(request,'view_only_csrs.html',context)
+
+
+def user_view_complaints(request):
+    complaints = complaint_master.objects.filter(complainant_email=request.user.email).order_by('-complaint_id')
+    context = {'complaints':complaints}
+    return render(request,'user_view_complaints.html',context)
+
+def user_view_complaint(request,complaint_id):
+    complaints = complaint_master.objects.get(complaint_id=complaint_id)
+    # if (complaints.status == 'CSR is Filed'):
+
+    has_image = complaints.evidence_image
+    context = {
+        'complaints':complaints,
+        'complaint_id': complaint_id,
+        'has_image': has_image
+    }
+    return render(request,'user_view_complaint.html',context)
+
+
+def user_view_firs(request):
+    firs = fir_master.objects.filter(complainant_email=request.user.email).order_by('-fir_id')
+    context = {
+        'firs' : firs
+    }
+
+    return render(request,'user_view_firs.html',context)
+
+def user_view_fir(request,fir_id):
+    fir = fir_master.objects.get(fir_id=fir_id)
+    print(fir.subject)
+    has_image = fir.evidence_image
+    context = {
+        'fir':fir,
+        'fir_id': fir_id,
+        'has_image': has_image
+    }
+    return render(request,'user_view_fir.html',context)
+
+
+def user_view_csrs(request):
+    csrs = csr_master.objects.filter(complainant_email=request.user.email).order_by('-csr_id')
+    context = {
+        'csrs' : csrs
+    }
+
+    return render(request,'user_view_csrs.html',context)
+
+def user_view_csr(request,csr_id):
+    csr = csr_master.objects.get(csr_id=csr_id)
+    has_image = csr.evidence_image
+    context = {
+        'csr':csr,
+        'csr_id': csr_id,
+        'has_image': has_image
+    }
+    return render(request,'user_view_csr.html',context)

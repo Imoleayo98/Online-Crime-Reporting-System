@@ -40,30 +40,24 @@
         </li>
         <!-- Cards -->
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="{% url 'user_view_complaints'  %}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="Layouts">View Complaint Status</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">View Reports</div>
+            <a href="{% url 'user_view_firs'  %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="Layouts">View FIR Status</div>
             </a>
-
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
-                        <div data-i18n="Without menu">View FIR</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
-                        <div data-i18n="Without navbar">View CSR</div>
-                    </a>
-                </li>
-            </ul>
         </li>
+        <li class="menu-item">
+            <a href="{% url 'user_view_csrs'  %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="Layouts">View CSR Status</div>
+            </a>
+        </li>
+        
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
@@ -85,6 +79,8 @@
     let Home = document.querySelectorAll('.menu-item')[0];
     let Manage_Profile = document.querySelectorAll('.menu-item')[1];
     let Create_Complaint = document.querySelectorAll('.menu-item')[2];
+    // let Create_Complaint = document.querySelectorAll('.menu-item')[2];
+    // let Create_Complaint = document.querySelectorAll('.menu-item')[2];
 
     var currentUrl = window.location.href;
     if (window.location.href.includes("create_complaint")) {

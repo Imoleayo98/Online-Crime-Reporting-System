@@ -49,5 +49,11 @@ urlpatterns = [
     path('view_only_csr/<int:csr_id>/', views.view_only_csr, name='view_only_csr'),
     path('view_only_firs/', views.view_only_firs, name='view_only_firs'),
     path('view_only_csrs/', views.view_only_csrs, name='view_only_csrs'),
+    path('user_view_complaints/', views.user_view_complaints, name='user_view_complaints'),
+    path('user_view_complaint/<int:csr_id>/', views.user_view_complaint, name='user_view_complaint'),
+    path('user_view_firs/', views.user_view_firs, name='user_view_firs'),
+    path('user_view_fir/<int:fir_id>/', views.user_view_fir, name='user_view_fir'),
+    path('user_view_csrs/', views.user_view_csrs, name='user_view_csrs'),
+    path('user_view_csr/<int:csr_id>/', views.user_view_csr, name='user_view_csr'),
 
 ] + static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
