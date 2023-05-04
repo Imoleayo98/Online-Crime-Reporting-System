@@ -572,7 +572,7 @@
                 <div class="col-lg-6 offset-lg-3">
 
                     <!-- Contact Form -->
-                    <form id="contactForm" data-toggle="validator" data-focus="false">
+                    <form id="contactForm" data-toggle="validator" data-focus="false" onSubmit="sendEmail()">
                         <div class="form-group">
                             <input type="text" class="form-control-input" id="cname" required>
                             <label class="label-control" for="cname">Name</label>
@@ -604,17 +604,17 @@
 
                     <script src="https://smtpjs.com/v3/smtp.js"></script>
                     <script>  
-                        function sendEmail() {
+                        /*function sendEmail() {
                             let name = document.getElementById("cname").value;
                             let email = document.getElementById("cemail").value;
                             let message = document.getElementById("cmessage").value;
                             let contact = document.getElementById("ccontact").value;
                             let finalmessage = `Name : ${name} <br>  Email : ${email} <br>  Message : ${message} <br> Contact Number : ${contact} <br>`;
                             Email.send({
-                                /*Host : "",
-                                Username : "",
-                                Password : "",*/
-                                SecureToken : "8c1d116e-c16c-4329-8321-ae7801695a6e",
+                                //Host : "",
+                                //Username : "",
+                                //Password : "",
+                                SecureToken : "",
                                 To : 'ocrsindia@gmail.com',
                                 From : "ocrsindia@gmail.com",
                                 Subject : "O.C.R.S Contact form",
@@ -622,6 +622,28 @@
                             }).then(
                               message => alert(message)
                             );
+                        }*/
+                        function sendEmail() {
+                            let name = document.getElementById("cname").value;
+                            let email = document.getElementById("cemail").value;
+                            let message = document.getElementById("cmessage").value;
+                            let contact = document.getElementById("ccontact").value;
+                            let finalmessage = `Name : ${name} <br>  Email : ${email} <br>  Message : ${message} <br> Contact Number : ${contact} <br>`;
+                            
+                            // Check if all fields are filled
+                            if (name !== '' && email !== '' && message !== '' && contact !== '') {
+                                Email.send({
+                                    SecureToken : "325016fe-105a-4077-af4f-0399711bbc3f",
+                                    To : 'ocrsindia@gmail.com',
+                                    From : "ocrsindia@gmail.com",
+                                    Subject : "O.C.R.S Contact form",
+                                    Body : finalmessage
+                                }).then(
+                                    message => alert(message)
+                                );
+                            } else {
+                                alert("Please fill in all fields before submitting the form.");
+                            }
                         }
                         </script>
 
