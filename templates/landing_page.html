@@ -589,13 +589,41 @@
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
+                            <input type="text" class="form-control-input" id="ccontact" required>
+                            <label class="label-control" for="cname">Contact Number</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
                             <button type="submit" class="form-control-submit-button">SUBMIT MESSAGE</button>
                         </div>
                         <div class="form-message">
                             <div id="cmsgSubmit" class="h3 text-center hidden"></div>
                         </div>
-                    </form>
+                    </form>                                       
                     <!-- end of contact form -->
+
+                    <script src="https://smtpjs.com/v3/smtp.js"></script>
+                    <script>  
+                        function sendEmail() {
+                            let name = document.getElementById("cname").value;
+                            let email = document.getElementById("cemail").value;
+                            let message = document.getElementById("cmessage").value;
+                            let contact = document.getElementById("ccontact").value;
+                            let finalmessage = `Name : ${name} <br>  Email : ${email} <br>  Message : ${message} <br> Contact Number : ${contact} <br>`;
+                            Email.send({
+                                /*Host : "",
+                                Username : "",
+                                Password : "",*/
+                                SecureToken : "8c1d116e-c16c-4329-8321-ae7801695a6e",
+                                To : 'ocrsindia@gmail.com',
+                                From : "ocrsindia@gmail.com",
+                                Subject : "O.C.R.S Contact form",
+                                Body : finalmessage
+                            }).then(
+                              message => alert(message)
+                            );
+                        }
+                        </script>
 
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
