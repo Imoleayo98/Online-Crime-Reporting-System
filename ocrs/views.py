@@ -362,7 +362,9 @@ def register_fir_csr(request):
         else:
             complaint = complaint_master.objects.get(complaint_id=complaint_id)
             complaint.status = 'Rejected'
+            complaint.info_by_station_incharge = info_by_station_incharge
             complaint.save()
+
             return redirect('police_incharge_view_complaint')
     else:
         return redirect('police_incharge_view_complaint')

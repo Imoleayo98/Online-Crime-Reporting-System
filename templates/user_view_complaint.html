@@ -201,17 +201,21 @@
                     {% endif %}
 
                     {% if status == "CSR is Filed" %}
-                    <div class="alert alert-primary" role="alert">Your Complaint is Filed as CSR For More Details Go to
-                        <a href="{% url 'user_view_csrs'  %}" style="text-decoration: underline;"> View CSR </a> </div>
+                    <div class="alert alert-primary" role="alert">Your Complaint is Filed as C.S.R For More Details Go to
+                        <a href="{% url 'user_view_csrs'  %}" style="text-decoration: underline;"> View C.S.R </a> </div>
                     {% elif status == "FIR is Filed" %}
-                    <div class="alert alert-primary" role="alert">Your Complaint is Filed as CSR For More Details Go to
-                        <a href="{% url 'user_view_csrs'  %}" style="text-decoration: underline;"> View FIR </a></div>
+                    <div class="alert alert-primary" role="alert">Your Complaint is Filed as F.I.R For More Details Go to
+                        <a href="{% url 'user_view_firs'  %}" style="text-decoration: underline;"> View F.I.R </a></div>
                     {%endif%}
 
 
 
 
-
+                    <div class="mb-3 csr_hide" id="info_by_si">
+                        <label class="form-label" for="basic-default-message">Info By Station Incharge</label>
+                        <textarea   readonly  id="basic-default-message" name="info_by_incharge" class="form-control"
+                            placeholder="{{complaints.info_by_station_incharge}}"></textarea>
+                    </div>
 
 
                 </form>

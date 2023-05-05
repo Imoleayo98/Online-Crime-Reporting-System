@@ -135,6 +135,8 @@ class complaint_master(models.Model):
     evidence_image = models.ImageField(null=True, blank=True, upload_to="complaint images/")
     created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True,null=True,blank=True)
+    info_by_station_incharge = models.TextField(null=True, blank=True,default="")
+
 
 
     def save(self, *args, **kwargs):

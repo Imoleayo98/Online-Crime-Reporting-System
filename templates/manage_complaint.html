@@ -470,8 +470,11 @@
             if (csrNoField.style.display === 'block') {
                 csrNoField.style.display = 'none';
                 infoField.style.display = 'none';
-
+                document.getElementById('info_by_si').style.display = 'none';
             }
+            document.getElementById('info_by_si').style.display = 'block'
+            
+           
             // Hide FIR fields if visible
             if (isFirFieldsVisible) {
                 firFields.forEach(field => {
