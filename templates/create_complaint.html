@@ -14,13 +14,13 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-fullname">Complainant Full Name  </label>
-                        <input type="text" name="name" class="form-control" id="basic-default-fullname" />
+                        <input type="text" name="name" class="form-control" id="basic-default-fullname" required autofocus/>
                     </div>
 
                     <label class="form-label" for="basic-default-fullname"
                         style="margin-bottom: -4px;">Complainant Gender</label><br>
                     <div class="form-check form-check-inline mb-3 mt-0">
-                        <input class="form-check-input" type="radio" name="gender" id="Male" value="Male" />
+                        <input class="form-check-input" type="radio" name="gender" id="Male" value="Male" required/>
                         <label class="form-check-label" for="inlineRadio1">Male</label>
                     </div>
                     <div class="form-check form-check-inline mt-3 mt-0">
@@ -30,7 +30,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-phone">Complainant Phone Number</label>
                         <input type="text" name="contact_no" id="basic-default-phone" class="form-control phone-mask"
-                            placeholder="6587 998 941" />
+                            placeholder="6587 998 941" required/>
                     </div>
                     <!-- <div class="mb-3 mt-1">
                         <label class="form-label" for="basic-default-email">Complainant Email</label>
@@ -43,14 +43,14 @@
 
                     <div class="mb-3 ">
                         <label for="html5-date-input" class="form-label">Complainant Date Of Birth</label>
-                        <input class="form-control" name="dob" type="date" value="" id="html5-date-input" />
+                        <input class="form-control" name="dob" type="date" value="" id="html5-date-input" required/>
                     </div>
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Crime Category / Complaint Type</label>
                         <select class="form-select" id="crime_category" name="crime_category"
-                            aria-label="Crime Category">
-                            <option selected>Choose Crime Category / Complaint Type</option>
+                            aria-label="Crime Category" required>
+                            <option disabled selected>Choose Crime Category / Complaint Type</option>
                             {% for category in crime_categories %}
                             <option value="{{ category.crime_category_name }}">{{ category.crime_category_name }}
                             </option>
@@ -97,8 +97,8 @@
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint State or UT</label>
-                        <select class="form-select" name="complaint_state" id="complaint_state" name="complaint_state" aria-label="State">
-                            <option selected>Choose State or UT where you want to file the complaint</option>
+                        <select class="form-select" name="complaint_state" id="complaint_state" name="complaint_state" aria-label="State" required>
+                            <option disabled selected>Choose State or UT where you want to file the complaint</option>
                             {% for state in states %}
                             <option value="{{ state.state_name }}">{{ state.state_name }}
                             </option>
@@ -134,8 +134,8 @@
                     </script>
                     <div class="mb-4">
                         <label for="complaint_district" class="form-label">Complaint District</label>
-                        <select class="form-select" id="complaint_district" name="complaint_district">
-                            <option value="">Choose District where you want to file the complaint</option>
+                        <select class="form-select" id="complaint_district" name="complaint_district" required>
+                            <option value="" disabled selected>Choose District where you want to file the complaint</option>
                         </select>
                     </div>
 
@@ -173,8 +173,8 @@
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint Police Station</label>
                         <select class="form-select" id="complaint_police_station" name="complaint_police_station"
-                            aria-label="State">
-                            <option selected>Choose Police Station where you want to file the complaint</option>
+                            aria-label="State" required>
+                            <option disabled selected>Choose Police Station where you want to file the complaint</option>
                         </select>
                     </div>
 
@@ -184,14 +184,14 @@
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Subject</label>
                         <input type="text" name="subject" class="form-control" id="basic-default-company"
-                            placeholder="Enter Complaint's Subject" />
+                            placeholder="Enter Complaint's Subject" required/>
                     </div>
 
 
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-message">Detailed Description</label>
                         <textarea id="basic-default-message"  name="detailed_description" class="form-control"
-                            placeholder="Provide detailed description"></textarea>
+                            placeholder="Provide detailed description" required></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -205,12 +205,12 @@
                             Occurence</label>
                         <div class="col-md-10">
                             <input class="form-control" name="date_time_of_occurence" type="datetime-local" value="2021-06-18T12:30:00"
-                                id="html5-datetime-local-input" />
+                                id="html5-datetime-local-input" required/>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Place of Occurence</label>
-                        <input type="text" name="place_of_occurence" class="form-control" id="basic-default-company" />
+                        <input type="text" name="place_of_occurence" class="form-control" id="basic-default-company" required/>
                     </div>
 
                     <div class="mb-3">

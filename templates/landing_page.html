@@ -23,6 +23,18 @@
     <title>O.C.R.S</title>
 
     <!-- Styles -->
+    <style>
+        .toast {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            z-index: 9999;
+        }
+    </style>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
     <link href="/static/landing_page/css/bootstrap.css" rel="stylesheet">
@@ -602,6 +614,7 @@
                     </form>                                       
                     <!-- end of contact form -->
 
+
                     <script src="https://smtpjs.com/v3/smtp.js"></script>
                     <script>  
                         /*function sendEmail() {
@@ -623,6 +636,35 @@
                               message => alert(message)
                             );
                         }*/
+
+                        
+
+                        
+                        // function submitForm() {
+                        // sendEmail();
+                        // onSubmitForm();
+                        // return false;
+                        //  }
+
+
+
+                        // function onSubmitForm(){
+                        // // Prevent the default form submission behavior
+                        // event.preventDefault();
+                        // // Create a toast notification element
+                        // const toast = document.createElement('div');
+                        // toast.classList.add('toast');
+                        // toast.textContent = 'Form submitted successfully!';
+                        // // Add the toast to the DOM
+                        // document.body.appendChild(toast);
+                        // // Show the toast for a few seconds before removing it
+                        // setTimeout(() => {
+                        //     document.body.removeChild(toast);
+                        // }, 3000);
+                        // // Submit the form
+                        // event.target.submit();
+                        // }
+
                         function sendEmail() {
                             let name = document.getElementById("cname").value;
                             let email = document.getElementById("cemail").value;

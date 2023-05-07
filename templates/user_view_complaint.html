@@ -200,12 +200,16 @@
                     </div>
                     {% endif %}
 
+                    <hr size="4">
+
                     {% if status == "CSR is Filed" %}
                     <div class="alert alert-primary" role="alert">Your Complaint is Filed as C.S.R For More Details Go to
                         <a href="{% url 'user_view_csrs'  %}" style="text-decoration: underline;"> View C.S.R </a> </div>
                     {% elif status == "FIR is Filed" %}
                     <div class="alert alert-primary" role="alert">Your Complaint is Filed as F.I.R For More Details Go to
-                        <a href="{% url 'user_view_firs'  %}" style="text-decoration: underline;"> View F.I.R </a></div>
+                    <a href="{% url 'user_view_firs'  %}" style="text-decoration: underline;"> View F.I.R </a></div>
+                    {% elif status == "Rejected" %}
+                    <div class="alert alert-primary" role="alert">Your Complaint is Rejected </div>
                     {%endif%}
 
 

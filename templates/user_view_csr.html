@@ -191,14 +191,27 @@
                     </div>
                     {% endif %}
 
+                    <div class="mb-3 ">
+                        <label for="html5-date-input" class="form-label">Reporting Date & Time</label>
+                        <input readonly value="{{csr.reporting_date_time}}" placeholder="{{csr.reporting_date_time}}"
+                            class="white-placeholder form-control" name="dob" type="text" id="html5-date-input" />
+                    </div>
+
+                    <hr size="4">
+
                     <div class="mb-3 csr_hide">
                         <label class="form-label" for="basic-default-company">C.S.R NUMBER / G.D NUMBER</label>
                         <input type="text" readonly name="csr_no"  class="white-placeholder form-control" id="basic-default-company"
                             placeholder="{{csr.csr_no}}" />
                     </div>
+                    
+
+                    <!-- <hr size="2" color="#333" width="50%" align="center"> -->
+                    <hr size="4">
+
 
                     <div class="mb-3">
-                        <label for="exampleFormControlSelect1" class="form-label">Select Status</label>
+                        <label for="exampleFormControlSelect1" class="form-label">Status</label>
                         <input type="text" readonly name="csr_no"  class="white-placeholder form-control" id="basic-default-company"
                             placeholder="{{csr.status}}" />
                     </div>
@@ -208,11 +221,7 @@
                             placeholder="{{csr.info_by_station_incharge}}"></textarea>
                     </div>
 
-                    <div class="mb-3 ">
-                        <label for="html5-date-input" class="form-label">Reporting Date & Time</label>
-                        <input readonly value="{{csr.reporting_date_time}}" placeholder="{{csr.reporting_date_time}}"
-                            class="white-placeholder form-control" name="dob" type="text" id="html5-date-input" />
-                    </div>
+
 
                     <input type="hidden" name="csr_id" value="{{csr_id}}">
 

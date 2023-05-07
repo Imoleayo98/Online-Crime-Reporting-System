@@ -193,6 +193,13 @@
                     </div>
                     {% endif %}
 
+                    <div class="mb-3 ">
+                        <label for="html5-date-input" class="form-label">Reporting Date & Time</label>
+                        <input readonly value="{{fir.reporting_date_time}}" placeholder="{{fir.reporting_date_time}}"
+                            class="white-placeholder form-control" name="dob" type="text" id="html5-date-input" />
+                    </div>
+                    
+                    <hr size="4">
 
                     <div class="mb-3 fir_fields">
                         <label class="form-label" for="basic-default-company">F.I.R NUMBER</label>
@@ -263,8 +270,9 @@
                             placeholder="{{fir.property_value}}"></textarea>
                     </div>
 
+                    <hr size="4">
                     <div class="mb-3">
-                        <label for="exampleFormControlSelect1" class="form-label">Select Status</label>
+                        <label for="exampleFormControlSelect1" class="form-label">Status</label>
                         <select disabled name="status" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                             <option value="FIR is Filed" selected>FIR is Filed</option>
                             <option value="Completed">Completed</option>
@@ -274,12 +282,6 @@
                         <label class="form-label" for="basic-default-message">Info By Station Incharge</label>
                         <textarea readonly id="basic-default-message" name="info_by_incharge" class="form-control"
                             placeholder="{{fir.info_by_station_incharge}}"></textarea>
-                    </div>
-
-                    <div class="mb-3 ">
-                        <label for="html5-date-input" class="form-label">Reporting Date & Time</label>
-                        <input readonly value="{{fir.reporting_date_time}}" placeholder="{{fir.reporting_date_time}}"
-                            class="white-placeholder form-control" name="dob" type="text" id="html5-date-input" />
                     </div>
 
                     <input type="hidden" name="fir_id" value="{{fir_id}}">
