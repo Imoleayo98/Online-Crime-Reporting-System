@@ -56,4 +56,14 @@ urlpatterns = [
     path('user_view_csrs/', views.user_view_csrs, name='user_view_csrs'),
     path('user_view_csr/<int:csr_id>/', views.user_view_csr, name='user_view_csr'),
 
+    path('police_view_only_firs/', views.police_view_only_firs, name='police_view_only_firs'),
+    path('police_view_only_fir/<int:fir_id>/', views.police_view_only_fir, name='police_view_only_fir'),
+    path('police_manage_firs/', views.police_manage_firs, name='police_manage_firs'),
+    path('police_manage_fir/<int:fir_id>/', views.police_manage_fir, name='police_manage_fir'),
+
+    path('police_view_only_csrs/', views.police_view_only_csrs, name='police_view_only_csrs'),
+    path('police_view_only_csr/<int:csr_id>/', views.police_view_only_csr, name='police_view_only_csr'),
+    path('police_manage_csrs/', views.police_manage_csrs, name='police_manage_csrs'),
+    path('police_manage_csr/<int:csr_id>/', views.police_manage_csr, name='police_manage_csr'),
+
 ] + static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

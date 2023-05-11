@@ -1,6 +1,7 @@
-{% extends 'police_incharge_sidebar.html' %}
 
-{% block manage_csr %}
+{% extends 'police_sidebar.html' %}
+
+{% block police_view_only_csr %}
 
     <!-- -----------------------------------  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -110,7 +111,7 @@
                             placeholder="{{csr.other_crime_category}}" name="other_crime_category"
                             class="white-placeholder form-control" id="basic-default-fullname" />
                     </div>
-                    
+
 
                     <div class="mb-4">
                         <label for="exampleFormControlSelect1" class="form-label">Complaint State or UT</label>
@@ -135,6 +136,8 @@
 
                     </div>
 
+
+                    
 
 
 
@@ -194,39 +197,38 @@
 
                     <div class="mb-3 ">
                         <label for="html5-date-input" class="form-label">Reporting Date & Time</label>
-                        <input readonly value="{{csr.reporting_date_time}}" placeholder="{{csr.reporting_date_time}}"
+                        <input readonly value="{{fir.reporting_date_time}}" placeholder="{{fir.reporting_date_time}}"
                             class="white-placeholder form-control" name="dob" type="text" id="html5-date-input" />
                     </div>
 
                     <hr size="4">
-
                     <div class="mb-3 csr_hide">
                         <label class="form-label" for="basic-default-company">C.S.R NUMBER / G.D NUMBER</label>
                         <input type="text" readonly name="csr_no" class="form-control" id="basic-default-company"
                             placeholder="{{csr.csr_no}}" />
                     </div>
 
-                    <hr size="4">
 
+                    <hr size="4">
                     <div class="mb-3">
-                        <label for="exampleFormControlSelect1" class="form-label">Select Status</label>
-                        <select {% if csr.status == "Completed" %} disabled {% endif %} name="status" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                        <label for="exampleFormControlSelect1" class="form-label">Status</label>
+                        <select  disabled name="status" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                             <option value="CSR is Filed" selected>CSR is Filed</option>
                             <option value="Completed">Completed</option>
                         </select>
                     </div>
                     <div class="mb-3 csr_hide" id="info_by_si">
                         <label class="form-label" for="basic-default-message">Info By Station Incharge</label>
-                        <textarea {% if csr.status == "Completed" %} readonly {% endif %} id="basic-default-message" name="info_by_incharge" class="form-control"
+                        <textarea readonly id="basic-default-message" name="info_by_incharge" class="form-control"
                             placeholder="{{csr.info_by_station_incharge}}"></textarea>
                     </div>
+
 
                     <input type="hidden" name="csr_id" value="{{csr_id}}">
 
 
                     <br>
 
-                    <button type="submit" style="width: 100%;" id="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
 
@@ -234,14 +236,4 @@
     </div>
 </div>
 </div>
-<script>
-    let status_check = "{{csr.status}}";
-    if(status_check.includes('Completed'))
-    {
-
-
-        submit = document.getElementById('submit');
-        submit.disabled = true;
-    }
-</script>
 {% endblock %}

@@ -205,6 +205,7 @@ class police_officer(AbstractBaseUser,  PermissionsMixin):
     state_id_no = models.IntegerField(null=True,blank=True)
     district = models.ForeignKey(district_master,to_field='district_name',null=False,blank=False,on_delete=models.PROTECT,related_name="complaint_in_district+")
     district_id_no = models.IntegerField(null=True,blank=True)
+    station_name = models.ForeignKey(police_station_master,null=True, blank=True,on_delete=models.PROTECT)
     aadhaarno = models.IntegerField(null=False, blank=False)
 
     rank_name = models.ForeignKey(rank_master,to_field='rank_name',null=False,blank=False,on_delete=models.PROTECT)

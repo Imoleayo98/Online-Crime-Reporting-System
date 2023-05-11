@@ -534,3 +534,114 @@ def user_view_csr(request,csr_id):
         'has_image': has_image
     }
     return render(request,'user_view_csr.html',context)
+
+
+def police_view_only_firs(request):
+    firs = fir_master.objects.filter(station_name=request.user.station_name).order_by('-fir_id')
+    context = {
+        'firs' : firs
+    }
+    return render(request,'police_view_only_firs.html',context)
+
+def police_view_only_fir(request,fir_id):
+    fir = fir_master.objects.get(fir_id=fir_id)
+    print(fir.subject)
+    has_image = fir.evidence_image
+    context = {
+        'fir':fir,
+        'fir_id': fir_id,
+        'has_image': has_image
+    }
+    return render(request,'police_view_only_fir.html',context)
+
+def police_view_only_csrs(request):
+    csrs = csr_master.objects.filter(station_name=request.user.station_name).order_by('-csr_id')
+    context = {
+        'csrs' : csrs
+    }
+    return render(request,'police_view_only_csrs.html',context)
+
+def police_view_only_csr(request,csr_id):
+    csr = csr_master.objects.get(csr_id=csr_id)
+    has_image = csr.evidence_image
+    context = {
+        'csr':csr,
+        'csr_id': csr_id,
+        'has_image': has_image
+    }
+    return render(request,'police_view_only_csr.html',context)
+
+def police_manage_csrs(request):
+    csrs = csr_master.objects.filter(station_name=request.user.station_name).order_by('-csr_id')
+    context = {
+        'csrs' : csrs
+    }
+    return render(request,'police_manage_csrs.html',context)
+
+def police_manage_csr(request,csr_id):
+    print(csr_id)
+    csr = csr_master.objects.get(csr_id=csr_id)
+    has_image = csr.evidence_image
+    context = {
+        'csr':csr,
+        'csr_id': csr_id,
+        'has_image': has_image
+    }
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        info_by_incharge = request.POST.get('info_by_incharge')
+        if "Completed" in status:
+            csr = csr_master.objects.get(csr_id=csr_id)
+            csr.info_by_station_incharge = info_by_incharge
+            csr.status = "Completed"
+            csr.save()
+            return redirect('view_csr')
+
+        else:
+            csr = csr_master.objects.get(csr_id=csr_id)
+            csr.info_by_station_incharge = info_by_incharge
+            csr.save()
+            return redirect('view_csr')
+    return render(request,'police_manage_csr.html',context)
+
+
+
+
+
+
+
+
+def police_manage_firs(request):
+    firs = fir_master.objects.filter(station_name=request.user.station_name).order_by('-fir_id')
+    context = {
+        'firs' : firs
+    }
+    return render(request,'police_manage_firs.html',context)
+
+def police_manage_fir(request,fir_id):
+    fir = fir_master.objects.get(fir_id=fir_id)
+    print(fir.subject)
+    has_image = fir.evidence_image
+    context = {
+        'fir':fir,
+        'fir_id': fir_id,
+        'has_image': has_image
+    }
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        info_by_incharge = request.POST.get('info_by_incharge')
+        if "Completed" in status:
+            fir = fir_master.objects.get(fir_id=fir_id)
+            fir.status = "Completed"
+            fir.info_by_station_incharge = info_by_incharge
+            fir.save()
+            return redirect('view_fir')
+
+        else:
+            fir = fir_master.objects.get(fir_id=fir_id)
+            fir.info_by_station_incharge = info_by_incharge
+            fir.save()
+            return redirect('view_fir')
+
+    else:
+        return render(request,'police_manage_fir.html',context)

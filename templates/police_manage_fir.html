@@ -1,6 +1,6 @@
-{% extends 'police_incharge_sidebar.html' %}
+{% extends 'police_sidebar.html' %}
 
-{% block manage_fir %}
+{% block police_manage_fir %}
 <!-- -----------------------------------  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- -----------------------------------  -->
@@ -298,6 +298,8 @@
     </div>
 </div>
 </div>
+
+
 <script>
     let status_check = "{{fir.status}}";
     if(status_check.includes('Completed'))
@@ -308,5 +310,4 @@
         submit.disabled = true;
     }
 </script>
-
 {% endblock %}
