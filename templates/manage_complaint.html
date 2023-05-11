@@ -215,7 +215,11 @@
                     <div class="mb-3 csr_hide" id="info_by_si">
                         <label class="form-label" for="basic-default-message">Info By Station Incharge</label>
                         <textarea id="basic-default-message" name="info_by_incharge" class="form-control"
-                            placeholder="Provide the message or information which you want to send to the complaintant"></textarea>
+                            {% if complaints.status == 'Rejected' %}
+                            placeholder="{{ complaints.info_by_station_incharge }}"
+                        {% else %}
+                        placeholder="Provide the message or information which you want to send to the complainant
+                        {% endif %}"></textarea>
                     </div>
 
 
@@ -355,6 +359,11 @@
         });
         document.getElementsByClassName('csr_hide')[0].style.display = 'none';
         document.getElementsByClassName('csr_hide')[1].style.display = 'none';
+        document.getElementById('info_by_si').style.display = 'block';
+        // document.getElementById('info_by_incharge').ariaPlaceholder = ""
+        // document.getElementById('info_by_incharge').placeholder = '{{complaints.info_by_station_incharge}}';
+
+
     }
     else if (status === "CSR is Filed") {
         document.getElementById("submit").disabled = true;
