@@ -214,8 +214,9 @@
                     </div>
                     <div class="mb-3 csr_hide" id="info_by_si">
                         <label class="form-label" for="basic-default-message">Info By Station Incharge</label>
-                        <textarea id="basic-default-message" name="info_by_incharge" class="form-control"
+                        <textarea  id="basic-default-message" name="info_by_incharge" class="form-control"
                             {% if complaints.status == 'Rejected' %}
+                            readonly
                             placeholder="{{ complaints.info_by_station_incharge }}"
                         {% else %}
                         placeholder="Provide the message or information which you want to send to the complainant
