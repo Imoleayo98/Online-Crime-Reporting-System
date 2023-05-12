@@ -90,8 +90,19 @@
         View_fir.classList.remove('active');
         View_csr.classList.remove('active');
     } 
+
+    if (window.location.href.includes("user_manage_profile")) {
+        Create_Complaint.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Profile.classList.add('active');
+        View_complaint.classList.remove('active');
+        View_fir.classList.remove('active');
+        View_csr.classList.remove('active');
+    } 
+
+
     
-    else if (window.location.href.includes("user_view_complaints") || window.location.href.includes("user_view_complaint")) {
+    if (window.location.href.includes("user_view_complaints") || window.location.href.includes("user_view_complaint")) {
         Create_Complaint.classList.remove('active');
         Home.classList.remove('active');
         Manage_Profile.classList.remove('active');
@@ -99,7 +110,7 @@
         View_fir.classList.remove('active');
         View_csr.classList.remove('active');
     }
-    else if (window.location.href.includes("user_view_firs") || window.location.href.includes("user_view_fir")) {
+    if (window.location.href.includes("user_view_firs") || window.location.href.includes("user_view_fir")) {
         Create_Complaint.classList.remove('active');
         Home.classList.remove('active');
         Manage_Profile.classList.remove('active');
@@ -107,7 +118,7 @@
         View_fir.classList.add('active');
         View_csr.classList.remove('active');
     }
-    else if (window.location.href.includes("user_view_csrs") || window.location.href.includes("user_view_csr")) {
+    if (window.location.href.includes("user_view_csrs") || window.location.href.includes("user_view_csr")) {
         Create_Complaint.classList.remove('active');
         Home.classList.remove('active');
         Manage_Profile.classList.remove('active');
@@ -115,7 +126,7 @@
         View_fir.classList.remove('active');
         View_csr.classList.add('active');
     }
-    else if (window.location.href.includes("user")) {
+    if (window.location.href == 'http://127.0.0.1:8000/user/' ) {
         Create_Complaint.classList.remove('active');
         Home.classList.add('active');
         Manage_Profile.classList.remove('active');
@@ -123,6 +134,7 @@
         View_fir.classList.remove('active');
         View_csr.classList.remove('active');
     }
+    
 </script>
 
 
