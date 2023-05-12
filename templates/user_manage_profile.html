@@ -18,7 +18,7 @@
                     <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                         <span class="d-none d-sm-block">Upload new photo</span>
                         <i class="bx bx-upload d-block d-sm-none"></i>
-                        <input type="file" id="upload" name="profile_image" value="" class="account-file-input" value="{{ request.user.profile_image.url }}" hidden />
+                        <input type="file" id="upload" name="profile_image"  class="account-file-input"  hidden />
                     </label>
                 
                 </div>
@@ -170,9 +170,19 @@
             <div class="mt-2">
                 <button type="submit" class="btn btn-primary me-2">Save changes</button>
             </div>
+
+            <input type="hidden" value="!changed" name="image_changed">
+
         </div>
     </form>
     <!-- /Account -->
 </div>
+
+<script>
+    document.getElementById('upload').addEventListener('change', function() {
+        document.getElementsByName('image_changed')[0].value = 'changed';
+    });
+</script>
+
 
 {% endblock %}

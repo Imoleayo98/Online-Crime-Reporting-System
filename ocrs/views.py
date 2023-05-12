@@ -667,7 +667,7 @@ def user_manage_profile(request):
         state = request.POST.get('complainant_state')
         district = request.POST.get('complainant_district')
         address = request.POST.get('address')
-        profile_image = request.FILES.get('profile_image')
+
 
         user_id = request.user.user_id
         print(user_id)
@@ -683,7 +683,10 @@ def user_manage_profile(request):
         user.state = state_master.objects.get(state_name=state)
         user.district = district_master.objects.get(district_name=district)
         user.address =  address
-        user.profile_image =  profile_image
+        image_changed = request.POST.get('image_changed')
+        if image_changed == "changed":
+            profile_image = request.FILES.get('profile_image')
+            user.profile_image =  profile_image
         user.save()
 
 
@@ -710,7 +713,6 @@ def police_incharge_manage_profile(request):
         print(" -----------",state)
         district = request.POST.get('pi_district')
         address = request.POST.get('address')
-        profile_image = request.FILES.get('profile_image')
 
         user_id = request.user.incharge_id
         print(user_id)
@@ -724,7 +726,10 @@ def police_incharge_manage_profile(request):
         user.state = state_master.objects.get(state_name=state)
         user.district = district_master.objects.get(district_name=district)
         user.address =  address
-        user.profile_image =  profile_image
+        image_changed = request.POST.get('image_changed')
+        if image_changed == "changed":
+            profile_image = request.FILES.get('profile_image')
+            user.profile_image =  profile_image
         user.save()
 
 
