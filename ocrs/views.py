@@ -645,3 +645,29 @@ def police_manage_fir(request,fir_id):
 
     else:
         return render(request,'police_manage_fir.html',context)
+    
+
+def user_manage_profile(request):
+    states = state_master.objects.all()
+    districts = district_master.objects.filter(state_name=request.user.state) 
+    context = {
+        'states': states,
+        'districts': districts,
+    }
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        firstName = request.POST.get('firstName')
+        lastName = request.POST.get('lastName')
+        gender = request.POST.get('gender')
+        aadhaarno = request.POST.get('aadhaarno')
+        firstName = request.POST.get('firstName')
+        firstName = request.POST.get('firstName')
+        firstName = request.POST.get('firstName')
+
+        user_id = request.user.user_id
+        print(user_id)
+        user = CustomUser.objects.get(user_id=user_id)
+
+        return render(request,'user_manage_profile.html',context)
+    return render(request,'user_manage_profile.html',context)

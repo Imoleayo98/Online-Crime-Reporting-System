@@ -65,5 +65,6 @@ urlpatterns = [
     path('police_view_only_csr/<int:csr_id>/', views.police_view_only_csr, name='police_view_only_csr'),
     path('police_manage_csrs/', views.police_manage_csrs, name='police_manage_csrs'),
     path('police_manage_csr/<int:csr_id>/', views.police_manage_csr, name='police_manage_csr'),
+    path('user_manage_profile/', views.user_manage_profile, name='user_manage_profile'),
 
 ] + static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
