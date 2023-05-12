@@ -69,4 +69,9 @@ urlpatterns = [
     path('police_incharge_manage_profile/', views.police_incharge_manage_profile, name='police_incharge_manage_profile'),
     path('police_manage_profile/', views.police_manage_profile, name='police_manage_profile'),
 
+
+    path('view_complaints_for_feedbacks/', views.view_complaints_for_feedbacks, name='view_complaints_for_feedbacks'),
+    path('feedback/<int:id>/<str:type>/', views.feedback, name='feedback')
+
+
 ] + static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'static') + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -58,15 +58,10 @@
             </a>
         </li>
         
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="Layouts">Announcements</div>
-            </a>
-        </li>
+       
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="{% url 'view_complaints_for_feedbacks'  %}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="Layouts">Feedbacks</div>
             </a>
@@ -81,6 +76,7 @@
     let View_complaint = document.querySelectorAll('.menu-item')[3];
     let View_fir = document.querySelectorAll('.menu-item')[4];
     let View_csr = document.querySelectorAll('.menu-item')[5];
+    let feedback = document.querySelectorAll('.menu-item')[6];
 
     if (window.location.href.includes("create_complaint")) {
         Create_Complaint.classList.add('active');
@@ -89,6 +85,7 @@
         View_complaint.classList.remove('active');
         View_fir.classList.remove('active');
         View_csr.classList.remove('active');
+        feedback.classList.remove('active');
     } 
 
     if (window.location.href.includes("user_manage_profile")) {
@@ -98,6 +95,8 @@
         View_complaint.classList.remove('active');
         View_fir.classList.remove('active');
         View_csr.classList.remove('active');
+        feedback.classList.remove('active');
+
     } 
 
 
@@ -109,6 +108,8 @@
         View_complaint.classList.add('active');
         View_fir.classList.remove('active');
         View_csr.classList.remove('active');
+        feedback.classList.remove('active');
+
     }
     if (window.location.href.includes("user_view_firs") || window.location.href.includes("user_view_fir")) {
         Create_Complaint.classList.remove('active');
@@ -117,6 +118,8 @@
         View_complaint.classList.remove('active');
         View_fir.classList.add('active');
         View_csr.classList.remove('active');
+        feedback.classList.remove('active');
+
     }
     if (window.location.href.includes("user_view_csrs") || window.location.href.includes("user_view_csr")) {
         Create_Complaint.classList.remove('active');
@@ -125,6 +128,19 @@
         View_complaint.classList.remove('active');
         View_fir.classList.remove('active');
         View_csr.classList.add('active');
+        feedback.classList.remove('active');
+
+    }
+
+    if (window.location.href.includes("view_complaints_for_feedbacks") ) {
+        Create_Complaint.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Profile.classList.remove('active');
+        View_complaint.classList.remove('active');
+        View_fir.classList.remove('active');
+        View_csr.classList.remove('active');
+        feedback.classList.add('active');
+
     }
     if (window.location.href == 'http://127.0.0.1:8000/user/' ) {
         Create_Complaint.classList.remove('active');
@@ -133,7 +149,10 @@
         View_complaint.classList.remove('active');
         View_fir.classList.remove('active');
         View_csr.classList.remove('active');
+        feedback.classList.remove('active');
+
     }
+    
     
 </script>
 

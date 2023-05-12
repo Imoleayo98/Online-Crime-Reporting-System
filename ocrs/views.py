@@ -812,3 +812,32 @@ def police_manage_profile(request):
 
         return redirect('/police')
     return render(request,'police_manage_profile.html',context)
+
+
+def view_complaints_for_feedbacks(request):
+    email = request.user.email
+    completed_firs = fir_master.objects.filter(complainant_email=email,status="Completed")
+    completed_csrs = csr_master.objects.filter(complainant_email=email,status="Completed")
+    context = {
+        'completed_firs':completed_firs,
+        'completed_csrs':completed_csrs
+    }
+    return render(request,'view_complaints_for_feedbacks.html',context)
+
+def feedback(request, id, type):
+    if request.method == 'POST':
+        if type == "fir":
+            fir = fir_master.objects.get(fir_id=id)
+            feedback = request.POST.get('Feedback')
+            print(feedback)
+            fir.feedback = feedback
+            fir.save()
+            return redirect('view_complaints_for_feedbacks')
+        else:
+            csr = csr_master.objects.get(csr_id=id) # Changed fir_id to csr_id
+            feedback = request.POST.get('Feedback')
+            csr.feedback = feedback
+            csr.save()
+            return redirect('view_complaints_for_feedbacks')
+    return render(request,'feedback.html')
+
