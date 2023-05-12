@@ -693,30 +693,28 @@ def user_manage_profile(request):
 
 def police_incharge_manage_profile(request):
     states = state_master.objects.all()
-    districts = district_master.objects.filter(state_name=request.user.state)
+    districts = district_master.objects.filter(state_name=request.user.state) 
+
     context = {
         'states': states,
         'districts': districts,
     }
     if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
         first_name = request.POST.get('firstName')
         last_name = request.POST.get('lastName')
         gender = request.POST.get('gender')
         aadhaarno = request.POST.get('aadhaarno')
         Phone_Number = request.POST.get('phoneNumber')
         pincode = request.POST.get('pinCode')
-        state = request.POST.get('complainant_state')
-        district = request.POST.get('complainant_district')
+        state = request.POST.get('pi_state')
+        print(" -----------",state)
+        district = request.POST.get('pi_district')
         address = request.POST.get('address')
         profile_image = request.FILES.get('profile_image')
 
-        user_id = request.user.user_id
+        user_id = request.user.incharge_id
         print(user_id)
-        user = CustomUser.objects.get(user_id=user_id)
-        user.username = username
-        user.email =  email
+        user = police_incharge.objects.get(incharge_id=user_id)
         user.first_name = first_name
         user.last_name =  last_name
         user.gender = gender

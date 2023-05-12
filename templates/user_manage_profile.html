@@ -18,7 +18,7 @@
                     <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                         <span class="d-none d-sm-block">Upload new photo</span>
                         <i class="bx bx-upload d-block d-sm-none"></i>
-                        <input type="file" id="upload" name="profile_image" class="account-file-input" hidden />
+                        <input type="file" id="upload" name="profile_image" value="" class="account-file-input" value="{{ request.user.profile_image.url }}" hidden />
                     </label>
                 
                 </div>
@@ -93,7 +93,7 @@
 
                 <div class="mb-3 col-md-6">
                     <label for="zipCode" class="form-label">State or UT</label>
-                    <select class="form-select" name="complainant_state" id="complaint_state" name="complaint_state"
+                    <select class="form-select" name="complainant_state" id="complaint_state" 
                         aria-label="State" required>
                         {% for state in states %}
                         <option value="{{ state.state_name }}">{{ state.state_name }}
