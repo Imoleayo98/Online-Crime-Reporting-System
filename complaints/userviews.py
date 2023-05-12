@@ -2,11 +2,27 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .models import *
+from accounts.models import *
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='landing_page')
 def user(request):
-    return render(request, 'user.html')
+    user_id = request.user.user_id
+    user = CustomUser.objects.get(user_id=user_id)
+    total_complaints = complaint_master.objects.filter(complainant_email=user.email).count()
+    total_pending_complaints = complaint_master.objects.filter(complainant_email=user.email,status='Pending').count()
+    total_firs= fir_master.objects.filter(complainant_email=user.email).count()
+    total_csrs= csr_master.objects.filter(complainant_email=user.email).count()
+
+
+    context = {
+        'user': user,
+        'total_complaints': total_complaints,
+        'total_pending_complaints' : total_pending_complaints,
+        'total_firs' : total_firs,
+        'total_csrs' : total_csrs   
+    }
+    return render(request, 'user.html',context)
     
 @login_required(login_url='landing_page')
 def create_complaint(request):

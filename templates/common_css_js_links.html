@@ -155,7 +155,17 @@
                 <div class="content-wrapper">
 
                     <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="row">
+                            {% block hello_user %}
 
+                            {% endblock %}
+
+                            {% block boxes %}
+
+                            {% endblock %}
+
+                            
+                        </div>
                         {% block complaint %}
 
                         {% endblock %}
