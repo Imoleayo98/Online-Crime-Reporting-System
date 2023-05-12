@@ -689,3 +689,46 @@ def user_manage_profile(request):
 
         return redirect('/user')
     return render(request,'user_manage_profile.html',context)
+
+
+def police_incharge_manage_profile(request):
+    states = state_master.objects.all()
+    districts = district_master.objects.filter(state_name=request.user.state)
+    context = {
+        'states': states,
+        'districts': districts,
+    }
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        first_name = request.POST.get('firstName')
+        last_name = request.POST.get('lastName')
+        gender = request.POST.get('gender')
+        aadhaarno = request.POST.get('aadhaarno')
+        Phone_Number = request.POST.get('phoneNumber')
+        pincode = request.POST.get('pinCode')
+        state = request.POST.get('complainant_state')
+        district = request.POST.get('complainant_district')
+        address = request.POST.get('address')
+        profile_image = request.FILES.get('profile_image')
+
+        user_id = request.user.user_id
+        print(user_id)
+        user = CustomUser.objects.get(user_id=user_id)
+        user.username = username
+        user.email =  email
+        user.first_name = first_name
+        user.last_name =  last_name
+        user.gender = gender
+        user.aadhaarno = aadhaarno
+        user.Phone_Number =  int(Phone_Number)
+        user.pincode =  pincode
+        user.state = state_master.objects.get(state_name=state)
+        user.district = district_master.objects.get(district_name=district)
+        user.address =  address
+        user.profile_image =  profile_image
+        user.save()
+
+
+        return redirect('/police_incharge_home')
+    return render(request,'police_incharge_manage_profile.html',context)

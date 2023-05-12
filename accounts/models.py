@@ -147,8 +147,6 @@ class police_incharge(AbstractBaseUser,  PermissionsMixin):
     address = models.CharField(max_length=500,null=False,blank=False)
     pincode = models.IntegerField(null=False,blank=False)
     
-    state_id_no = models.IntegerField(null=True,blank=True)
-    district_id_no = models.IntegerField(null=True,blank=True)
     status_id = models.CharField(max_length=10,null=False, blank=False,choices=status_id_choices)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
