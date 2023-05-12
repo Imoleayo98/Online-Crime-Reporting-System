@@ -187,7 +187,25 @@ def test(request):
     return render(request, 'test.html')
 
 def police(request):
-    return render(request, 'police.html')
+    police = request.user.station_name
+    station = police_station_master.objects.get(station_name=police)
+    total_firs= fir_master.objects.filter(station_name=station).count()
+    total_csrs= csr_master.objects.filter(station_name=station).count()
+    total_reports = total_csrs + total_firs
+    total_firs_under_investigation= fir_master.objects.filter(station_name=station,status="FIR is Filed").count()
+    total_firs_solved= total_firs - total_firs_under_investigation
+    total_csrs_under_investigation= csr_master.objects.filter(station_name=station,status="CSR is Filed").count()
+    total_csrs_solved= total_csrs - total_csrs_under_investigation
+    cases_under_investigation= total_firs_under_investigation + total_csrs_under_investigation
+    context = {
+            'total_firs' :total_firs,
+            'total_csrs' :total_csrs,
+            'total_reports' :total_reports,
+            'cases_under_investigation' :cases_under_investigation, 
+            'total_firs_solved': total_firs_solved,  
+            'total_csrs_solved': total_csrs_solved
+    }
+    return render(request, 'police.html',context)
 
 @login_required(login_url='landing_page')
 def police_incharge_home(request):
@@ -197,7 +215,9 @@ def police_incharge_home(request):
     total_pending_complaints = complaint_master.objects.filter(station_name=station,status='Pending').count()
     total_firs= fir_master.objects.filter(station_name=station).count()
     total_csrs= csr_master.objects.filter(station_name=station).count()
-    cases_under_investigation = total_firs + total_csrs
+    total_csrs_under_investigation= csr_master.objects.filter(station_name=station,status="CSR is Filed").count()
+    total_firs_under_investigation= fir_master.objects.filter(station_name=station,status="FIR is Filed").count()
+    cases_under_investigation= total_firs_under_investigation + total_csrs_under_investigation
 
     context = {
         'total_complaints' : total_complaints,
