@@ -191,7 +191,22 @@ def police(request):
 
 @login_required(login_url='landing_page')
 def police_incharge_home(request):
-    return render(request, 'police_incharge.html')
+    pi = request.user.station_name
+    station = police_station_master.objects.get(station_name=pi)
+    total_complaints = complaint_master.objects.filter(station_name=station).count()
+    total_pending_complaints = complaint_master.objects.filter(station_name=station,status='Pending').count()
+    total_firs= fir_master.objects.filter(station_name=station).count()
+    total_csrs= csr_master.objects.filter(station_name=station).count()
+    cases_under_investigation = total_firs + total_csrs
+
+    context = {
+        'total_complaints' : total_complaints,
+        'total_pending_complaints' : total_pending_complaints,
+        'total_firs' : total_firs,
+        'total_csrs' : total_csrs,
+        'cases_under_investigation' : cases_under_investigation
+    }
+    return render(request, 'police_incharge.html',context)
 
 @login_required(login_url='landing_page')
 def manage_complaint(request,complaint_id):

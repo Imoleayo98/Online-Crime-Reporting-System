@@ -26,7 +26,7 @@
     </div>
 </div>
 {% endblock %}
-{% block boxes %}
+{% block user_boxes %}
 <div class="row order-1" >
     <div class="col-lg-6 col-md-12 col-6 mb-4">
         <div class="card">
@@ -42,7 +42,7 @@
                             <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                            <a class="dropdown-item" href="{% url 'user_view_complaints'  %}">View Complaints</a>
+                            <a class="dropdown-item" href="{% url 'user_view_complaints'  %}">View More</a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                             <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                            <a class="dropdown-item" href="{% url 'user_view_complaints'  %}">View Pending Complaints</a>
+                            <a class="dropdown-item" href="{% url 'user_view_complaints'  %}">View More</a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                             <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                            <a class="dropdown-item" href="{% url 'user_view_firs'  %}">View FIRs</a>
+                            <a class="dropdown-item" href="{% url 'user_view_firs'  %}">View More</a>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                             <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                            <a class="dropdown-item" href="{% url 'user_view_csrs'  %}">View CSRs</a>
+                            <a class="dropdown-item" href="{% url 'user_view_csrs'  %}">View More</a>
                         </div>
                     </div>
                 </div>
