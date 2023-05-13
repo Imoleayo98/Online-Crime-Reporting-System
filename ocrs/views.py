@@ -11,7 +11,11 @@ from accounts.models import *
 from accounts.models import *
 
 def landing_page(request):
-    return render(request,"landing_page.html")
+    total_users = CustomUser.objects.all().count()
+    context = {
+        'total_users' : total_users
+    }
+    return render(request,"landing_page.html",context)
 
 
 
