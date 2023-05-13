@@ -34,26 +34,26 @@
         </li>
         <li class="menu-item">
             <a href="{% url 'create_complaint' %}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="Basic">Create Complaint</div>
             </a>
         </li>
         <!-- Cards -->
         <li class="menu-item">
             <a href="{% url 'user_view_complaints'  %}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-copy"></i>
                 <div data-i18n="Layouts">View Complaint Status</div>
             </a>
         </li>
         <li class="menu-item">
             <a href="{% url 'user_view_firs'  %}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">View FIR Status</div>
             </a>
         </li>
         <li class="menu-item">
             <a href="{% url 'user_view_csrs'  %}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                 <div data-i18n="Layouts">View CSR Status</div>
             </a>
         </li>
@@ -62,7 +62,7 @@
         </li>
         <li class="menu-item">
             <a href="{% url 'view_complaints_for_feedbacks'  %}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-box"></i>
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Layouts">Feedbacks</div>
             </a>
 
@@ -132,7 +132,7 @@
 
     }
 
-    if (window.location.href.includes("view_complaints_for_feedbacks") ) {
+    if (window.location.href.includes("view_complaints_for_feedbacks") || window.location.href.includes("feedback") ) {
         Create_Complaint.classList.remove('active');
         Home.classList.remove('active');
         Manage_Profile.classList.remove('active');
@@ -142,7 +142,8 @@
         feedback.classList.add('active');
 
     }
-    if (window.location.href == 'http://127.0.0.1:8000/user/' ) {
+    
+    if (window.location.href.includes("http://127.0.0.1/user/") ) {
         Create_Complaint.classList.remove('active');
         Home.classList.add('active');
         Manage_Profile.classList.remove('active');
