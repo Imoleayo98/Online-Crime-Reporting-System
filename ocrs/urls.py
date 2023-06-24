@@ -42,6 +42,10 @@ urlpatterns = [
     path('view_announcements/', views.view_announcements, name='view_announcements'),
     path('view_announcement/<int:id>/', views.view_announcement, name='view_announcement'),
 
+    path('user_announcements/', views.user_announcements, name='user_announcements'),
+    path('user_announcement/<int:id>/', views.user_announcement, name='user_announcement'),
+    
+
     path('manage_complaint/<int:complaint_id>/', views.manage_complaint, name='manage_complaint'),
     path('police_incharge_view_complaint/', views.police_incharge_view_complaint, name='police_incharge_view_complaint'),
     path('register_fir_csr/', views.register_fir_csr, name='register_fir_csr'),

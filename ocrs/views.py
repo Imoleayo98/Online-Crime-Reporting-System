@@ -865,3 +865,21 @@ def view_announcement(request, id):
     }
 
     return render(request, 'police_incharge_announcement.html', context)
+
+def user_announcements(request):
+    temp_announcements = announcements.objects.all()
+    context = {
+        'announcements' : temp_announcements
+    }
+    return render(request, 'user_announcements.html',context)
+
+def user_announcement(request, id):
+    temp_announcement = announcements.objects.get(announcement_id=id)
+    has_image = temp_announcement.image
+    context = {
+        'announcement': temp_announcement,
+        'announcement_id': temp_announcement.announcement_id,
+        'has_image': has_image
+    }
+
+    return render(request, 'user_announcement.html', context)
