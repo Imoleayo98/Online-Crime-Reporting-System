@@ -44,6 +44,9 @@ urlpatterns = [
 
     path('user_announcements/', views.user_announcements, name='user_announcements'),
     path('user_announcement/<int:id>/', views.user_announcement, name='user_announcement'),
+
+    path('police_announcements/', views.police_announcements, name='police_announcements'),
+    path('police_announcement/<int:id>/', views.police_announcement, name='police_announcement'),
     
 
     path('manage_complaint/<int:complaint_id>/', views.manage_complaint, name='manage_complaint'),
