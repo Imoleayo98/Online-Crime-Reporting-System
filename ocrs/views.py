@@ -845,3 +845,23 @@ def feedback(request, id, type):
             return redirect('view_complaints_for_feedbacks')
     return render(request,'feedback.html')
 
+
+
+
+def view_announcements(request):
+    temp_announcements = announcements.objects.all()
+    context = {
+        'announcements' : temp_announcements
+    }
+    return render(request, 'police_incharge_announcements.html',context)
+
+def view_announcement(request, id):
+    temp_announcement = announcements.objects.get(announcement_id=id)
+    has_image = temp_announcement.image
+    context = {
+        'announcement': temp_announcement,
+        'announcement_id': temp_announcement.announcement_id,
+        'has_image': has_image
+    }
+
+    return render(request, 'police_incharge_announcement.html', context)

@@ -34,6 +34,7 @@ admin.site.register(complaint_master,ComplaintMasterAdmin)
 admin.site.register(rank_master)
 admin.site.register(csr_master,CsrMasterAdmin)
 admin.site.register(fir_master,FirMasterAdmin)
+admin.site.register(announcements)
 
 
 

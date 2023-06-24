@@ -64,6 +64,12 @@
                 <div data-i18n="Basic">Manage CSR</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{% url 'view_announcements'  %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                <div data-i18n="Basic">Announcements</div>
+            </a>
+        </li>
 
         <!-- Cards -->
     
@@ -80,6 +86,7 @@
     let view_only_csr = document.querySelectorAll('.menu-item')[4];
     let manage_fir = document.querySelectorAll('.menu-item')[5];
     let  manage_csr = document.querySelectorAll('.menu-item')[6];
+    let  announcements = document.querySelectorAll('.menu-item')[7];
 
     var currentUrl = window.location.href;
     // HOME 
@@ -91,6 +98,7 @@
         manage_csr.classList.remove('active');
         view_only_fir.classList.remove('active');
         view_only_csr.classList.remove('active');
+        announcements.classList.remove('active');
     } 
 
     // Manage Complaint 
@@ -103,6 +111,8 @@
         manage_csr.classList.remove('active');
         view_only_fir.classList.remove('active');
         view_only_csr.classList.remove('active');
+        announcements.classList.remove('active');
+
     }
 
     else if (window.location.href.includes("police_incharge_manage_profile") )
@@ -114,6 +124,8 @@
         manage_csr.classList.remove('active');
         view_only_fir.classList.remove('active');
         view_only_csr.classList.remove('active');
+        announcements.classList.remove('active');
+
     }
 
     // Manage Fir 
@@ -126,6 +138,8 @@
         manage_csr.classList.remove('active');
         view_only_fir.classList.remove('active');
         view_only_csr.classList.remove('active');
+        announcements.classList.remove('active');
+
     }
 
     // Manage Csr 
@@ -138,6 +152,8 @@
         manage_fir.classList.remove('active');
         view_only_csr.classList.remove('active');
         manage_csr.classList.add('active');
+        announcements.classList.remove('active');
+
     }
 
     // View Fir 
@@ -150,6 +166,8 @@
         manage_fir.classList.remove('active');
         view_only_csr.classList.remove('active');
         view_only_fir.classList.add('active');
+        announcements.classList.remove('active');
+
     }
     
     // View Fir 
@@ -162,6 +180,21 @@
         manage_fir.classList.remove('active');
         view_only_fir.classList.remove('active');
         view_only_csr.classList.add('active');
+        announcements.classList.remove('active');
+
+    }
+    
+    else if (window.location.href.includes("view_announcements") || window.location.href.includes("view_announcement") )
+    {
+        manage_csr.classList.remove('active');
+        Manage_Profile.classList.remove('active');
+        Home.classList.remove('active');
+        Manage_Complaint.classList.remove('active');
+        manage_fir.classList.remove('active');
+        view_only_fir.classList.remove('active');
+        view_only_csr.classList.remove('active');
+        announcements.classList.add('active');
+
     }
 
     

@@ -38,6 +38,10 @@ urlpatterns = [
     path('get_police_stations/', views.get_police_stations, name='get_police_stations'),
     path('get_districts_register/', views.get_districts_register, name='get_districts_register'),
     path('police_incharge_home/', views.police_incharge_home, name='police_incharge_home'),
+
+    path('view_announcements/', views.view_announcements, name='view_announcements'),
+    path('view_announcement/<int:id>/', views.view_announcement, name='view_announcement'),
+
     path('manage_complaint/<int:complaint_id>/', views.manage_complaint, name='manage_complaint'),
     path('police_incharge_view_complaint/', views.police_incharge_view_complaint, name='police_incharge_view_complaint'),
     path('register_fir_csr/', views.register_fir_csr, name='register_fir_csr'),
