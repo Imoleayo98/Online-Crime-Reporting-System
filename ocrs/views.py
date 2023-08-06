@@ -695,7 +695,6 @@ def user_manage_profile(request):
         'districts': districts,
     }
     if request.method == 'POST':
-        username = request.POST.get('username')
         email = request.POST.get('email')
         first_name = request.POST.get('firstName')
         last_name = request.POST.get('lastName')
@@ -711,7 +710,6 @@ def user_manage_profile(request):
         user_id = request.user.user_id
         print(user_id)
         user = CustomUser.objects.get(user_id=user_id)
-        user.username = username
         user.email =  email
         user.first_name = first_name
         user.last_name =  last_name
